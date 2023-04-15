@@ -49,9 +49,9 @@
          });
     </script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
 </head>
 
 
@@ -383,7 +383,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-测试DevOps流水线"><a href="#1-测试DevOps流水线" class="headerlink" title="1. 测试DevOps流水线"></a>1. 测试DevOps流水线</h2><h3 id="gitlab创建项目并拉取到本地"><a href="#gitlab创建项目并拉取到本地" class="headerlink" title="gitlab创建项目并拉取到本地"></a>gitlab创建项目并拉取到本地</h3><p><img src="https://img-blog.csdnimg.cn/6e875c7a553645f2b31c71bad792a877.png" alt="在这里插入图片描述"><br>关闭防火墙，让本机访问gitlab</p>
+                <h2 id="1-测试DevOps流水线"><a href="#1-测试DevOps流水线" class="headerlink" title="1. 测试DevOps流水线"></a>1. 测试DevOps流水线</h2><h3 id="gitlab创建项目并拉取到本地"><a href="#gitlab创建项目并拉取到本地" class="headerlink" title="gitlab创建项目并拉取到本地"></a>gitlab创建项目并拉取到本地</h3><p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8730.png"><br>关闭防火墙，让本机访问gitlab</p>
 <pre class="line-numbers language-none"><code class="language-none">$systemctl stop firewalld.service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>clone项目，将我们需要打包发布的项目推送到gitlab</p>
@@ -393,7 +393,7 @@ git tag 1.0.0
 git push origin 1.0.0
 git push -u origin --all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="harbor-server上构建基础镜像"><a href="#harbor-server上构建基础镜像" class="headerlink" title="harbor-server上构建基础镜像"></a>harbor-server上构建基础镜像</h3><p>遇到小问题</p>
-<p><img src="https://img-blog.csdnimg.cn/f7667d94cf814c43b1d0745eb91e9438.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8732.png"></p>
 <p>重启harbor解决</p>
 <pre class="line-numbers language-none"><code class="language-none">$sudo docker-compose down
 $sudo docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -401,24 +401,25 @@ $sudo docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><sp
 <p>拉取openjdk镜像</p>
 <pre class="line-numbers language-none"><code class="language-none">$sudo docker pull openjdk:8u201-jdk-alpine3.9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://img-blog.csdnimg.cn/4d229d9fff0c41818743306ae21338ef.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8733.png"></p>
 <pre class="line-numbers language-none"><code class="language-none">$sudo docker tag openjdk:8u201-jdk-alpine3.9 192.168.159.131:8077/library/openjdk8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/9068abca6ebb444eb89ccf09266d389a.png" alt="在这里插入图片描述"><br>登录harbor仓库</p>
+
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8734.png"><br>登录harbor仓库</p>
 <pre class="line-numbers language-none"><code class="language-none">$sudo docker login 192.168.159.131:8077<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>推送</p>
 <pre class="line-numbers language-none"><code class="language-none">$sudo docker push 192.168.159.131:8077/library/openjdk8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/266fa1111f38405fa88d92da85fc5fc3.png" alt="在这里插入图片描述"></p>
-<h3 id="构建jenkins应用"><a href="#构建jenkins应用" class="headerlink" title="构建jenkins应用"></a>构建jenkins应用</h3><p><img src="https://img-blog.csdnimg.cn/57287229b97444288cc87554c0c2b939.png" alt="在这里插入图片描述"><br>遇到问题：</p>
-<p><img src="https://img-blog.csdnimg.cn/ca84ff93f95541e0be5808811e29e68d.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8735.png"></p>
+<h3 id="构建jenkins应用"><a href="#构建jenkins应用" class="headerlink" title="构建jenkins应用"></a>构建jenkins应用</h3><p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8736.png"><br>遇到问题：</p>
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8737.png"></p>
 <p>我这里是因为gitlab-server上没安装ssh服务,安装后解决<br>其他原因可能是私钥密钥配置错误</p>
-<p><img src="https://img-blog.csdnimg.cn/075bd05420c849d7867c8be8320edf5e.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/a7505ce0c0374b019de0b7fcd1668688.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/d58150d0acd147e3808aafb66d9ddb9b.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/53f8e1eeb7654fbfb0aa85ac5697db95.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8738.png"><br><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8739.png"><br><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8740.png"><br><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8741.png"></p>
 <p>开始构建</p>
-<p><img src="https://img-blog.csdnimg.cn/6307d7df9cd74b6da1eb4570fb9c88bb.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/%E5%9B%BE%E7%89%8742.png"></p>
 <p>构建成功<br>访问</p>
-<p><img src="https://img-blog.csdnimg.cn/b32d0ba3c1d54eb49f6551eed97b27cd.jpeg" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/2.jpg"></p>
 <p>修改代码后，再次push</p>
-<p><img src="https://img-blog.csdnimg.cn/1d875775da57424880c37d39ce7620f1.jpeg" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/8495961d245041238506271b33ef0514.jpeg" alt="在这里插入图片描述"></p>
+<p><img src="/images/image_DevOps/1.jpg"></p>
+<p><img src="/images/image_DevOps/3.jpg"></p>
 <p>流水线测试成功！</p>
 
                 
