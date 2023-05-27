@@ -344,14 +344,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-12
+                    2023-05-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.2k
+                    10.3k
                 </div>
                 
 
@@ -550,25 +550,51 @@
 </ol>
 <p>不过，大部分 Bean 实际都是无状态（没有实例变量）的（比如 Dao、Service），这种情况下， Bean 是线程安全的。</p>
 <h4 id="Bean-的生命周期"><a href="#Bean-的生命周期" class="headerlink" title="Bean 的生命周期"></a>Bean 的生命周期</h4><ul>
-<li>  Bean 容器找到配置文件中 Spring Bean 的定义。</li>
-<li>  Bean 容器利用 Java Reflection API 创建一个 Bean 的实例。</li>
-<li>  如果涉及到一些属性值 利用 <code>set()</code>方法设置一些属性值。</li>
-<li>  如果 Bean 实现了 <code>BeanNameAware</code> 接口，调用 <code>setBeanName()</code>方法，传入 Bean 的名字。</li>
-<li>  如果 Bean 实现了 <code>BeanClassLoaderAware</code> 接口，调用 <code>setBeanClassLoader()</code>方法，传入 <code>ClassLoader</code>对象的实例。</li>
-<li>  如果 Bean 实现了 <code>BeanFactoryAware</code> 接口，调用 <code>setBeanFactory()</code>方法，传入 <code>BeanFactory</code>对象的实例。</li>
-<li>  与上面的类似，如果实现了其他 <code>*.Aware</code>接口，就调用相应的方法。</li>
-<li>  如果有和加载这个 Bean 的 Spring 容器相关的 <code>BeanPostProcessor</code> 对象，执行<code>postProcessBeforeInitialization()</code> 方法</li>
-<li>  如果 Bean 实现了<code>InitializingBean</code>接口，执行<code>afterPropertiesSet()</code>方法。</li>
-<li>  如果 Bean 在配置文件中的定义包含 init-method 属性，执行指定的方法。</li>
-<li>  如果有和加载这个 Bean 的 Spring 容器相关的 <code>BeanPostProcessor</code> 对象，执行<code>postProcessAfterInitialization()</code> 方法</li>
-<li>  当要销毁 Bean 的时候，如果 Bean 实现了 <code>DisposableBean</code> 接口，执行 <code>destroy()</code> 方法。</li>
-<li>  当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。</li>
+<li>  实例化 Instantiation</li>
+<li>  属性赋值 Populate</li>
+<li>  初始化 Initialization</li>
+<li>  销毁 Destruction</li>
 </ul>
-<p><img src="/images/image_Spring/03.png"></p>
-<p>这个过程是由Spring容器自动管理的，其中有两个环节我们可以进行干预。</p>
+<p>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">doCreateBean</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">RootBeanDefinition</span> mbd<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeanCreationException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">BeanWrapper</span> instanceWrapper <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        instanceWrapper <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">BeanWrapper</span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>factoryBeanInstanceCache<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>instanceWrapper <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    	<span class="token comment">// 实例化阶段</span>
+        instanceWrapper <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createBeanInstance</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    	<span class="token comment">// 属性赋值阶段</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">populateBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> instanceWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 初始化阶段</span>
+        exposedObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initializeBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> exposedObject<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> var18<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/images/image_Spring/10.webp"></p>
 <ol>
-<li>我们可以自定义初始化方法，并在该方法前增加@PostConstruct注解，届时Spring容器将在调用SetBeanFactory方法之后调用该方法。</li>
-<li> 我们可以自定义销毁方法，并在该方法前增加@PreDestroy注解，届时Spring容器将在自身销毁前，调用这个方法。</li>
+<li> <strong>Spring启动，查找并加载需要被Spring管理的bean，进行Bean的实例化</strong></li>
+<li> <strong>Bean实例化后对将Bean的引入和值注入到Bean的属性中</strong></li>
+<li> <strong>如果Bean实现了BeanNameAware接口的话，Spring将Bean的Id传递给setBeanName()方法</strong></li>
+<li> <strong>如果Bean实现了BeanFactoryAware接口的话，Spring将调用setBeanFactory()方法，将BeanFactory容器实例传入</strong></li>
+<li> <strong>如果Bean实现了ApplicationContextAware接口的话，Spring将调用Bean的setApplicationContext()方法，将bean所在应用上下文引用传入进来</strong></li>
+<li> <strong>如果Bean实现了BeanPostProcessor接口，Spring就将调用他们的postProcessBeforeInitialization()方法。</strong></li>
+<li> <strong>如果Bean 实现了InitializingBean接口，Spring将调用他们的afterPropertiesSet()方法。类似的，如果bean使用init-method声明了初始化方法，该方法也会被调用</strong></li>
+<li> <strong>如果Bean 实现了BeanPostProcessor接口，Spring就将调用他们的postProcessAfterInitialization()方法。</strong></li>
+<li> <strong>此时，Bean已经准备就绪，可以被应用程序使用了。他们将一直驻留在应用上下文中，直到应用上下文被销毁。</strong></li>
+<li> <strong>如果bean实现了DisposableBean接口，Spring将调用它的destory()接口方法，同样，如果bean使用了destory-method 声明销毁方法，该方法也会被调用。</strong></li>
 </ol>
 <h3 id="6-Spring-AoP"><a href="#6-Spring-AoP" class="headerlink" title="6. Spring AoP"></a>6. Spring AoP</h3><h4 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h4><p>AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
 <p>Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 <strong>JDK Proxy</strong>，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 <strong>Cglib</strong> 生成一个被代理对象的子类来作为代理，如下图所示：</p>
@@ -614,11 +640,11 @@
 <p>MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring MVC 可以帮助我们进行更简洁的 Web 层的开发，并且它天生与 Spring 框架集成。Spring MVC 下我们一般把后端项目分为 Service 层（处理业务）、Dao 层（数据库操作）、Entity 层（实体类）、Controller 层(控制层，返回数据给前台页面)。</p>
 <h4 id="Spring-MVC-的核心组件"><a href="#Spring-MVC-的核心组件" class="headerlink" title="Spring MVC 的核心组件"></a>Spring MVC 的核心组件</h4><p>记住了下面这些组件，也就记住了 SpringMVC 的工作原理。</p>
 <ul>
-<li>  <strong><code>DispatcherServlet</code></strong> ：<strong>核心的中央处理器</strong>，负责接收请求、分发，并给予客户端响应。</li>
-<li>  <strong><code>HandlerMapping</code></strong> ：<strong>处理器映射器</strong>，根据 uri 去匹配查找能处理的 <code>Handler</code> ，并会将请求涉及到的拦截器和 <code>Handler</code> 一起封装。</li>
-<li>  <strong><code>HandlerAdapter</code></strong> ：<strong>处理器适配器</strong>，根据 <code>HandlerMapping</code> 找到的 <code>Handler</code> ，适配执行对应的 <code>Handler</code>；</li>
-<li>  <strong><code>Handler</code></strong> ：<strong>请求处理器</strong>，处理实际请求的处理器。</li>
-<li>  <strong><code>ViewResolver</code></strong> ：<strong>视图解析器</strong>，根据 <code>Handler</code> 返回的逻辑视图 / 视图，解析并渲染真正的视图，并传递给 <code>DispatcherServlet</code> 响应客户端</li>
+<li>  <strong>DispatcherServlet</strong> ：<strong>核心的中央处理器</strong>，负责接收请求、分发，并给予客户端响应。</li>
+<li>  <strong>HandlerMapping</strong> ：<strong>处理器映射器</strong>，根据 uri 去匹配查找能处理的 <code>Handler</code> ，并会将请求涉及到的拦截器和 <code>Handler</code> 一起封装。</li>
+<li>  <strong>HandlerAdapter</strong> ：<strong>处理器适配器</strong>，根据 <code>HandlerMapping</code> 找到的 <code>Handler</code> ，适配执行对应的 <code>Handler</code>；</li>
+<li>  <strong>Handler</strong> ：<strong>请求处理器</strong>，处理实际请求的处理器。</li>
+<li>  <strong>ViewResolver</strong> ：<strong>视图解析器</strong>，根据 <code>Handler</code> 返回的逻辑视图 / 视图，解析并渲染真正的视图，并传递给 <code>DispatcherServlet</code> 响应客户端</li>
 </ul>
 <h4 id="SpringMVC-工作原理"><a href="#SpringMVC-工作原理" class="headerlink" title="SpringMVC 工作原理"></a>SpringMVC 工作原理</h4><p><strong>Spring MVC 原理如下图所示：</strong></p>
 <p><img src="/images/image_Spring/06.png"></p>
@@ -632,7 +658,14 @@
 <li>当得到真实的视图对象View后，DispatcherServlet就使用这个View对象对ModelAndView中的模型数据进行视图渲染。</li>
 <li> 最终客户端得到的响应消息可能是一个普通的HTML页面，也可能是一个XML或JSON串，甚至是一张图片或一个PDF文档等不同的媒体形式。</li>
 </ol>
-<h4 id="Spring-MVC注解"><a href="#Spring-MVC注解" class="headerlink" title="Spring MVC注解"></a>Spring MVC注解</h4><h5 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h5><p>作用：该注解的作用就是用来处理请求地址映射的，也就是说将其中的处理器方法映射到url路径上。</p>
+<h4 id="Spring-MVC注解"><a href="#Spring-MVC注解" class="headerlink" title="Spring MVC注解"></a>Spring MVC注解</h4><h5 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h5><p>Spring MVC框架中，@Controller注解用于标识一个类是控制器，主要用于处理HTTP请求和响应。当一个类被标注了@Controller注解后，Spring将会对其进行如下操作：</p>
+<ol>
+<li>创建Bean：Spring将会创建一个Controller Bean，并将其纳入到Spring容器中管理。</li>
+<li>处理请求：当客户端发送请求时，DispatcherServlet将会检查所有的Controller Bean，并找到@RequestMapping注解中匹配的Controller类和处理方法。</li>
+<li>调用方法：当匹配到Controller类和处理方法后，DispatcherServlet将会调用这个方法，并传递进来请求参数（如果有的话）。</li>
+<li>处理返回值：处理方法执行完成后，将会返回一个结果对象。DispatcherServlet将会根据结果对象找到对应的View，并将处理结果发送给客户端。</li>
+</ol>
+<h5 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h5><p>作用：该注解的作用就是用来处理请求地址映射的，也就是说将其中的处理器方法映射到url路径上。</p>
 <p>属性：</p>
 <ul>
 <li>method：是让你指定请求的method的类型，比如常用的有get和post。</li>
@@ -1265,7 +1298,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">221.9k</span>&nbsp;字
+                class="white-color">225k</span>&nbsp;字
             
             
             
