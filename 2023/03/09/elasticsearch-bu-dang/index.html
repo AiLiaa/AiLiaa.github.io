@@ -1,0 +1,1240 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ElasticSearch(补档), 艾AA">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ElasticSearch(补档) | 艾AA</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+    <script>
+    <!--浏览器搞笑标题-->
+         var OriginTitle = document.title;
+         var titleTime;
+         document.addEventListener('visibilitychange', function () {
+             if (document.hidden) {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヽ(●-`Д′-)ノ你要玩捉迷藏嘛';
+                 clearTimeout(titleTime);
+             }
+             else {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヾ(???3)ノ好哦！' + OriginTitle;
+                 titleTime = setTimeout(function () {
+                     document.title = OriginTitle;
+                 }, 2000);
+             }
+         });
+    </script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">艾AA</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">艾AA</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ElasticSearch(补档)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ElasticSearch/">
+                                <span class="chip bg-color">ElasticSearch</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-09
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-08-31
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.8k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="ElasticSearch是什么"><a href="#ElasticSearch是什么" class="headerlink" title="ElasticSearch是什么"></a>ElasticSearch是什么</h3><p>Elasticsearch 是一个实时的分布式存储、搜索、分析的引擎。</p>
+<p>采用以往的模糊查询，模糊查询前置配置，会放弃索引，导致商品查询是全表扫面，在百万级别的数据库中，效率非常低下，而我们使用ES做一个全文索引，我们将经常查询的商品的某些字段，比如说商品名，描述、价格还有id这些字段我们放入我们索引库里，可以提高查询速度。</p>
+<h3 id="ES同类产品有哪些"><a href="#ES同类产品有哪些" class="headerlink" title="ES同类产品有哪些"></a>ES同类产品有哪些</h3><p>Solr：Solr是用Java编写、运行在Servlet容器的一个独立的全文搜索服务器。</p>
+<h3 id="全文检索是什么"><a href="#全文检索是什么" class="headerlink" title="全文检索是什么"></a>全文检索是什么</h3><p>全文检索（Full-Text Search）：对文本或文档集合进行关键词搜索的技术和功能。它不仅仅是简单的字符串匹配，还包括了分析、索引和搜索等多个步骤。</p>
+<ul>
+<li><p>分词：首先需要对文本进行分析，将其切分成单词或词组的集合。</p>
+</li>
+<li><p>对分词索引构建：索引是根据关键词和其对应的文档信息构建起来的数据结构，一般采用倒排索引实现。索引会记录每个关键词出现的位置、频率以及相关的文档信息。</p>
+</li>
+</ul>
+<p>当用户输入一个查询词时，全文检索系统会通过查询解析，分析用户输入的关键词，并根据建立的索引进行匹配。全文检索系统会返回与查询词相关性最高的文档列表</p>
+<h3 id="倒排索引是什么"><a href="#倒排索引是什么" class="headerlink" title="倒排索引是什么"></a>倒排索引是什么</h3><p>以前是根据ID查内容，倒排索引之后是根据内容查ID，然后再拿着ID去查询出来真正需要的东西。</p>
+<p>倒排索引（Inverted Index）是一种数据结构，用于实现全文搜索和快速查找的功能。它由两部分组成：<strong>词项（Term）和倒排列表（Inverted List）</strong>。</p>
+<ul>
+<li>词项：文档中的某个单词或短语。</li>
+<li>倒排列表：将每个词项映射到包含该词项的文档列表中。每个文档列表中记录了出现该词项的文档的相关信息，比如文档的标识符、位置等。</li>
+</ul>
+<p>倒排索引的优势在于它能够快速定位和匹配文档，而无需遍历所有文档，适用于大规模文本数据的搜索和查询场景。</p>
+<h3 id="Lucene是什么"><a href="#Lucene是什么" class="headerlink" title="Lucene是什么"></a>Lucene是什么</h3><p>Lucene就是一个jar包，里面包含了各种建立倒排索引的方法，java开发的时候只需要导入这个jar包就可以开发了。</p>
+<p>ES 和 Lucene的区别:</p>
+<p>Lucene不是分布式的。<br>ES的底层就是Lucene，ES是分布式的</p>
+<h3 id="为什么不用数据库去实现搜索功能"><a href="#为什么不用数据库去实现搜索功能" class="headerlink" title="为什么不用数据库去实现搜索功能"></a>为什么不用数据库去实现搜索功能</h3><p>%***%模糊查询</p>
+<ol>
+<li>需要全表扫描</li>
+<li>字段里的所有内容都需要匹配</li>
+<li>%*、、、、*%这样的需要全文检索</li>
+</ol>
+<h3 id="ES的核心概念"><a href="#ES的核心概念" class="headerlink" title="ES的核心概念"></a>ES的核心概念</h3><p><strong>cluster集群，ES是一个分布式的系统</strong></p>
+<p>群集是一个或多个节点（服务器）的集合，它们共同保存整个数据，并提供跨所有节点的联合索引和搜索功能。</p>
+<p>群集由唯一名称标识，默认情况下为“elasticsearch”。</p>
+<p><strong>shard：分片</strong></p>
+<p>一台服务器，无法存储大量的数据，ES把一个index里面的数据，分为多个shard，分布式的存储在各个服务器上面。</p>
+<p><strong>replica：副本</strong></p>
+<p>在ES集群中，一模一样的数据有多份，能正常提供查询和插入的分片我们叫做 primary shard，其余的我们就管他们叫做 replica shard（备份的分片） </p>
+<p>当查询数据的时候，数据是有备份的，它会同时发出命令让有数据的机器去查询结果，最后谁的查询结果快，就要谁的数据</p>
+<p><strong>Node节点</strong></p>
+<p>就是集群中的一台服务器，存储数据并参与群集索引和搜索功能。</p>
+<p><strong>index 索引</strong></p>
+<p>ES中的索引非传统索引的含义，ES中的索引是存放数据的地方，是ES中的一个概念词汇</p>
+<p>索引就像关系数据库中的“数据库”。它有一个定义多种类型的映射。索引是逻辑名称空间，映射到一个或多个主分片，并且可以有零个或多个副本分片。</p>
+<p><strong>type类型</strong></p>
+<p>类型是用来定义数据结构的，是索引的逻辑分区</p>
+<p>在每一个index下面，可以有一个或者多个type，就像数据库里面的一张表。</p>
+<p>相当于表结构的描述，描述每个字段的类型。</p>
+<p><strong>document：文档</strong></p>
+<p>文档类似于关系数据库中的一行。</p>
+<p>不同之处在于索引中的每个文档可以具有不同的结构（字段），但是对于通用字段应该具有相同的数据类型。</p>
+<p><strong>Field 字段</strong></p>
+<p>就像关系型数据库中列的概念，一个document有一个或者多个field组成。</p>
+<h3 id="ES写数据过程"><a href="#ES写数据过程" class="headerlink" title="ES写数据过程"></a>ES写数据过程</h3><ul>
+<li>客户端选择一个 node 发送请求过去，这个 node 就是&nbsp;<code>coordinating node</code>（协调节点）。</li>
+<li><code>coordinating node</code>&nbsp;对 document 进行路由，将请求转发给对应的 node（有 primary shard）。</li>
+<li>实际的 node 上的&nbsp;<code>primary shard</code>&nbsp;处理请求，然后将数据同步到&nbsp;<code>replica node</code>。</li>
+<li>  <code>coordinating node</code>&nbsp;如果发现&nbsp;<code>primary node</code>&nbsp;和所有&nbsp;<code>replica node</code>&nbsp;都搞定之后，就返回响应结果给客户端。</li>
+</ul>
+<h3 id="写数据底层原理"><a href="#写数据底层原理" class="headerlink" title="写数据底层原理"></a>写数据底层原理</h3><p><img src="/images/image_ElasticSearch/05.jpg"></p>
+<p>先写入内存 buffer，在 buffer 里的时候数据是搜索不到的；同时将数据写入 translog 日志文件。</p>
+<p>如果 buffer 快满了，或者到一定时间，就会将内存 buffer 数据&nbsp;<code>refresh</code>&nbsp;到一个新的&nbsp;<code>segment file</code>&nbsp;中，但是此时数据不是直接进入&nbsp;<code>segment file</code>&nbsp;磁盘文件，而是先进入&nbsp;<code>os cache</code>&nbsp;。这个过程就是&nbsp;<code>refresh</code>。</p>
+<p>每隔 1 秒钟，es 将 buffer 中的数据写入一个新的&nbsp;<code>segment file</code>，每秒钟会产生一个新的磁盘文件&nbsp;<code>segment file</code>，这个&nbsp;<code>segment file</code>&nbsp;中就存储最近 1 秒内 buffer 中写入的数据。</p>
+<p>但是如果 buffer 里面此时没有数据，那当然不会执行 refresh 操作，如果 buffer 里面有数据，默认 1 秒钟执行一次 refresh 操作，刷入一个新的 segment file 中。</p>
+<p><strong>总结</strong>：数据先写入内存 buffer，然后每隔 1s，将数据 refresh 到 os cache，到了 os cache 数据就能被搜索到（所以我们才说 es 从写入到能被搜索到，中间有 1s 的延迟）。每隔 5s，将数据写入 translog 文件（这样如果机器宕机，内存数据全没，最多会有 5s 的数据丢失），translog 大到一定程度，或者默认每隔 30mins，会触发 commit 操作，将缓冲区的数据都 flush 到 segment file 磁盘文件中。</p>
+<h3 id="ES搜索数据过程"><a href="#ES搜索数据过程" class="headerlink" title="ES搜索数据过程"></a>ES搜索数据过程</h3><ul>
+<li>客户端发送请求到一个&nbsp;<code>coordinate node</code>。</li>
+<li>协调节点将搜索请求转发到所有的 shard 对应的&nbsp;<code>primary shard</code>&nbsp;或&nbsp;<code>replica shard</code>，都可以。</li>
+<li>query phase：每个 shard 将自己的搜索结果（其实就是一些&nbsp;<code>doc id</code>）返回给协调节点，由协调节点进行数据的合并、排序、分页等操作，产出最终结果。</li>
+<li>  fetch phase：接着由协调节点根据&nbsp;<code>doc id</code>&nbsp;去各个节点上拉取实际的&nbsp;<code>document</code>&nbsp;数据，最终返回给客户端。</li>
+</ul>
+<h3 id="ES读数据过程"><a href="#ES读数据过程" class="headerlink" title="ES读数据过程"></a>ES读数据过程</h3><p>可以通过&nbsp;<code>doc id</code>&nbsp;来查询，会根据&nbsp;<code>doc id</code>&nbsp;进行 hash，判断出来当时把&nbsp;<code>doc id</code>&nbsp;分配到了哪个 shard 上面去，从那个 shard 去查询。</p>
+<ul>
+<li>客户端发送请求到任意一个 node，成为&nbsp;<code>coordinate node</code>。</li>
+<li><code>coordinate node</code>&nbsp;对&nbsp;<code>doc id</code>&nbsp;进行哈希路由，将请求转发到对应的 node，此时会使用&nbsp;<code>round-robin</code>随机轮询算法，在&nbsp;<code>primary shard</code>&nbsp;以及其所有 replica 中随机选择一个，让读请求负载均衡。</li>
+<li>接收请求的 node 返回 document 给&nbsp;<code>coordinate node</code>。</li>
+<li>  <code>coordinate node</code>&nbsp;返回 document 给客户端。</li>
+</ul>
+<blockquote>
+<p>写请求是写入 primary shard，然后同步给所有的 replica shard；读请求可以从 primary shard 或replica shard 读取，采用的是随机轮询算法。</p>
+</blockquote>
+<h3 id="删除-更新数据底层原理"><a href="#删除-更新数据底层原理" class="headerlink" title="删除/更新数据底层原理"></a>删除/更新数据底层原理</h3><p>如果是删除操作，commit 的时候会生成一个&nbsp;<code>.del</code>&nbsp;文件，里面将某个 doc 标识为&nbsp;<code>deleted</code>&nbsp;状态，那么搜索的时候根据&nbsp;<code>.del</code>&nbsp;文件就知道这个 doc 是否被删除了。</p>
+<p>如果是更新操作，就是将原来的 doc 标识为&nbsp;<code>deleted</code>&nbsp;状态，然后新写入一条数据。</p>
+<p>buffer 每 refresh 一次，就会产生一个&nbsp;<code>segment file</code>，所以默认情况下是 1 秒钟一个&nbsp;<code>segment file</code>，这样下来&nbsp;<code>segment file</code>&nbsp;会越来越多，此时会定期执行 merge。每次 merge 的时候，会将多个&nbsp;<code>segment file</code>&nbsp;合并成一个，同时这里会将标识为&nbsp;<code>deleted</code>&nbsp;的 doc 给物理删除掉，然后将新的&nbsp;<code>segment file</code>&nbsp;写入磁盘，这里会写一个&nbsp;<code>commit point</code>，标识所有新的&nbsp;<code>segment file</code>，然后打开&nbsp;<code>segment file</code>&nbsp;供搜索使用，同时删除旧的&nbsp;<code>segment file</code>。</p>
+<h3 id="Elasticsearch是如何实现Master选举的"><a href="#Elasticsearch是如何实现Master选举的" class="headerlink" title="Elasticsearch是如何实现Master选举的"></a>Elasticsearch是如何实现Master选举的</h3><p>Elasticsearch的选主是ZenDiscovery模块负责的，主要包含Ping（节点之间通过这个RPC来发现彼此）和Unicast（单播模块包含一个主机列表以控制哪些节点需要ping通）这两部分；<br>　<br>对所有可以成为master的节点（node.master: true）根据nodeId字典排序，每次选举每个节点都把自己所知道节点排一次序，然后选出第一个（第0位）节点，暂且认为它是master节点。<br>　<br>如果对某个节点的投票数达到一定的值（n/2+1）并且该节点自己也选举自己，那这个节点就是master。否则重新选举一直到满足上述条件。</p>
+<h3 id="Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办"><a href="#Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办" class="headerlink" title="Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办"></a>Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办</h3><p>当集群master候选数量不小于3个时，可以通过设置最少投票通过数量，超过所有候选节点一半以上来解决脑裂问题；  </p>
+<p>当候选数量为两个时，只能修改为唯一的一个master候选，其他作为data节点，避免脑裂问题</p>
+<h3 id="在并发情况下，Elasticsearch如果保证读写一致"><a href="#在并发情况下，Elasticsearch如果保证读写一致" class="headerlink" title="在并发情况下，Elasticsearch如果保证读写一致"></a>在并发情况下，Elasticsearch如果保证读写一致</h3><p>可以通过版本号使用乐观并发控制，以确保新版本不会被旧版本覆盖，由应用层来处理具体的冲突；<br>　<br>对于写操作，一致性级别支持quorum/one/all，默认为quorum，即只有当大多数分片可用时才允许写操作。但即使大多数可用，也可能存在因为网络等原因导致写入副本失败，这样该副本被认为故障，分片将会在一个不同的节点上重建。</p>
+<p>对于读操作，可以设置replication为sync(默认)，这使得操作在主分片和副本分片都完成后才会返回；如果设置replication为async时，也可以通过设置搜索请求参数_preference为primary来查询主分片，确保文档是最新版本。</p>
+<h3 id="什么是-Analysis（分词）"><a href="#什么是-Analysis（分词）" class="headerlink" title="什么是 Analysis（分词）"></a>什么是 Analysis（分词）</h3><p>文本分析就是<strong>把全文本转换成一系列单词（term/token）的过程</strong>，也叫<strong>分词</strong>。</p>
+<p>在 ES 中，Analysis 是通过<strong>分词器（Analyzer）</strong>&nbsp;来实现的，可使用 ES 内置的分析器或者按需定制化分析器。</p>
+<h3 id="分词器是什么"><a href="#分词器是什么" class="headerlink" title="分词器是什么"></a>分词器是什么</h3><p>分词器是专门处理分词的组件，分词器由以下三部分组成：</p>
+<ul>
+<li><strong>Character Filters</strong>：针对原始文本处理，比如去除 html 标签</li>
+<li><strong>Tokenizer</strong>：按照规则切分为单词，比如按照空格切分</li>
+<li><strong>Token Filters</strong>：将切分的单词进行加工，比如大写转小写，删除 stopwords，增加同义语</li>
+</ul>
+<p>其中，ES 内置了许多分词器：</p>
+<ul>
+<li><strong>Standard Analyzer</strong>&nbsp;- 默认分词器，按词切分，小写处理</li>
+<li><strong>Simple Analyzer</strong>&nbsp;- 按照非字母切分（符号被过滤），小写处理</li>
+<li><strong>Stop Analyzer</strong>&nbsp;- 小写处理，停用词过滤（the ，a，is）</li>
+<li><strong>Whitespace Analyzer</strong>&nbsp;- 按照空格切分，不转小写</li>
+<li><strong>Keyword Analyzer</strong>&nbsp;- 不分词，直接将输入当做输出</li>
+<li><strong>Pattern Analyzer</strong>&nbsp;- 正则表达式，默认 \W+</li>
+<li><strong>Language</strong>&nbsp;- 提供了 30 多种常见语言的分词器</li>
+<li><strong>Customer Analyzer</strong>&nbsp;- 自定义分词器</li>
+</ul>
+<h3 id="说说-Stamdard-Analyzer-分词器"><a href="#说说-Stamdard-Analyzer-分词器" class="headerlink" title="说说 Stamdard Analyzer&nbsp;分词器"></a>说说 Stamdard Analyzer&nbsp;分词器</h3><p>它是 ES&nbsp;<strong>默认的分词器</strong>，它会对输入的文本<strong>按词的方式进行切分</strong>，切分好以后会进行<strong>转小写</strong>处理，<strong>默认的 stopwords 是关闭的</strong>。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">GET _analyze
+{
+  "analyzer": "standard",
+  "text": "In 2020, Java is the best language in the world."
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行结果如下：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">{
+  "tokens" : [
+    {
+      "token" : "in",
+      "start_offset" : 0,
+      "end_offset" : 2,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 0
+    },
+    {
+      "token" : "2020",
+      "start_offset" : 3,
+      "end_offset" : 7,
+      "type" : "&lt;NUM&gt;",
+      "position" : 1
+    },
+    {
+      "token" : "java",
+      "start_offset" : 9,
+      "end_offset" : 13,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 2
+    },
+    {
+      "token" : "is",
+      "start_offset" : 14,
+      "end_offset" : 16,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 3
+    },
+    {
+      "token" : "the",
+      "start_offset" : 17,
+      "end_offset" : 20,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 4
+    },
+    {
+      "token" : "best",
+      "start_offset" : 21,
+      "end_offset" : 25,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 5
+    },
+    {
+      "token" : "language",
+      "start_offset" : 26,
+      "end_offset" : 34,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 6
+    },
+    {
+      "token" : "in",
+      "start_offset" : 35,
+      "end_offset" : 37,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 7
+    },
+    {
+      "token" : "the",
+      "start_offset" : 38,
+      "end_offset" : 41,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 8
+    },
+    {
+      "token" : "world",
+      "start_offset" : 42,
+      "end_offset" : 47,
+      "type" : "&lt;ALPHANUM&gt;",
+      "position" : 9
+    }
+  ]
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看出是按照空格、非字母的方式对输入的文本进行了转换，比如对&nbsp;<code>Java</code>&nbsp;做了转小写，对一些停用词也没有去掉，比如&nbsp;<code>in</code>。</p>
+<p>其中&nbsp;<code>token</code>&nbsp;为分词结果；<code>start_offset</code>&nbsp;为起始偏移；<code>end_offset</code>&nbsp;为结束偏移；<code>position</code>&nbsp;为分词位置。</p>
+<h3 id="中文分词器"><a href="#中文分词器" class="headerlink" title="中文分词器"></a>中文分词器</h3><p>中文分词有特定的难点，不像英文，单词有自然的空格作为分隔，在中文句子中，不能简单地切分成一个个的字，而是需要分成有含义的词，但是在不同的上下文，是有不同的理解的。</p>
+<p><code>ICU Analyzer</code>&nbsp;分词器，它提供了 Unicode 的支持，更好的支持亚洲语言</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">{
+  "tokens" : [
+    {
+      "token" : "各国",
+      "start_offset" : 0,
+      "end_offset" : 2,
+      "type" : "&lt;IDEOGRAPHIC&gt;",
+      "position" : 0
+    },
+    {
+      "token" : "有",
+      "start_offset" : 2,
+      "end_offset" : 3,
+      "type" : "&lt;IDEOGRAPHIC&gt;",
+      "position" : 1
+    },
+    {
+      "token" : "企业",
+      "start_offset" : 3,
+      "end_offset" : 5,
+      "type" : "&lt;IDEOGRAPHIC&gt;",
+      "position" : 2
+    },
+    {
+      "token" : "相继",
+      "start_offset" : 5,
+      "end_offset" : 7,
+      "type" : "&lt;IDEOGRAPHIC&gt;",
+      "position" : 3
+    },
+    {
+      "token" : "秋招",
+      "start_offset" : 7,
+      "end_offset" : 9,
+      "type" : "&lt;IDEOGRAPHIC&gt;",
+      "position" : 4
+    }
+  ]
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到分成了<code>各国</code>，<code>有</code>，<code>企业</code>，<code>相继</code>，<code>秋招</code>，显然比刚才的效果好了很多。</p>
+<p>中文分词器还有 IK分词器</p>
+<h3 id="说说IK分词器"><a href="#说说IK分词器" class="headerlink" title="说说IK分词器"></a>说说IK分词器</h3><p>ik分词器就是一个标准的中文分词器。它可以根据定义的字典对域进行分词，并且支持用户配置自己的字典，所以它除了可以按通用的习惯分词外，我们还可以定制化分词。</p>
+<p>IK分词是一个基于<strong>词典</strong>的分词器，只有包含在词典的词才能被正确切分，IK解决分词歧义只是根据几条可能是最佳的分词实践规则，并没有用到任何概率模型，也不具有新词发现的功能。</p>
+<p><strong>ik分词器2种模式</strong></p>
+<p>ik_smart&nbsp;：最粗粒度的拆分<br>ik_max_word&nbsp;：最细粒度的拆分</p>
+<p><strong>自定义字典</strong></p>
+<p>2个配置&nbsp;<strong>ext_dict</strong>&nbsp;和&nbsp;<strong>ext_stopwords</strong>。分别是扩展和停用字典</p>
+<p>在config目录新建 my_ext.dic 和 my_stop.dic</p>
+<p>然后配置到 IKAnalyzer.cfg</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Aiaa</a>
+                </span>
+            </div>
+<!--             <div class="reprint__type"> -->
+<!--                 <span class="reprint-meta" style="font-weight: bold;"> -->
+<!--                     <i class="fas fa-link"> -->
+<!--                         文章链接: -->
+<!--                     </i> -->
+<!--                 </span> -->
+<!--                 <span class="reprint-info"> -->
+<!--                     <a href="http://ailiaa.github.io/2023/03/09/elasticsearch-bu-dang/">http://ailiaa.github.io/2023/03/09/elasticsearch-bu-dang/</a> -->
+<!--                 </span> -->
+<!--             </div> -->
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Aiaa</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/ElasticSearch/">
+                                    <span class="chip bg-color">ElasticSearch</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/15/xiao-xi-dui-lie-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Kafka">
+                        
+                        <span class="card-title">Kafka</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kafka/">
+                        <span class="chip bg-color">Kafka</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">消息队列</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/03/04/mybatis-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Mybatis(补档)">
+                        
+                        <span class="card-title">Mybatis(补档)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mybatis/">
+                        <span class="chip bg-color">Mybatis</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 艾AA<br />'
+            + '文章作者: Aiaa<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <span id="year">2023</span>
+            <a href="/about" target="_blank">Aiaa</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">150k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2023";
+                    var startMonth = "2";
+                    var startDate = "10";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/AiLiaa" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1067550651@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1067550651" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1067550651" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+
+</body>
+
+</html>

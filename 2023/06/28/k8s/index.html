@@ -1,0 +1,1170 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="k8s, 艾AA">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>k8s | 艾AA</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+    <script>
+    <!--浏览器搞笑标题-->
+         var OriginTitle = document.title;
+         var titleTime;
+         document.addEventListener('visibilitychange', function () {
+             if (document.hidden) {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヽ(●-`Д′-)ノ你要玩捉迷藏嘛';
+                 clearTimeout(titleTime);
+             }
+             else {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヾ(???3)ノ好哦！' + OriginTitle;
+                 titleTime = setTimeout(function () {
+                     document.title = OriginTitle;
+                 }, 2000);
+             }
+         });
+    </script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">艾AA</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">艾AA</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">k8s</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                                <span class="chip bg-color">分布式</span>
+                            </a>
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-06-28
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-08-31
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="什么是k8s"><a href="#什么是k8s" class="headerlink" title="什么是k8s"></a>什么是k8s</h3><p>K8s是指Kubernetes，是一个用于自动化部署、扩展和管理容器化应用程序的开源平台。</p>
+<p>简单来说，k8s就是一个<strong>编排容器的系统</strong></p>
+<p>Kubernetes提供了一个可移植、可扩展的平台，可以自动化部署、扩展和管理应用程序。</p>
+<p>Kubernetes基于容器技术，实现自动化的容器编排和管理，可以自动调度容器到集群中的节点上，并根据应用的需求进行水平扩展和负载均衡。</p>
+<h3 id="k8s的核心组件有哪些"><a href="#k8s的核心组件有哪些" class="headerlink" title="k8s的核心组件有哪些"></a>k8s的核心组件有哪些</h3><ol>
+<li><p>etcd：一个可靠的分布式键值存储，用于存储 Kubernetes 集群的状态信息。</p>
+</li>
+<li><p>kube-apiserver：提供了一个Kubernetes API，其他组件都可以通过该API与集群进行交互操作。（集群管理，数据交互）</p>
+</li>
+<li><p>kube-controller-manager：负责控制器的管理，运行各种控制器来确保系统的自愈能力，比如Replication Controller、Endpoint Controller等。</p>
+</li>
+<li><p>kube-scheduler：根据调度算法为新创建的Pod选择一个合适的Node，并将其绑定到该节点上。</p>
+</li>
+<li><p>kubelet：运行在每个Node上，负责启动Pod并确保Pod内的容器处于正常运行状态。</p>
+</li>
+<li><p>kube-proxy：负责为Service 提供 Cluster 内部的服务发现和负载均衡功能。</p>
+</li>
+<li><p>container-runtime：容器运行时环境，即运行容器所需要的一系列程序（docker）</p>
+</li>
+</ol>
+<p>k8s主要由master节点和node节点构成。</p>
+<p>master节点负责管理集群，node节点是容器应用真正运行的地方。 </p>
+<ul>
+<li>master节点包含的组件有：kube-api-server、kube-controller-manager、kube-scheduler、etcd。 </li>
+<li>node节点包含的组件有：kubelet、kube-proxy、container-runtime</li>
+</ul>
+<h3 id="kube-api-server的端口是多少？各个pod是如何访问kube-api-server的"><a href="#kube-api-server的端口是多少？各个pod是如何访问kube-api-server的" class="headerlink" title="kube-api-server的端口是多少？各个pod是如何访问kube-api-server的"></a>kube-api-server的端口是多少？各个pod是如何访问kube-api-server的</h3><p>kube-api-server的端口是8080和6443，前者是http的端口，后者是https的端口</p>
+<p>Pod可以通过以下两种方式访问kube-apiserver：</p>
+<ol>
+<li>使用环境变量：Kubernetes在每个Pod中注入了一些环境变量，其中包括了kube-apiserver的服务地址和端口信息。</li>
+<li>使用Kubernetes集群内部DNS：在Kubernetes集群中，每个Service都会分配一个唯一的DNS名称。kube-apiserver作为一个Service，也有一个DNS名称。Pod可以使用这个DNS名称来解析出kube-apiserver的IP地址。Pod可以通过该IP地址和kube-apiserver的暴露端口进行通信。</li>
+</ol>
+<h3 id="k8s中命名空间的作用是什么"><a href="#k8s中命名空间的作用是什么" class="headerlink" title="k8s中命名空间的作用是什么"></a>k8s中命名空间的作用是什么</h3><p>Kubernetes中的命名空间（Namespace）是一种用于<strong>隔离</strong>不同资源和对象的机制。它可以将一个Kubernetes集群划分为多个虚拟集群，每个命名空间提供了一个独立的工作空间，用于组织和管理应用程序、服务和其他资源。</p>
+<p>通过它可以实现资源隔离、资源管理、访问控制、共享资源和管理视图等多种功能，帮助用户更好地组织和管理集群中的资源和工作负载。</p>
+<h3 id="pod是什么"><a href="#pod是什么" class="headerlink" title="pod是什么"></a>pod是什么</h3><p>Pod是Kubernetes中<strong>最小的可部署和可管理单元</strong>。它是一组关联的容器集合，共享同一个网络命名空间、存储卷以及其他资源。</p>
+<p>Pod是Kubernetes中最基本的部署单元，它提供了一种逻辑上独立和可扩展的环境，使得多个容器可以在同一个Pod中协同工作，方便k8s对容器的调度和管理</p>
+<h3 id="pod有什么特点"><a href="#pod有什么特点" class="headerlink" title="pod有什么特点"></a>pod有什么特点</h3><ol>
+<li>共享网络：Pod内的所有容器共享同一个网络命名空间。</li>
+<li>共享存储：Pod内的容器可以访问共享的存储卷。这样可以实现数据的持久化和共享。</li>
+<li>生命周期绑定：Pod中的容器具有相同的生命周期，它们一起启动、调度和停止。当Pod被删除时，Pod中的所有容器也将被删除。</li>
+<li>紧密关联：Pod中的容器经常需要相互配合工作。它们可以通过本地环回网络进行通信，无需通过网络暴露端口。</li>
+<li>每个pod就像一个<strong>独立</strong>的逻辑机器，k8s会为每个pod分配一个集群内部唯一的IP地址，每个pod都拥有自己的IP地址、主机名、进程等；</li>
+</ol>
+<h3 id="pause容器是什么"><a href="#pause容器是什么" class="headerlink" title="pause容器是什么"></a>pause容器是什么</h3><p>Pause容器是一个轻量级容器，它的主要作用是<strong>协调Pod中其他容器的网络和存储功能</strong>。</p>
+<p>当Pod中有多个容器时，Kubernetes使用pause容器来共享网络命名空间、IPC命名空间和volume存储卷等资源，并确保其他容器可以使用这些资源。</p>
+<ul>
+<li><strong>网络共享</strong>：当pod被创建时，pod首先会创建pause容器，从而把其他业务容器加入pause容器，从而让所有业务容器都在同一个命名空间中，实现网络共享。</li>
+<li><strong>共享存储</strong>：在pod级别引入数据卷volume，业务容器都可以挂载这个数据卷从而实现持久化存储。</li>
+</ul>
+<h3 id="pod的重启策略有哪些"><a href="#pod的重启策略有哪些" class="headerlink" title="pod的重启策略有哪些"></a>pod的重启策略有哪些</h3><p>pod重启容器策略是指针对pod内<strong>所有容器</strong>的重启策略，不是重启pod</p>
+<p>可以通过<code>restartPolicy</code>字段配置pod重启容器的策略</p>
+<ul>
+<li><code>Always</code>: 当容器终止退出后，总是重启容器，默认策略就是<code>Always</code>。</li>
+<li><code>OnFailure</code>: 当容器异常退出，退出状态码非0时，才重启容器。</li>
+<li><code>Never</code>: 当容器终止退出，不管退出状态码是什么，从不重启容器。</li>
+</ul>
+<h3 id="pod的镜像拉取策略有哪几种"><a href="#pod的镜像拉取策略有哪几种" class="headerlink" title="pod的镜像拉取策略有哪几种"></a>pod的镜像拉取策略有哪几种</h3><p>pod镜像拉取策略可以通过<code>imagePullPolicy</code>字段配置镜像拉取策略</p>
+<ul>
+<li><code>IfNotPresent</code>: 默认值，镜像在node节点宿主机上不存在时才拉取。</li>
+<li><code>Always</code>: 总是重新拉取，即每次创建pod都会重新从镜像仓库拉取一次镜像。</li>
+<li><code>Never</code>: 永远不会主动拉取镜像，仅使用本地镜像，需要手动拉取镜像到node节点，如果node节点不存在镜像则pod启动失败。</li>
+</ul>
+<h3 id="pod的存活探针有哪几种"><a href="#pod的存活探针有哪几种" class="headerlink" title="pod的存活探针有哪几种"></a>pod的存活探针有哪几种</h3><p>kubernetes可以通过存活探针检查容器是否还在运行，可以为pod中的每个容器单独定义存活探针，kubernetes将定期执行探针，如果探测失败，将杀死容器，并根据<code>restartPolicy</code>策略来决定是否重启容器</p>
+<p>kubernetes提供了3种探测容器的存活探针</p>
+<ul>
+<li><code>httpGet</code>：通过容器的IP、端口、路径发送http 请求，返回200-400范围内的状态码表示成功。</li>
+<li><code>exec</code>：在容器内执行shell命令，根据命令退出状态码是否为0进行判断，0表示健康，非0表示不健康。</li>
+<li><code>TCPSocket</code>：与容器的端口建立TCP Socket链接。</li>
+</ul>
+<h3 id="存活探针的属性参数有哪几个"><a href="#存活探针的属性参数有哪几个" class="headerlink" title="存活探针的属性参数有哪几个"></a>存活探针的属性参数有哪几个</h3><ul>
+<li><code>initialDelaySeconds</code>：表示在容器启动后延时多久秒才开始探测；</li>
+<li><code>periodSeconds</code>：表示执行探测的频率，即间隔多少秒探测一次，默认间隔周期是10秒，最小1秒；</li>
+<li><code>timeoutSeconds</code>：表示探测超时时间，默认1秒，最小1秒，表示容器必须在超时时间范围内做出响应，否则视为本次探测失败；</li>
+<li><code>successThreshold</code>：表示最少连续探测成功多少次才被认定为成功，默认是1</li>
+<li><code>failureThreshold</code>：表示连续探测失败多少次才被认定为失败，默认是3，连续3次失败，k8s 将根据pod重启策略对容器做出决定；</li>
+</ul>
+<h3 id="pod的就绪探针有哪几种"><a href="#pod的就绪探针有哪几种" class="headerlink" title="pod的就绪探针有哪几种"></a>pod的就绪探针有哪几种</h3><p>当一个pod启动后，就会立即加入service的endpoint ip列表中，并开始接收到客户端的链接请求，假若此时pod中的容器的业务进程还没有初始化完毕，那么这些客户端链接请求就会失败，为了解决这个问题，kubernetes提供了就绪探针来解决这个问题的。</p>
+<p>在pod中的容器定义一个就绪探针，就绪探针周期性检查容器，如果就绪探针检查失败了，说明该pod还未准备就绪，不能接受客户端链接，则该pod将从endpoint列表中移除</p>
+<p>k8s提供了3种就绪探针</p>
+<ul>
+<li><code>exec</code>：在容器中执行命令并检查命令退出的状态码，如果状态码为0，则说明容器已经准备就绪；</li>
+<li><code>httpGet</code>：向容器发送http get请求，通过响应的http状态码判断容器是否准备就绪；</li>
+<li><code>tcpSocket</code>：打开一个tcp连接到容器的指定端口，如果连接已建立，则认为容器已经准备就绪。</li>
+</ul>
+<h3 id="就绪探针的属性参数有哪些"><a href="#就绪探针的属性参数有哪些" class="headerlink" title="就绪探针的属性参数有哪些"></a>就绪探针的属性参数有哪些</h3><ul>
+<li><code>initialDelaySeconds</code>：延时秒数，即容器启动多少秒后才开始探测，不写默认容器启动就探测；</li>
+<li><code>periodSeconds</code>&nbsp;：执行探测的频率（秒），默认为10秒，最低值为1；</li>
+<li><code>timeoutSeconds</code>&nbsp;：超时时间，表示探测时在超时时间内必须得到响应，负责视为本次探测失败，默认为1秒，最小值为1；</li>
+<li><code>failureThreshold</code>&nbsp;：连续探测失败的次数，视为本次探测失败，默认为3次，最小值为1次；</li>
+<li><code>successThreshold</code>&nbsp;：连续探测成功的次数，视为本次探测成功，默认为1次，最小值为1次；</li>
+</ul>
+<h3 id="就绪探针与存活探针区别是什么"><a href="#就绪探针与存活探针区别是什么" class="headerlink" title="就绪探针与存活探针区别是什么"></a>就绪探针与存活探针区别是什么</h3><p>作用上的区别：</p>
+<p>存活探针：当存活探针检查失败，是将检查失败的容器杀死，创建新的启动容器来保持pod正常工作；</p>
+<p>就绪探针：当就绪探针检查失败，并不重启容器，而是将pod移出endpoint，就绪探针确保了service中的pod都是可用的，确保客户端只与正常的pod交互</p>
+<h3 id="简单讲一下-pod创建过程"><a href="#简单讲一下-pod创建过程" class="headerlink" title="简单讲一下 pod创建过程"></a>简单讲一下 pod创建过程</h3><p><img src="/images/image_%E5%88%86%E5%B8%83%E5%BC%8F/2.png"></p>
+<p>首先，需要编写一个包含Pod配置信息的描述文件，通常使用YAML或JSON格式。在描述文件中，定义Pod的名称、命名空间、容器、网络设置、存储卷等相关配置。</p>
+<ol>
+<li>用户通过kubectl向api-server发起创建pod请求。</li>
+<li>apiserver通过对应的kubeconfig进行认证，认证通过后将yaml中的po信息存到etcd。</li>
+<li>Controller-Manager通过apiserver的watch接口发现了pod信息的更新，整合对应的信息交给apiserver，apiserver写到etcd，此时pod已经可以被调度。</li>
+<li>Scheduler同样通过apiserver的watch接口更新到pod可以被调度，通过算法给pod分配节点，并将pod和对应节点绑定的信息交给apiserver，apiserver写到etcd，然后将pod交给kubelet。</li>
+<li>kubelet收到pod后，调用CNI接口给pod创建pod网络，调用CRI接口去启动容器，调用CSI进行存储卷的挂载。</li>
+<li>网络，容器，存储创建完成后pod创建完成，等业务进程启动后，pod运行成功。</li>
+</ol>
+<h3 id="说说pod的终止过程"><a href="#说说pod的终止过程" class="headerlink" title="说说pod的终止过程"></a>说说pod的终止过程</h3><ol>
+<li>用户向apiserver发送删除pod对象的命令</li>
+<li>apiserver中的pod对象信息会随着时间的推移而更新，在宽限期内（默认30s），pod被视为dead</li>
+<li>将pod标记为terminating状态</li>
+<li>kubectl在监控到pod对象为状态了就会启动pod关闭过程</li>
+<li>endpoint控制器监控到pod对象的关闭行为时将其从所有匹配到此endpoint的server资源endpoint列表中删除</li>
+<li>如果当前pod对象定义了preStop钩子处理器，则在其被标记为terminating后会意同步的方式启动执行</li>
+<li>pod对象中的容器进程收到停止信息</li>
+<li>宽限期结束后，若pod中还存在运行的进程，那么pod对象会收到立即终止的信息</li>
+<li>kubelet请求apiserver将此pod资源的宽限期设置为0从而完成删除操作，此时pod对用户已不可见</li>
+</ol>
+<h3 id="pod的生命周期有哪几种（也称5种相位）"><a href="#pod的生命周期有哪几种（也称5种相位）" class="headerlink" title="pod的生命周期有哪几种（也称5种相位）"></a>pod的生命周期有哪几种（也称5种相位）</h3><p>pod生命周期有的5种状态</p>
+<ul>
+<li><strong>Pending</strong>（挂起）：API server已经创建pod，但是该pod还有一个或多个容器的镜像没有创建，包括正在下载镜像的过程；</li>
+<li><strong>Running</strong>（运行中）：Pod内所有的容器已经创建，且至少有一个容器处于运行状态、正在启动或者正在重启状态；</li>
+<li><strong>Succeed</strong>（成功）：Pod内所有容器均已退出，且不会再重启；</li>
+<li><strong>Failed</strong>（失败）：Pod内所有容器均已退出，且至少有一个容器为退出失败状态</li>
+<li><strong>Unknown</strong>（未知）：某于某种原因apiserver无法获取该pod的状态，可能由于网络通行问题导致；</li>
+</ul>
+<h3 id="pod的初始化容器是干什么的"><a href="#pod的初始化容器是干什么的" class="headerlink" title="pod的初始化容器是干什么的"></a>pod的初始化容器是干什么的</h3><p>init container，初始化容器用于在启动应用容器之前完成应用容器所需要的前置条件</p>
+<p>1、初始化容器必须运行完成直至结束，若某初始化容器运行失败，那么kubernetes需要重启它直到成功完成；</p>
+<p>2、初始化容器必须按照定义的顺序执行，当且仅当前一个初始化容器成功之后，后面的一个初始化容器才能运行；</p>
+<h3 id="service是什么"><a href="#service是什么" class="headerlink" title="service是什么"></a>service是什么</h3><p>Service是一种定义了一组Pod的网络访问方式的资源对象。它为一组具有相同功能的Pod提供了一个统一的入口，并将它们封装在一个虚拟的服务IP地址后面。</p>
+<p>Service可以通过一个稳定的IP地址和端口提供对应用程序的访问，无论这些应用程序运行在Kubernetes集群内的哪个节点上。它为应用程序提供了一种抽象层，使得后端Pod的变动对外界用户来说是透明的。</p>
+<p>主要特性：</p>
+<ol>
+<li>服务发现和负载均衡：Service通过为一组Pod分配唯一的虚拟IP地址和端口，实现了服务发现功能。它会自动将请求均匀地分发到后端Pod中，从而实现负载均衡。</li>
+<li>稳定的网络标识：每个Service都有一个稳定的虚拟IP地址和端口，这个地址和端口可以长期保持不变。</li>
+<li>内部和外部访问：内部Service仅在集群内部可用，用于集群内部的服务通信。外部Service则通过负载均衡器、节点端口或外部IP地址等方式，将流量从集群外部引导到Service中。</li>
+</ol>
+<h3 id="endpoint是什么"><a href="#endpoint是什么" class="headerlink" title="endpoint是什么"></a>endpoint是什么</h3><p>Endpoint是一种资源对象，用于表示一个Service所关联的后端Pod的网络终点。它存储着Service要连接到的实际后端Pod的IP地址和端口信息。</p>
+<p>Endpoint对象主要有两个作用：</p>
+<ol>
+<li>服务发现：Endpoints对象记录了与Service关联的所有后端Pod的网络地址信息。</li>
+<li>负载均衡：Endpoints对象中可以包含多个后端Pod的IP地址和端口。当请求到达Service时，Kubernetes会将请求按照负载均衡算法分发到不同的后端Pod上，从而平衡流量负载。</li>
+</ol>
+<h3 id="kube-proxy是什么"><a href="#kube-proxy是什么" class="headerlink" title="kube-proxy是什么"></a>kube-proxy是什么</h3><p>kube-proxy是Kubernetes集群中的一个组件，它负责实现Service的网络代理和负载均衡功能。</p>
+<p>kube-proxy运行在每个节点上，并监听Kubernetes API服务器上的Service和Endpoint对象的变化。它会根据这些变化动态地更新节点上的网络规则，以确保流量能够正确地路由到后端Pod上。</p>
+<p>主要功能包括：</p>
+<ol>
+<li>Service代理：kube-proxy会监视Kubernetes API中的Service对象，并为每个Service创建一个虚拟IP地址和端口。当请求到达该虚拟地址时，kube-proxy会将请求转发到后端Pod上，从而实现服务发现和代理功能。</li>
+<li>负载均衡：当请求到达Service的虚拟地址时，kube-proxy会根据预定义的负载均衡算法选择其中一个后端Pod，然后将请求转发给该Pod。</li>
+<li>Endpoint监视：k当Endpoint发生变化时（例如，Pod的添加、删除或IP地址的更改），kube-proxy会相应地更新负载均衡器的配置，以确保流量能够正确地路由到新的后端Pod上。</li>
+</ol>
+<h3 id="deployment是什么"><a href="#deployment是什么" class="headerlink" title="deployment是什么"></a>deployment是什么</h3><p>Deployment是一种资源对象，用于定义和管理Pod副本集。它是Kubernetes中最常用的控制器之一，用于实现应用程序的无缝部署、更新和回滚。</p>
+<p>Deployment对象提供了一种声明式的方式来描述应用程序的期望状态，并由Kubernetes系统负责维护实际状态与期望状态的一致性。</p>
+<p>通过Deployment，可以轻松地进行以下操作：</p>
+<ol>
+<li>创建和管理Pod副本：Deployment根据定义的副本数量和Pod模板创建和管理一组Pod副本。Pod模板定义了每个副本的容器镜像、资源需求、环境变量等信息。</li>
+<li>应用程序的无缝部署：通过修改Deployment对象的配置，可以实现应用程序的无缝部署。例如，可以通过增加副本数量来扩展应用程序，Kubernetes会自动创建新的Pod副本；反之，减少副本数量则会进行缩容。</li>
+<li>应用程序的更新和回滚：通过修改Deployment的Pod模板或更新策略，可以实现应用程序的更新。Kubernetes会逐步替换旧版本的Pod副本，从而实现滚动更新。如果更新过程中出现问题，可以通过回滚操作将应用程序恢复到之前的版本。</li>
+<li>健康检查和自愈能力：Deployment可以配置健康检查来监测Pod副本的运行状态，如果某个副本失败或不可用，Kubernetes会自动替换它，以确保应用程序的稳定性和可用性。</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Aiaa</a>
+                </span>
+            </div>
+<!--             <div class="reprint__type"> -->
+<!--                 <span class="reprint-meta" style="font-weight: bold;"> -->
+<!--                     <i class="fas fa-link"> -->
+<!--                         文章链接: -->
+<!--                     </i> -->
+<!--                 </span> -->
+<!--                 <span class="reprint-info"> -->
+<!--                     <a href="http://ailiaa.github.io/2023/06/28/k8s/">http://ailiaa.github.io/2023/06/28/k8s/</a> -->
+<!--                 </span> -->
+<!--             </div> -->
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Aiaa</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                                    <span class="chip bg-color">分布式</span>
+                                </a>
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/06/28/k8s/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="k8s">
+                        
+                        <span class="card-title">k8s</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                        <span class="chip bg-color">分布式</span>
+                    </a>
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/06/22/docker/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Docker">
+                        
+                        <span class="card-title">Docker</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                        <span class="chip bg-color">分布式</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 艾AA<br />'
+            + '文章作者: Aiaa<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <span id="year">2023</span>
+            <a href="/about" target="_blank">Aiaa</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">150k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2023";
+                    var startMonth = "2";
+                    var startDate = "10";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/AiLiaa" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1067550651@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1067550651" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1067550651" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+
+</body>
+
+</html>

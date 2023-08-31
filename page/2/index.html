@@ -49,9 +49,9 @@
          });
     </script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
 </head>
 
 
@@ -250,26 +250,31 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/15/elasticsearch/">
+                    <a href="/2023/04/07/devops-liu-shui-xian-da-jian-01/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="ElasticSearch">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="DevOps流水线搭建01">
                             
-                            <span class="card-title">ElasticSearch</span>
+                            <span class="card-title">DevOps流水线搭建01</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. ElasticSearch的简介ElasticSearch：智能搜索，分布式的全文搜索引擎
-是ELK的一个组成部分, 是一个产品，而且是非常完善的产品，ELK代表的是：E就是ElasticSearch，L就是Logstach，K就是k
+                                1. 环境搭建个人主机，三台ubuntu虚拟机
+工具安装：
+
+Git:用于提交业务代码或克隆业务代码仓库
+Gitlab:用于存储业务代码
+Jenkins:用于利用插件完成业务代码编译、构建、推送至Harbor容器镜像仓库及项目部署
+Tomc
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-07
                             </span>
                             <span class="publish-author">
                                 
@@ -283,8 +288,20 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/ElasticSearch/">
-                            <span class="chip bg-color">ElasticSearch</span>
+                        <a href="/tags/docker/">
+                            <span class="chip bg-color">docker</span>
+                        </a>
+                        
+                        <a href="/tags/harbor/">
+                            <span class="chip bg-color">harbor</span>
+                        </a>
+                        
+                        <a href="/tags/jenkins/">
+                            <span class="chip bg-color">jenkins</span>
+                        </a>
+                        
+                        <a href="/tags/DevOps/">
+                            <span class="chip bg-color">DevOps</span>
                         </a>
                         
                     </div>
@@ -294,26 +311,27 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/15/kafka/">
+                    <a href="/2023/03/28/redis-gao-ke-yong/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Kafka">
+                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Redis_高可用">
                             
-                            <span class="card-title">Kafka</span>
+                            <span class="card-title">Redis_高可用</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 什么是消息队列可以把消息队列看作是一个存放消息的容器，当我们需要使用消息的时候，直接从容器中取出消息供自己使用即可。由于队列 Queue 是一种先进先出的数据结构，所以消费消息时也是按照顺序来消费的。
-参与消息传递的双方称为&nbsp
+                                Redis 实现高可用有三种部署模式：主从模式，哨兵模式，集群模式。
+主从模式主从模式中，Redis部署了多台机器，有主节点，负责读写操作，有从节点，只负责读操作。从节点的数据来自主节点，实现原理就是主从复制机制
+主从复制包括全量复制，增量
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
                             </span>
                             <span class="publish-author">
                                 
@@ -327,8 +345,16 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Kafka/">
-                            <span class="chip bg-color">Kafka</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                            <span class="chip bg-color">数据库</span>
+                        </a>
+                        
+                        <a href="/tags/NoSQL/">
+                            <span class="chip bg-color">NoSQL</span>
+                        </a>
+                        
+                        <a href="/tags/redis/">
+                            <span class="chip bg-color">redis</span>
                         </a>
                         
                     </div>
@@ -338,25 +364,30 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/12/spring-boot/">
+                    <a href="/2023/03/26/chang-jing/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Spring Boot">
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="场景">
                             
-                            <span class="card-title">Spring Boot</span>
+                            <span class="card-title">场景</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 对Spring Boot的理解从本质上来说，Spring Boot就是Spring，它做了那些没有它你自己也会去做的Spring Bean配置。Spring Boot使用“习惯优于配置”的理念让你的项目快速地运行起来，使用Spring
+                                Top K问题10亿个数据中找出最大的10000个最小堆法
+
+先拿10000个数建堆
+然后逐个添加剩余元素
+如果大于堆顶的数（10000中最小的），将这个数替换堆顶，并调整结构使之仍然是一个最小堆
+遍历完后，堆中的10000个数就是所需的最
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-26
                             </span>
                             <span class="publish-author">
                                 
@@ -370,8 +401,8 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Spring/">
-                            <span class="chip bg-color">Spring</span>
+                        <a href="/tags/%E5%90%8E%E7%AB%AF%E5%9C%BA%E6%99%AF/">
+                            <span class="chip bg-color">后端场景</span>
                         </a>
                         
                     </div>
@@ -381,26 +412,26 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/12/spring/">
+                    <a href="/2023/03/26/reids-fen-bu-shi-suo/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Spring">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Reids_分布式锁">
                             
-                            <span class="card-title">Spring</span>
+                            <span class="card-title">Reids_分布式锁</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. Spring 包含的模块有哪些？
-Core ContainerSpring 框架的核心模块，也可以说是基础模块，主要提供 IoC 依赖注入功能的支持。Spring 其他所有的功能基本都需要依赖于该模块，我们从上面那张 Spring 各
+                                对于单机多线程来说，在 Java 中，我们通常使用 ReetrantLock 类、synchronized 关键字这类 JDK 自带的 本地锁 来控制一个 JVM 进程内的多个线程对本地共享资源的访问。
+分布式系统下，不同的服务/客户端通常
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-26
                             </span>
                             <span class="publish-author">
                                 
@@ -414,8 +445,16 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Spring/">
-                            <span class="chip bg-color">Spring</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                            <span class="chip bg-color">数据库</span>
+                        </a>
+                        
+                        <a href="/tags/NoSQL/">
+                            <span class="chip bg-color">NoSQL</span>
+                        </a>
+                        
+                        <a href="/tags/redis/">
+                            <span class="chip bg-color">redis</span>
                         </a>
                         
                     </div>
@@ -425,28 +464,28 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/11/she-ji-mo-shi/">
+                    <a href="/2023/03/25/she-ji-mo-shi-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="设计模式">
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="设计模式(补档)">
                             
-                            <span class="card-title">设计模式</span>
+                            <span class="card-title">设计模式(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 软件设计原则常⽤的⾯向对象设计原则包括7个，这些原则并不是孤⽴存在的，它们相互 依赖，相互补充。
+                                软件设计原则常⽤的⾯向对象设计原则包括7个，这些原则并不是孤⽴存在的，它们相互 依赖，相互补充。
 
 开闭原则（Open Closed Principle，OCP）
-单⼀职责原则（Single Responsibility Princi
+单⼀职责原则（Single Responsibility Principle
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-25
                             </span>
                             <span class="publish-author">
                                 
@@ -471,25 +510,27 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/11/redis-02/">
+                    <a href="/2023/03/22/redis-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Redis_02">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Redis(补档)">
                             
-                            <span class="card-title">Redis_02</span>
+                            <span class="card-title">Redis(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. Redis事务Redis通过MULTI、EXEC、WATCH等一组命令集合，来实现事务机制。事务支持一次执行多个命令，一个事务中所有命令都会被序列化。在事务执行过程，会按照顺序串行化执行队列中的命令，其他客户端提交的命令请求不会插入到
+                                什么是 RedisRedis 是一个基于 C 语言开发的非关系型数据库，Redis 的数据是存在内存中的，读写速度非常快，被广泛应用于缓存方向。Redis 存储的是 KV 键值对数据。
+Redis 为什么这么快
+Redis 基于内存，内存的
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-22
                             </span>
                             <span class="publish-author">
                                 
@@ -522,25 +563,27 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/11/redis-01/">
+                    <a href="/2023/03/15/xiao-xi-dui-lie-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis_01">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Kafka">
                             
-                            <span class="card-title">Redis_01</span>
+                            <span class="card-title">Kafka</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. Redis 基础什么是 Redis？Redis 是一个基于 C 语言开发的开源数据库（BSD 许可），与传统数据库不同的是 Redis 的数据是存在内存中的（内存数据库），读写速度非常快，被广泛应用于缓存方向。并且，Redis 存储的
+                                消息队列什么是消息队列可以把消息队列看作是一个存放消息的容器，当我们需要使用消息的时候，直接从容器中取出消息供自己使用即可。
+由于队列 Queue 是一种先进先出的数据结构，所以消费消息时也是按照顺序来消费的。
+参与消息传递的双方称为&nb
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-15
                             </span>
                             <span class="publish-author">
                                 
@@ -554,16 +597,12 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                            <span class="chip bg-color">数据库</span>
+                        <a href="/tags/Kafka/">
+                            <span class="chip bg-color">Kafka</span>
                         </a>
                         
-                        <a href="/tags/NoSQL/">
-                            <span class="chip bg-color">NoSQL</span>
-                        </a>
-                        
-                        <a href="/tags/redis/">
-                            <span class="chip bg-color">redis</span>
+                        <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                            <span class="chip bg-color">消息队列</span>
                         </a>
                         
                     </div>
@@ -573,28 +612,26 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/11/mysql-gao-xing-neng-you-hua/">
+                    <a href="/2023/03/09/elasticsearch-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="MySQL高性能优化">
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ElasticSearch(补档)">
                             
-                            <span class="card-title">MySQL高性能优化</span>
+                            <span class="card-title">ElasticSearch(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 数据库命名规范
-  所有数据库对象名称必须使用小写字母并用下划线分割
-  所有数据库对象名称禁止使用 MySQL 保留关键字（如果表名中包含关键字查询时，需要将其用单引号括起来）
-  数据库对象的命名要能做到见名识意，并且最后不要超过
+                                ElasticSearch是什么Elasticsearch 是一个实时的分布式存储、搜索、分析的引擎。
+采用以往的模糊查询，模糊查询前置配置，会放弃索引，导致商品查询是全表扫面，在百万级别的数据库中，效率非常低下，而我们使用ES做一个全文索
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-09
                             </span>
                             <span class="publish-author">
                                 
@@ -608,12 +645,8 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                            <span class="chip bg-color">数据库</span>
-                        </a>
-                        
-                        <a href="/tags/MySQL/">
-                            <span class="chip bg-color">MySQL</span>
+                        <a href="/tags/ElasticSearch/">
+                            <span class="chip bg-color">ElasticSearch</span>
                         </a>
                         
                     </div>
@@ -623,13 +656,57 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/11/sql-you-hua-chang-yong-fang-fa/">
+                    <a href="/2023/03/04/mybatis-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="SQL优化常用方法">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Mybatis(补档)">
                             
-                            <span class="card-title">SQL优化常用方法</span>
+                            <span class="card-title">Mybatis(补档)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                数据持久化是什么数据持久化是将内存中的数据模型转换为存储模型，以及将存储模型转换为内存中的数据模型的统称。
+数据模型可以是任何数据结构或对象的模型、XML、二进制流等。 当我们编写应用程序操作数据库，对表数据进行增删改查的操作的时候就是数据
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Aiaa
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Mybatis/">
+                            <span class="chip bg-color">Mybatis</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/02/28/sql-you-hua-chang-yong-fang-fa-bu-dang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="SQL优化常用方法(补档)">
+                            
+                            <span class="card-title">SQL优化常用方法(补档)</span>
                         </div>
                     </a>
 
@@ -643,7 +720,7 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-28
                             </span>
                             <span class="publish-author">
                                 
@@ -672,27 +749,26 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/11/mysql-suo-yin/">
+                    <a href="/2023/02/26/spring-boot-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="MySQL索引">
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Spring Boot(补档)">
                             
-                            <span class="card-title">MySQL索引</span>
+                            <span class="card-title">Spring Boot(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                索引介绍索引是一种用于快速查询和检索数据的数据结构，其本质可以看成是一种排序好的数据结构。
-索引的作用就相当于书的目录。
-索引底层数据结构存在很多种类型，常见的索引结构有: B 树， B+树 和 Hash、红黑树。在 MySQL 中，无论是
+                                什么是 Spring BootSpring Boot 是 Spring 开源组织下的子项目，简化了 Spring的开发，省去繁重的xml文件配置，提供了各种启动器（starter），使开发者能快速上手,更加专注业务开发，提高开发效率。
+Sp
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-26
                             </span>
                             <span class="publish-author">
                                 
@@ -706,12 +782,12 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                            <span class="chip bg-color">数据库</span>
+                        <a href="/tags/Spring/">
+                            <span class="chip bg-color">Spring</span>
                         </a>
                         
-                        <a href="/tags/MySQL/">
-                            <span class="chip bg-color">MySQL</span>
+                        <a href="/tags/SpringBoot/">
+                            <span class="chip bg-color">SpringBoot</span>
                         </a>
                         
                     </div>
@@ -721,25 +797,25 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/10/mysql/">
+                    <a href="/2023/02/15/spring-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="MySQL">
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Spring(补档)">
                             
-                            <span class="card-title">MySQL</span>
+                            <span class="card-title">Spring(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. MySQL 基础什么是关系型数据库？顾名思义，关系型数据库（RDBMS，Relational Database Management System）就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（
+                                SpringSpring是什么Spring 它包括许多框架，例如 Spring framework、SpringMVC、SpringBoot、Spring Cloud、Spring Data、Spring Security 等，所以有人将它
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-15
                             </span>
                             <span class="publish-author">
                                 
@@ -753,59 +829,8 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                            <span class="chip bg-color">数据库</span>
-                        </a>
-                        
-                        <a href="/tags/MySQL/">
-                            <span class="chip bg-color">MySQL</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/03/10/nosql/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="NoSQL">
-                            
-                            <span class="card-title">NoSQL</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1. NoSQL 是什么？NoSQL（Not Only SQL 的缩写）泛指非关系型的数据库，主要针对的是键值、文档以及图形类型数据存储。并且，NoSQL 数据库天生支持分布式，数据冗余和数据分片等特性，旨在提供可扩展的高可用高性能数据存储
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Aiaa
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                            <span class="chip bg-color">数据库</span>
-                        </a>
-                        
-                        <a href="/tags/NoSQL/">
-                            <span class="chip bg-color">NoSQL</span>
+                        <a href="/tags/Spring/">
+                            <span class="chip bg-color">Spring</span>
                         </a>
                         
                     </div>
@@ -830,7 +855,7 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">2 / 5</div>
+            <div class="center-align b-text-gray">2 / 4</div>
         </div>
         <div class="col s6 m4 l4">
             
@@ -861,7 +886,7 @@ Core ContainerSpring 框架的核心模块，也可以说是基础模块，主�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">233.1k</span>&nbsp;字
+                class="white-color">150k</span>&nbsp;字
             
             
             

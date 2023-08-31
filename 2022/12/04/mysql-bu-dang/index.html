@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MySQL(补档), 艾AA">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>MySQL(补档) | 艾AA</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+    <script>
+    <!--浏览器搞笑标题-->
+         var OriginTitle = document.title;
+         var titleTime;
+         document.addEventListener('visibilitychange', function () {
+             if (document.hidden) {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヽ(●-`Д′-)ノ你要玩捉迷藏嘛';
+                 clearTimeout(titleTime);
+             }
+             else {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヾ(???3)ノ好哦！' + OriginTitle;
+                 titleTime = setTimeout(function () {
+                     document.title = OriginTitle;
+                 }, 2000);
+             }
+         });
+    </script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">艾AA</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">艾AA</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">MySQL(补档)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-12-04
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-08-31
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h4 id="什么是-MySQL"><a href="#什么是-MySQL" class="headerlink" title="什么是 MySQL"></a>什么是 MySQL</h4><p><strong>MySQL 是一种关系型数据库，主要用于持久化存储我们的系统中的一些数据比如用户信息。</strong></p>
+<h4 id="MySQL-的优点"><a href="#MySQL-的优点" class="headerlink" title="MySQL 的优点"></a>MySQL 的优点</h4><p>MySQL 主要具有下面这些优点：</p>
+<ol>
+<li> 成熟稳定，功能完善。</li>
+<li> 开源免费。</li>
+<li> 文档丰富，既有详细的官方文档，又有非常多优质文章可供参考学习。</li>
+<li> 开箱即用，操作简单，维护成本低。</li>
+<li> 兼容性好，支持常见的操作系统，支持多种开发语言。</li>
+<li> 社区活跃，生态完善。</li>
+<li> 事务支持优秀， InnoDB 存储引擎默认使用 REPEATABLE-READ 并不会有任何性能损失，并且，InnoDB 实现的 REPEATABLE-READ 隔离级别其实是可以解决幻读问题发生的。</li>
+<li> 支持分库分表、读写分离、高可用。<h3 id="一条SQL语句在MySQL中如何执行的"><a href="#一条SQL语句在MySQL中如何执行的" class="headerlink" title="一条SQL语句在MySQL中如何执行的"></a>一条SQL语句在MySQL中如何执行的</h3></li>
+</ol>
+<p>MySQL逻辑架构图</p>
+<p>MySQL分为Server层和存储引擎层两个部分，不同的存储引擎共用一个Server层。</p>
+<p><img src="/images/image_%E6%95%B0%E6%8D%AE%E5%BA%93/08.png"></p>
+<p>Server层：大多数MySQL的核心服务功能都在这一层，包括连接处理、授权认证、查询解析、分析、优化、缓存以及所有的内置函数（例如，日期、时间、数学和加密函数），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
+<p>存储引擎层：存储引擎负责MySQL中数据的存储和提取。服务器通过API与存储引擎进行通信。这些接口屏蔽了不同存储引擎之间的差异，使得这些差异对上层的查询过程透明。</p>
+<ol>
+<li><p><strong>连接器</strong> 第一步，先连接到数据库上，当客户端（应用）连接到MySQL服务器时，服务器需要对其进行认证，认证基于用户名、原始主机信息和密码，一旦客户端连接成功，服务器会继续验证客户端是否具有执行某个特定查询的权限</p>
+</li>
+<li><p><strong>查询缓存</strong> 第二步，查询缓存，每次MySQL执行过的语句及其结果会以key-value形式缓存在内存中，key是查询语句，value是查询结果。如果查询能够在缓存中找到key，那么这个value就会被直接返回客户端。<br> 注意：MySQL8.0版本直接将缓存的整个功能模块删掉了</p>
+</li>
+<li><p><strong>分析器</strong> 第三步，分析器，如果没有命中缓存，就会执行SQL语句，首先让MySQL知道我们需要做什么，因此需要对SQL语句解析。解析器的工作：语法分析（生成句子），语义分析（确保这些句子讲得通），以及代码生成（为编译准备）</p>
+</li>
+<li><p><strong>优化器</strong> 第四步，优化器，经过分析器MySQL知道我们需要什么了，在开始执行前，还要经过优化器进行处理，优化器是在表里面有多个索引时，决定使用哪个索引，或者在一个语句有多表关联（join）时，决定各个表的连接顺序。优化器会生成执行计划</p>
+</li>
+<li><p><strong>执行器</strong> 第五步，执行器，MySQL通过分析器知道要做什么，通过优化器知道怎么做，开始执行前，要先判断一下是否有表TABLE查询权限，如果有打开表，根据表的引擎定义，去使用这个引擎提供的接口。根据执行计划，调用存储引擎API来查询数据</p>
+</li>
+</ol>
+<h3 id="一条SQL的执行顺序是什么"><a href="#一条SQL的执行顺序是什么" class="headerlink" title="一条SQL的执行顺序是什么"></a>一条SQL的执行顺序是什么</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token number">1.</span><span class="token keyword">FROM</span>     ：对<span class="token keyword">FROM</span>左边的表和右边的表计算笛卡尔积，产生虚拟表t1
+<span class="token number">2.</span><span class="token keyword">ON</span>       ：对表t1进行<span class="token keyword">ON</span>筛选，只有符合条件的行才会记录在表t2中
+<span class="token number">3.</span><span class="token keyword">JOIN</span>     ：如果指定了<span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span>（如：<span class="token keyword">left</span> <span class="token keyword">join</span>、<span class="token keyword">right</span> <span class="token keyword">join</span>）<span class="token punctuation">,</span>那么未匹配到的行作为外部行添加到表t3中
+<span class="token number">4.</span><span class="token keyword">WHERE</span>    ：对表t3进行<span class="token keyword">where</span>条件过滤，只有符合条件的记录才会记录在表t4中
+<span class="token number">5.</span><span class="token keyword">GROUP</span> <span class="token keyword">BY</span> ：根据<span class="token keyword">group</span> <span class="token keyword">by</span> 子句中的列，对表t4记录进行分组操作，产生表t5
+<span class="token number">6.</span><span class="token keyword">HAVING</span>   ：对表t5进行<span class="token keyword">having</span>过滤，只有符合条件的行才会记录在表t6中
+<span class="token number">7.</span><span class="token keyword">SELECT</span>   ：执行<span class="token keyword">select</span>操作，选择指定的列，产生表t7
+<span class="token number">8.</span><span class="token keyword">DISTINCT</span> ：对表t7记录进行去重，产生表t8
+<span class="token number">9.</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> ：对表t8记录进行排序，产生表t9
+<span class="token number">10.</span><span class="token keyword">LIMIT</span>   ：取出指定的行，产生表t10<span class="token punctuation">,</span>并将结果进行展示<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="MySQL-的默认存储引擎"><a href="#MySQL-的默认存储引擎" class="headerlink" title="MySQL 的默认存储引擎"></a>MySQL 的默认存储引擎</h3><p>MySQL 5.5.5 之前：MyISAM 是 MySQL 的默认存储引擎。<br>5.5.5 版本之后：InnoDB 是 MySQL 的默认存储引擎。</p>
+<p>MySQL 存储引擎采用的是 <strong>插件式架构</strong> ，支持多种存储引擎，可以为不同的数据库表设置不同的存储引擎以适应不同场景的需要。<strong>存储引擎是基于表的，而不是数据库。</strong></p>
+<h3 id="MyISAM-和-InnoDB-的区别"><a href="#MyISAM-和-InnoDB-的区别" class="headerlink" title="MyISAM 和 InnoDB 的区别"></a>MyISAM 和 InnoDB 的区别</h3><ul>
+<li>  InnoDB 支持行级别的锁粒度，MyISAM 不支持，只支持表级别的锁粒度。</li>
+<li>  MyISAM 不提供事务支持。InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别。</li>
+<li>  MyISAM 不支持外键，而 InnoDB 支持。</li>
+<li>  MyISAM 不支持 MVCC，而 InnoDB 支持。</li>
+<li>  虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。（非聚簇和聚簇）</li>
+<li>  MyISAM 不支持数据库异常崩溃后的安全恢复，而 InnoDB 支持。</li>
+<li>  InnoDB 的性能比 MyISAM 更强大。<h3 id="MySQL用什么类型数据存储时间"><a href="#MySQL用什么类型数据存储时间" class="headerlink" title="MySQL用什么类型数据存储时间"></a>MySQL用什么类型数据存储时间</h3></li>
+</ul>
+<ol>
+<li>不要用字符串存储日期，简单直白，但是占用的空间更大，计算和比较效率低</li>
+<li>DateTime 类型没有时区信息，Timestamp 和时区有关</li>
+<li>DateTime 类型耗费空间更大，Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗费 8 个字节的存储空间</li>
+<li>Timestamp 表示的时间范围更小。</li>
+<li>用 int 或者 bigint 类型的数值也就是时间戳来表示时间，跨系统也很方便，排序以及对比效率高，但是数据的可读性太差</li>
+</ol>
+<h3 id="介绍一下join"><a href="#介绍一下join" class="headerlink" title="介绍一下join"></a>介绍一下join</h3><ul>
+<li>A inner join B&nbsp;：取交集。</li>
+<li>A left join B&nbsp;：取 A 全部，B 没有对应的值为 null。</li>
+<li>A right join B&nbsp;：取 B 全部 A 没有对应的值为 null。</li>
+<li>A full outer join B&nbsp;：取并集，彼此没有对应的值为 null。</li>
+</ul>
+<p>对应条件在&nbsp;<strong>on</strong>&nbsp;后面填写</p>
+<p>在使用&nbsp;join&nbsp;时，<strong>on</strong>&nbsp;和&nbsp;<strong>where</strong>&nbsp;条件的区别如下：</p>
+<ul>
+<li>&nbsp;1、&nbsp;<strong>on</strong>&nbsp;条件是在生成临时表时使用的条件，它不管&nbsp;<strong>on</strong>&nbsp;中的条件是否为真，都会返回左边表中的记录。</li>
+<li>&nbsp;2、<strong>where</strong>&nbsp;条件是在临时表生成好后，再对临时表进行过滤的条件。这时已经没有&nbsp;left join&nbsp;的含义（必须返回左边表的记录）了，条件不为真的就全部过滤掉。</li>
+</ul>
+<h3 id="MySQL的redo-log，undo-log，bin-log都是干什么的"><a href="#MySQL的redo-log，undo-log，bin-log都是干什么的" class="headerlink" title="MySQL的redo log，undo log，bin log都是干什么的"></a>MySQL的redo log，undo log，bin log都是干什么的</h3><p>1、redolog记录修改内容（哪一页发生了什么变化），写于事务开始前，用于数据未落磁盘，但数据库挂了后的数据恢复<br>2、binlog记录修改SQL，写于事务提交时，可用于读写分离 ，主从复制<br>3、undolog记录修改前记录，用于回滚和多版本并发控制</p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="事务的基本特性"><a href="#事务的基本特性" class="headerlink" title="事务的基本特性"></a>事务的基本特性</h3><ol>
+<li><p><strong>原⼦性</strong>：⼀个事务中的操作要么全部成功，要么全部失败。</p>
+</li>
+<li><p><strong>⼀致性</strong>：数据库总是从⼀个⼀致性的状态转换到另外⼀个⼀致性的状态。</p>
+</li>
+<li><p><strong>隔离性</strong>：⼀个事务的修改在最终提交前，对其他事务是不可⻅的。</p>
+</li>
+<li><p><strong>持久性</strong>：⼀旦事务提交，所做的修改就会永久保存到数据库中。</p>
+</li>
+</ol>
+<h3 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h3><p><strong>脏读（Dirty read）</strong></p>
+<p>一个事务读取数据并且对数据进行了修改，这个修改对其他事务来说是可见的，即使当前事务没有提交。这时另外一个事务读取了这个还未提交的数据，但第一个事务突然回滚，导致数据并没有被提交到数据库，那第二个事务读取到的就是脏数据。</p>
+<p><strong>丢失修改（Lost to modify）</strong></p>
+<p>在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。</p>
+<p><strong>不可重复读（Unrepeatable read）</strong></p>
+<p>在一个事务内两次读到的数据是不一样的情况。在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。</p>
+<p><strong>幻读（Phantom read）</strong></p>
+<p>幻读与不可重复读类似。它发生在一个事务读取了几行数据，接着另一个并发事务插入了一些数据时。在随后的查询中，第一个事务就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
+<h3 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h3><ol>
+<li><p>read uncommit 读未提交，可能会读到其他事务未提交的数据，也叫做脏读。</p>
+</li>
+<li><p>read commit 读已提交，两次读取结果不⼀致，叫做不可重复读。不可重复读解决了脏读的问题，他只会读取已经提交的事务。</p>
+</li>
+<li><p>repeatable read 可重复复读，就是每次读取结果都⼀样，但是有可能产⽣幻读。</p>
+</li>
+<li><p>serializable 串⾏，给每⼀⾏读取的数据加锁，会导致⼤量超时和锁竞争的问题。</p>
+</li>
+</ol>
+<h3 id="并发事务的控制方式"><a href="#并发事务的控制方式" class="headerlink" title="并发事务的控制方式"></a>并发事务的控制方式</h3><p><strong>锁</strong> 和 <strong>MVCC</strong></p>
+<p>锁可以看作是悲观控制的模式</p>
+<p>多版本并发控制（MVCC，Multiversion concurrency control）可以看作是乐观控制的模式</p>
+<h3 id="ACID靠什么保证"><a href="#ACID靠什么保证" class="headerlink" title="ACID靠什么保证"></a>ACID靠什么保证</h3><p><strong>A原⼦性</strong>：由undo log⽇志保证，它记录了需要回滚的⽇志信息，事务回滚时撤销已经执⾏成功的sql</p>
+<p><strong>C⼀致性</strong>：由其他三⼤特性保证、程序代码要保证业务上的⼀致性</p>
+<p><strong>I隔离性</strong>：由锁和MVCC来保证</p>
+<p><strong>D持久性</strong>：由内存+redo log来保证，mysql修改数据同时在内存和redo log记录这次操作，宕机的时候可以从redo log恢复</p>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><h3 id="Mysql锁有哪些"><a href="#Mysql锁有哪些" class="headerlink" title="Mysql锁有哪些"></a>Mysql锁有哪些</h3><p>按锁粒度分类：</p>
+<ol>
+<li><p><strong>⾏锁</strong>：锁某⾏数据，锁粒度最⼩，并发度⾼</p>
+</li>
+<li><p><strong>表锁</strong>：锁整张表，锁粒度最⼤，并发度低</p>
+</li>
+<li><p><strong>间隙锁</strong>：锁的是⼀个区间</p>
+</li>
+</ol>
+<p>还可以分为：</p>
+<ol>
+<li><p><strong>共享锁</strong>：也就是读锁，⼀个事务给某⾏数据加了读锁，其他事务也可以读，但是不能写</p>
+</li>
+<li><p><strong>排它锁</strong>：也就是写锁，⼀个事务给某⾏数据加了写锁，其他事务不能读，也不能写</p>
+</li>
+</ol>
+<p>共享锁和排他锁是表级锁和行级锁</p>
+<ol start="3">
+<li><p> <strong>意向共享锁（Intention Shared Lock，IS 锁）</strong>：事务有意向对表中的某些记录加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。</p>
+</li>
+<li><p> <strong>意向排他锁（Intention Exclusive Lock，IX 锁）</strong>：事务有意向对表中的某些记录加排他锁（X 锁），加排他锁之前必须先取得该表的 IX 锁。</p>
+</li>
+</ol>
+<p>意向锁是表级锁</p>
+<pre class="line-numbers language-none"><code class="language-none"># 共享锁
+SELECT ... LOCK IN SHARE MODE;
+# 排他锁
+SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="InnoDB-锁有哪些"><a href="#InnoDB-锁有哪些" class="headerlink" title="InnoDB 锁有哪些"></a>InnoDB 锁有哪些</h3><ul>
+<li>  <strong>记录锁（Record Lock）</strong> ：也被称为记录锁，属于单个行记录上的锁。</li>
+<li>  <strong>间隙锁（Gap Lock）</strong> ：锁定一个范围，不包括记录本身。</li>
+<li>  <strong>临键锁（Next-Key Lock）</strong> ：Record Lock+Gap Lock，锁定一个范围，包含记录本身，主要是为了解决幻读问题。</li>
+</ul>
+<p>在 InnoDB 默认的隔离级别 REPEATABLE-READ 下，行锁默认使用的是 Next-Key Lock</p>
+<h3 id="当前读和快照读的区别"><a href="#当前读和快照读的区别" class="headerlink" title="当前读和快照读的区别"></a>当前读和快照读的区别</h3><p><strong>快照读</strong>（一致性非锁定读）就是单纯的 <code>SELECT</code> 语句，但不包括下面这两类 <code>SELECT</code> 语句：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">FOR</span> <span class="token keyword">UPDATE</span>
+<span class="token keyword">SELECT</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">LOCK</span> <span class="token operator">IN</span> <span class="token keyword">SHARE</span> <span class="token keyword">MODE</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>只有在事务隔离级别 RC(读取已提交) 和 RR（可重读）下，InnoDB 才会使用一致性非锁定读：</p>
+<ul>
+<li>  在 RC 级别下，对于快照数据，一致性非锁定读总是读取被锁定行的最新一份快照数据。</li>
+<li>  在 RR 级别下，对于快照数据，一致性非锁定读总是读取本事务开始时的行数据版本。</li>
+</ul>
+<p><strong>当前读</strong> （一致性锁定读）就是给行记录加 X 锁或 S 锁。</p>
+<p>当前读的一些常见 SQL 语句类型如下：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 对读的记录加一个X锁</span>
+<span class="token keyword">SELECT</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token keyword">FOR</span> <span class="token keyword">UPDATE</span>
+<span class="token comment"># 对读的记录加一个S锁</span>
+<span class="token keyword">SELECT</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token keyword">LOCK</span> <span class="token operator">IN</span> <span class="token keyword">SHARE</span> <span class="token keyword">MODE</span>
+<span class="token comment"># 对修改的记录加一个X锁</span>
+<span class="token keyword">INSERT</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">UPDATE</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">DELETE</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><h3 id="什么是MVCC"><a href="#什么是MVCC" class="headerlink" title="什么是MVCC"></a>什么是MVCC</h3><p>多版本并发控制：读取数据时通过⼀种类似快照的⽅式将数据保存下来，这样读锁就和写锁不冲突了，不同的事务session会看到⾃⼰特定版本的数据，版本链</p>
+<p>MVCC只在**READ COMMITTED(读已提交)<strong>和</strong>REPEATABLE READ(可重复读)**两个隔离级别下⼯作。</p>
+<p>其他两个隔离级别够和MVCC不兼容, 因为 READ UNCOMMITTED 总是读取最新的数据⾏, ⽽不是符合当前事务版本的数据⾏。⽽ SERIALIZABLE 则会对所有读取的⾏都加锁。</p>
+<p>对于InnoDB存储引擎，每一行记录都有隐藏列：</p>
+<p><strong>trx_id</strong>：⽤来存储每次对某条记录进⾏修改的时候的事务id。<br><strong>roll_pointer</strong>：记录有修改的时候，都会把⽼版本写⼊undo⽇志中。roll_pointer就是存了⼀个指针，它指向这条记录的上⼀个版本的位置，通过它来获得上⼀个版本的记录信息。<br><strong>row_id</strong>：表中没有主键和非NULL唯一键时，则还会有第三个隐藏的主键列。</p>
+<p>已提交读和可重复读的区别就在于它们⽣成ReadView的策略不同。</p>
+<p>开始事务时创建readview，readView维护当前活动的事务id，即未提交的事务id，排序⽣成⼀个数组<br>，获取数据中的事务id（获取的是事务id最⼤的记录），对⽐readview：</p>
+<ul>
+<li>如果在readview的左边（⽐readview都⼩），可以访问（在左边意味着该事务已经提交）</li>
+<li>如果在readview的右边（⽐readview都⼤）或者就在readview中，不可以访问，获取roll_pointer，取上⼀版本重新对⽐（在右边意味着，该事务在readview⽣成之后出现，在readview中意味着该事务还未提交）</li>
+</ul>
+<p>已提交读隔离级别下的事务在每次查询的开始都会⽣成⼀个独⽴的ReadView,⽽可重复读隔离级别则在第⼀次读的时候⽣成⼀个ReadView，之后的读都复⽤之前的ReadView。</p>
+<p>这就是Mysql的MVCC,通过版本链，实现多版本，可并发读-写，写-读。通过ReadView⽣成策略的不同实现不同的隔离级别。</p>
+<h3 id="基于MVCC查询一条记录，是怎样的流程"><a href="#基于MVCC查询一条记录，是怎样的流程" class="headerlink" title="基于MVCC查询一条记录，是怎样的流程"></a>基于MVCC查询一条记录，是怎样的流程</h3><ol>
+<li> 获取事务自己的版本号，即事务ID</li>
+<li> 获取Read View</li>
+<li> 查询得到的数据，然后与Read View中的事务版本号进行比较。</li>
+<li> 如果不符合Read View的可见性规则， 即就需要Undo log中查找可见的历史快照;</li>
+<li> 最后返回符合规则的数据</li>
+</ol>
+<p>InnoDB 实现MVCC，是通过 <code>Read View+ Undo Log</code> 实现的，Undo Log 保存了历史快照，Read View可见性规则帮助判断当前版本的数据是否可见。</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><p><strong>索引是一种用于快速查询和检索数据的数据结构，其本质可以看成是一种排序好的数据结构。</strong></p>
+<p>索引的作用就相当于书的目录。</p>
+<p><strong>优点</strong> ：</p>
+<ul>
+<li>  使用索引可以大大加快 数据的检索速度, 这也是创建索引的最主要的原因。</li>
+</ul>
+<p><strong>缺点</strong> ：</p>
+<ul>
+<li>  创建索引和维护索引需要耗费许多时间。当对表中的数据进行增删改的时候，如果数据有索引，那么索引也需要动态的修改，会降低 SQL 执行效率。</li>
+<li>  索引需要使用物理文件存储，也会耗费一定空间。</li>
+</ul>
+<h3 id="索引的底层数据结构有哪些"><a href="#索引的底层数据结构有哪些" class="headerlink" title="索引的底层数据结构有哪些"></a>索引的底层数据结构有哪些</h3><p><strong>Hash 表</strong></p>
+<p>哈希表是键值对的集合，通过键(key)即可快速取出对应的值(value)，因此哈希表可以快速检索数据（接近 O（1））。</p>
+<p>哈希算法有<strong>Hash 冲突</strong>&nbsp;问题，哈希索引不支持顺序和范围查询。</p>
+<p><strong>B+树</strong></p>
+<p>B+树是⼀个平衡的多叉树，从根节点到每个叶⼦节点的⾼度差值不超过1，⽽且同层级的节点间有指针相互链接。在B+树上的常规检索，从根节点到叶⼦节点的搜索效率基本相当，不会出现⼤幅波动，⽽且基于索引的顺序扫描时，也可以利⽤双向指针快速左右移动，效率⾮常⾼。因此，B+树索引被⼴泛应⽤于数据库、⽂件系统等场景。</p>
+<p>在 MySQL 中，MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构</p>
+<h3 id="为什么用B-树而不用B-树"><a href="#为什么用B-树而不用B-树" class="headerlink" title="为什么用B+树而不用B-树"></a>为什么用B+树而不用B-树</h3><ol>
+<li><p>B+树索引节点没有有Data域，内存占用小，索引范围大。</p>
+</li>
+<li><p>B+树节点小，磁盘IO次数少</p>
+</li>
+<li><p>B+树叶子节点用指针串连，可以进行区间访问</p>
+</li>
+</ol>
+<p><strong>B 树&amp; B+树两者有何异同</strong></p>
+<p>B 树也称 B-树,全称为 <strong>多路平衡查找树</strong> ，B+ 树是 B 树的一种变体。</p>
+<ul>
+<li>  B 树的所有节点既存放键(key) 也存放 数据(data)，而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。</li>
+<li>  B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点。</li>
+<li>  B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。</li>
+</ul>
+<h3 id="为什么用B-树而不用红黑树或者AVL树"><a href="#为什么用B-树而不用红黑树或者AVL树" class="headerlink" title="为什么用B+树而不用红黑树或者AVL树"></a>为什么用B+树而不用红黑树或者AVL树</h3><p><strong>红黑树和AVL树的高度太大</strong>：<strong>AVL 树和红黑树基本都是存储在内存中才会使用的数据结构</strong>。在大规模数据存储的时候，红黑树往往出现由于<strong>树的深度过大</strong>而造成磁盘IO读写过于频繁，进而导致效率低下的情况。</p>
+<p><strong>B+树一个node只需一次I/O</strong>：<strong>数据库系统的设计者巧妙利用了磁盘预读原理</strong>，将一个节点的大小设为等于一个页，这样每个节点只需要一次I/O就可以完全载入。</p>
+<h3 id="索引有哪些类型"><a href="#索引有哪些类型" class="headerlink" title="索引有哪些类型"></a>索引有哪些类型</h3><p><strong>按照底层存储方式角度划分</strong></p>
+<ul>
+<li>  聚簇索引（聚集索引）：索引结构和数据一起存放的索引，InnoDB 中的主键索引就属于聚簇索引。</li>
+<li>  非聚簇索引（非聚集索引）：索引结构和数据分开存放的索引，二级索引(辅助索引)就属于非聚簇索引。MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引。</li>
+</ul>
+<p><strong>按照应用维度划分</strong></p>
+<ul>
+<li><p>  主键索引：是⼀种特殊的唯⼀索引，在⼀张表中只能定义⼀个主键索引，主键⽤于唯⼀标识⼀条记录，使⽤关键字 PRIMARY KEY 来创建。（不可以有 NULL）</p>
+</li>
+<li><p>  普通索引：允许被索引的数据列包含重复的值。（可以有 NULL）</p>
+</li>
+<li><p>  唯一索引：可以保证数据记录的唯⼀性。（可以有 NULL）</p>
+</li>
+<li><p>  覆盖索引：一个索引包含（或者说覆盖）所有需要查询的字段的值。</p>
+</li>
+<li><p>  联合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并。</p>
+</li>
+<li><p>  全文索引：通过建⽴倒排索引 ,可以极⼤的提升检索效率,解决判断字段是否包含的问题。目前只有 <code>CHAR</code>、<code>VARCHAR</code> ，<code>TEXT</code> 列上可以创建全文索引。一般不会使用，效率较低，通常使用搜索引擎如 ElasticSearch 代替。</p>
+<h3 id="聚簇索引与非聚簇索引的区别是什么"><a href="#聚簇索引与非聚簇索引的区别是什么" class="headerlink" title="聚簇索引与非聚簇索引的区别是什么"></a>聚簇索引与非聚簇索引的区别是什么</h3></li>
+<li><p>聚簇索引：即索引结构和数据一起存放的索引，并不是一种单独的索引类型。InnoDB 中的主键索引就属于聚簇索引。</p>
+</li>
+<li><p>对于 InnoDB 引擎表来说，该表的索引(B+树)的每个非叶子节点存储索引，叶子节点存储索引和索引对应的数据。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>非聚簇索引：即索引结构和数据分开存放的索引，并不是一种单独的索引类型。二级索引(辅助索引)就属于非聚簇索引。MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引。</li>
+<li>非聚簇索引的叶子节点并不一定存放数据的指针，因为二级索引的叶子节点就存放的是主键，根据主键再回表查数据。</li>
+</ul>
+<p>聚簇索引的优缺点：</p>
+<p><strong>优点</strong> ：</p>
+<ul>
+<li>  <strong>查询速度非常快</strong> ：相比于非聚簇索引， 聚簇索引少了一次读取数据的 IO 操作。</li>
+<li>  <strong>对排序查找和范围查找优化</strong> ：聚簇索引对于主键的排序查找和范围查找速度非常快。</li>
+</ul>
+<p><strong>缺点</strong> ：</p>
+<ul>
+<li>  <strong>依赖于有序的数据</strong> ：如果索引的数据不是有序的，那么就需要在插入时排序，字符串或 UUID 这种又长又难比较的数据，插入或查找的速度比较慢。</li>
+<li>  <strong>更新代价大</strong> ： 如果对索引列的数据被修改时，那么对应的索引也将会被修改</li>
+</ul>
+<p>非聚簇索引的优缺点：</p>
+<p><strong>优点</strong> ：</p>
+<ul>
+<li>更新代价比聚簇索引要小 。非聚簇索引的叶子节点是不存放数据的</li>
+</ul>
+<p><strong>缺点</strong> ：</p>
+<ul>
+<li>  <strong>依赖于有序的数据</strong> ：跟聚簇索引一样，非聚簇索引也依赖于有序的数据</li>
+<li>  <strong>可能会二次查询(回表)</strong> ：这应该是非聚簇索引最大的缺点了。 当查到索引对应的指针或主键后，可能还需要根据指针或主键再到数据文件或表中查询。</li>
+</ul>
+<h3 id="索引覆盖是什么"><a href="#索引覆盖是什么" class="headerlink" title="索引覆盖是什么"></a>索引覆盖是什么</h3><p>索引覆盖就是⼀个SQL在执⾏时，可以利⽤索引来快速查找，并且此SQL所要查询的字段在当前索引对应的字段中都包含了，那么就表示此SQL⾛完索引后不⽤回表了，所需要的字段都在当前索引的叶⼦节点上存在，可以直接作为结果返回了</p>
+<h3 id="非聚簇索引一定回表查询吗-覆盖索引"><a href="#非聚簇索引一定回表查询吗-覆盖索引" class="headerlink" title="非聚簇索引一定回表查询吗(覆盖索引)"></a>非聚簇索引一定回表查询吗(覆盖索引)</h3><p><strong>非聚簇索引不一定回表查询。</strong></p>
+<p>用户准备使用 SQL 查询用户名，而用户名字段正好建立了索引。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> <span class="token keyword">table</span> <span class="token keyword">WHERE</span> name<span class="token operator">=</span><span class="token string">'aiaa'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>那么这个索引的 key 本身就是 name，查到对应的 name 直接返回就行了，无需回表查询。</p>
+<h3 id="索引下推是什么"><a href="#索引下推是什么" class="headerlink" title="索引下推是什么"></a>索引下推是什么</h3><p><strong>索引下推（Index Condition Pushdown）</strong> 是 <strong>MySQL 5.6</strong> 版本中提供的一项索引优化功能，可以在非聚簇索引遍历过程中，对索引中包含的字段先做判断，过滤掉不符合条件的记录，减少回表次数。</p>
+<h3 id="最左前缀原则是什么"><a href="#最左前缀原则是什么" class="headerlink" title="最左前缀原则是什么"></a>最左前缀原则是什么</h3><p>当⼀个SQL想要利⽤索引，就⼀定要提供该索引所对应的字段中最左边的字段，也就是排在最前⾯的字段，⽐如针对a,b,c三个字段建⽴了⼀个联合索引，那么在写⼀个sql时就⼀定要提供a字段的条件，这样才能⽤到联合索引，这是由于在建⽴a,b,c三个字段的联合索引时，底层的B+树是按照a,b,c三个字段从左往右去⽐较⼤⼩进⾏排序的，所以如果想要利⽤B+树进⾏快速查找也得符合这个规则</p>
+<h3 id="索引哪些情况会失效"><a href="#索引哪些情况会失效" class="headerlink" title="索引哪些情况会失效"></a>索引哪些情况会失效</h3><ul>
+<li><p>查询条件包含or，会导致索引失效。</p>
+</li>
+<li><p>隐式类型转换，会导致索引失效，例如age字段类型是int，where age = “1”，这样就会触发隐式类型转换。</p>
+</li>
+<li><p>like通配符会导致索引失效。注意：”ABC%“会走range索引，”%ABC”索引才会失效。</p>
+</li>
+<li><p>联合索引，查询时的条件列不是联合索引中的第一个列，索引失效。</p>
+</li>
+<li><p>对索引字段进行函数运算。</p>
+</li>
+<li><p>对索引列运算（如，+、-、*、/），索引失效。</p>
+</li>
+<li><p>索引字段上使用（!= 或者 &lt; &gt;，not in）时，会导致索引失效。</p>
+</li>
+<li><p>索引字段上使用is null， is not null，可能导致索引失效。</p>
+</li>
+<li><p>相join的两个表的字符编码不同，不能命中索引，会导致笛卡尔积的循环计算</p>
+</li>
+<li><p>mysql估计使用全表扫描要比使用索引快,则不使用索引。</p>
+<h3 id="索引不适合哪些场景"><a href="#索引不适合哪些场景" class="headerlink" title="索引不适合哪些场景"></a>索引不适合哪些场景</h3></li>
+<li><p>数据量少的不适合加索引</p>
+</li>
+<li><p>更新比较频繁的也不适合加索引</p>
+</li>
+<li><p>离散性低的字段不适合加索引（如性别）</p>
+</li>
+</ul>
+<p><strong>选择合适的字段创建索引</strong></p>
+<ul>
+<li>  <strong>不为 NULL 的字段</strong> ：索引字段的数据应该尽量不为 NULL，因为对于数据为 NULL 的字段，数据库较难优化。</li>
+<li>  <strong>被频繁查询的字段</strong> ：我们创建索引的字段应该是查询操作非常频繁的字段。</li>
+<li>  <strong>被作为条件查询的字段</strong> ：被作为 WHERE 条件查询的字段，应该被考虑建立索引。</li>
+<li>  <strong>频繁需要排序的字段</strong> ：索引已经排序，这样查询可以利用索引的排序，加快排序查询时间。</li>
+<li>  <strong>被经常频繁用于连接的字段</strong> ：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。<h3 id="如何分析语句是否走索引查询"><a href="#如何分析语句是否走索引查询" class="headerlink" title="如何分析语句是否走索引查询"></a>如何分析语句是否走索引查询</h3></li>
+</ul>
+<p>我们可以使用 <code>EXPLAIN</code> 命令来分析 SQL 的 <strong>执行计划</strong> ，这样就知道语句是否命中索引了。执行计划是指一条 SQL 语句在经过 MySQL 查询优化器的优化会后，具体的执行方式。</p>
+<p><code>EXPLAIN</code> 并不会真的去执行相关的语句，而是通过 <strong>查询优化器</strong> 对语句进行分析，找出最优的查询方案，并显示对应的信息。</p>
+<p><code>EXPLAIN</code> 的输出格式如下：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token identifier"><span class="token punctuation">`</span>score<span class="token punctuation">`</span></span><span class="token punctuation">,</span><span class="token identifier"><span class="token punctuation">`</span>name<span class="token punctuation">`</span></span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>cus_order<span class="token punctuation">`</span></span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token identifier"><span class="token punctuation">`</span>score<span class="token punctuation">`</span></span> <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> select_type <span class="token operator">|</span> <span class="token keyword">table</span>     <span class="token operator">|</span> partitions <span class="token operator">|</span> <span class="token keyword">type</span> <span class="token operator">|</span> possible_keys <span class="token operator">|</span> <span class="token keyword">key</span>  <span class="token operator">|</span> key_len <span class="token operator">|</span> ref  <span class="token operator">|</span> <span class="token keyword">rows</span>   <span class="token operator">|</span> filtered <span class="token operator">|</span> Extra          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> <span class="token keyword">SIMPLE</span>      <span class="token operator">|</span> cus_order <span class="token operator">|</span> <span class="token boolean">NULL</span>       <span class="token operator">|</span> <span class="token keyword">ALL</span>  <span class="token operator">|</span> <span class="token boolean">NULL</span>          <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">997572</span> <span class="token operator">|</span>   <span class="token number">100.00</span> <span class="token operator">|</span> <span class="token keyword">Using</span> filesort <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">1</span> warning <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><h4 id="什么是分库分表"><a href="#什么是分库分表" class="headerlink" title="什么是分库分表"></a>什么是分库分表</h4><p><strong>分库</strong> 就是将数据库中的数据分散到不同的数据库上，可以垂直分库，也可以水平分库。<br><strong>分表</strong> 就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。</p>
+<h3 id="分库分表的拆分方法有哪些"><a href="#分库分表的拆分方法有哪些" class="headerlink" title="分库分表的拆分方法有哪些"></a>分库分表的拆分方法有哪些</h3><ul>
+<li>水平分库：以库为依据，按照一定策略（hash、range等），将一个库中的数据拆分到多个库中。</li>
+<li>水平分表：以表为依据，按照一定策略（hash、range等），将一个表中的数据拆分到多个表中。</li>
+<li>垂直分库：以表为依据，按照业务归属不同，将不同的表拆分到不同的库中。</li>
+<li>垂直分表：以字段为依据，按照字段的活跃性，将表中字段拆到不同的表（主表和扩展表）中</li>
+</ul>
+<h3 id="什么情况下需要分库分表"><a href="#什么情况下需要分库分表" class="headerlink" title="什么情况下需要分库分表"></a>什么情况下需要分库分表</h3><ul>
+<li>  单表的数据达到千万级别以上，数据库读写速度比较缓慢。</li>
+<li>  数据库中的数据占用的空间越来越大，备份时间越来越长。</li>
+<li>  应用的并发量太大。</li>
+</ul>
+<h3 id="常用的分库分表中间件"><a href="#常用的分库分表中间件" class="headerlink" title="常用的分库分表中间件"></a>常用的分库分表中间件</h3><ul>
+<li>Sharding-Sphere</li>
+<li>Mycat</li>
+</ul>
+<p>Sharding-Sphere 这种 client 层方案的优点在于不用部署，运维成本低，不需要代理层的二<br>次转发请求，性能很高，但是如果遇到升级啥的需要各个系统都重新升级版本再发布，各个<br>系统都需要耦合 Sharding-Sphere 的依赖；</p>
+<p>mycat 这种 proxy 层方案的缺点在于需要部署，自己及运维一套中间件，运维成本高，<br>但是好处在于对于各个项目是透明的，如果遇到升级之类的都是自己中间件那里搞就行了</p>
+<h3 id="分库分表会带的问题"><a href="#分库分表会带的问题" class="headerlink" title="分库分表会带的问题"></a>分库分表会带的问题</h3><ul>
+<li>  <strong>join 操作</strong> ： 同一个数据库中的表分布在了不同的数据库中，导致无法使用 join 操作。这样就导致我们需要手动进行数据的封装。</li>
+<li>  <strong>事务问题</strong> ：同一个数据库中的表分布在了不同的数据库中，如果单个操作涉及到多个数据库，那么数据库自带的事务就无法满足我们的要求了。</li>
+<li>  <strong>分布式 id</strong> ：分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。需要为系统引入分布式 id 。</li>
+</ul>
+<h3 id="如何解决id唯一性问题"><a href="#如何解决id唯一性问题" class="headerlink" title="如何解决id唯一性问题"></a>如何解决id唯一性问题</h3><ul>
+<li>UUID：结合机器的网卡、当地时间、一个随机数来生成UUID。</li>
+<li>为每个分片指定一个 ID 范围</li>
+<li>数据库自增，多个Master库就设置不同的自增步长</li>
+<li>雪花算法自增：64位long(1符号位，41时间戳，10机器id，12流水号：意味着每毫秒可以产生4096个id)</li>
+<li>借助redis自增(incr 和 increby原子指令)</li>
+</ul>
+<h3 id="分库分表如何将老库的数据迁移到新库（实现方案）"><a href="#分库分表如何将老库的数据迁移到新库（实现方案）" class="headerlink" title="分库分表如何将老库的数据迁移到新库（实现方案）"></a>分库分表如何将老库的数据迁移到新库（实现方案）</h3><p><strong>停机迁移</strong>：维护升级预计 1 小时，写一个脚本将老库的数据都同步到新库中。</p>
+<p><strong>双写方案</strong>：双写方案是针对那种不能停机迁移的场景，动态切换</p>
+<ul>
+<li>  对老库的更新操作（增删改），同时也要写入新库（双写）。如果操作的数据不存在于新库的话，需要插入到新库中。 这样就能保证，咱们新库里的数据是最新的。</li>
+<li>  在迁移过程，双写只会让被更新操作过的老库中的数据同步到新库，我们还需要自己写脚本将老库中的数据和新库的数据做比对。如果新库中没有，那咱们就把数据插入到新库。如果新库有，旧库没有，就把新库对应的数据删除（冗余数据清理）。</li>
+<li>  重复上一步的操作，直到老库和新库的数据一致为止。</li>
+</ul>
+<h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><p><strong>读写分离主要是为了将对数据库的读写操作分散到不同的数据库节点上。</strong>&nbsp;这样的话，就能够小幅提升写性能，大幅提升读性能。</p>
+<p>一主多从，也就是一台主数据库负责写，其他的从数据库负责读。主库和从库之间会进行数据同步，以保证从库中数据的准确性。</p>
+<p><strong>读写分离依赖于从主复制。</strong></p>
+<h3 id="主从复制的原理是什么（过程怎么样的）"><a href="#主从复制的原理是什么（过程怎么样的）" class="headerlink" title="主从复制的原理是什么（过程怎么样的）"></a>主从复制的原理是什么（过程怎么样的）</h3><p>MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据库中数据的所有变化(数据库执行的所有 DDL 和 DML 语句)。因此，我们根据主库的 MySQL binlog 日志就能够将主库的数据同步到从库中。</p>
+<ol>
+<li> 主库将数据库中数据的变化写入到 binlog</li>
+<li> 从库连接主库</li>
+<li> 从库会创建一个 I/O 线程向主库请求更新的 binlog</li>
+<li> 主库会创建一个 binlog dump 线程来发送 binlog ，从库中的 I/O 线程负责接收</li>
+<li> 从库的 I/O 线程将接收的 binlog 写入到中转日志 relay log 中。</li>
+<li> 从库的 SQL 线程读取 relay log 同步数据本地（也就是再执行一遍 SQL ）。</li>
+</ol>
+<p>binlog 还能帮助我们实现数据恢复。</p>
+<h3 id="主从同步延迟是什么？怎么产生的？如何解决？"><a href="#主从同步延迟是什么？怎么产生的？如何解决？" class="headerlink" title="主从同步延迟是什么？怎么产生的？如何解决？"></a>主从同步延迟是什么？怎么产生的？如何解决？</h3><p>主库的数据同步到从库是需要时间的，这个时间差就导致了主库和从库的数据不一致性问题。这也就是我们经常说的 <strong>主从同步延迟</strong> 。</p>
+<p>怎么产生的</p>
+<p>主备延迟最直接的表现是，备库消费中转日志（relay log）的速度，比主库生产 binlog 的速度要慢。造成的原因可能有：</p>
+<ul>
+<li>从库所在机器的性能要比主库所在的机器性能差。</li>
+<li>从库的压力太大：从库访问量高于主库，从库上的查询耗费了大量的 CPU 资源，影响了同步速度，造成主备延迟。</li>
+<li>主库上执行了大事务。一次性修改了大量数据</li>
+</ul>
+<p>参考的解决办法：</p>
+<ol>
+<li>强制将读请求路由到主库处理。<code>Sharding-JDBC</code> 就是采用的这种方案。对于这种方案，可以将那些必须获取最新数据的读请求都交给主库处理。</li>
+<li>延迟读取。但是影响性能</li>
+<li>增加从服务器，降低服务器负载。</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Aiaa</a>
+                </span>
+            </div>
+<!--             <div class="reprint__type"> -->
+<!--                 <span class="reprint-meta" style="font-weight: bold;"> -->
+<!--                     <i class="fas fa-link"> -->
+<!--                         文章链接: -->
+<!--                     </i> -->
+<!--                 </span> -->
+<!--                 <span class="reprint-info"> -->
+<!--                     <a href="http://ailiaa.github.io/2022/12/04/mysql-bu-dang/">http://ailiaa.github.io/2022/12/04/mysql-bu-dang/</a> -->
+<!--                 </span> -->
+<!--             </div> -->
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Aiaa</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/02/15/spring-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Spring(补档)">
+                        
+                        <span class="card-title">Spring(补档)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/23/jvm-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="JVM(补档)">
+                        
+                        <span class="card-title">JVM(补档)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/JVM/">
+                        <span class="chip bg-color">JVM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 艾AA<br />'
+            + '文章作者: Aiaa<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <span id="year">2023</span>
+            <a href="/about" target="_blank">Aiaa</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">150k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2023";
+                    var startMonth = "2";
+                    var startDate = "10";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/AiLiaa" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1067550651@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1067550651" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1067550651" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+
+</body>
+
+</html>

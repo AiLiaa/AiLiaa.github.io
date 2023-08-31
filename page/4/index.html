@@ -49,9 +49,9 @@
          });
     </script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
 </head>
 
 
@@ -250,28 +250,27 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/04/jvm-can-shu/">
+                    <a href="/2022/10/20/dui/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JVM_参数">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="堆">
                             
-                            <span class="card-title">JVM_参数</span>
+                            <span class="card-title">堆</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 堆内存相关
-Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。
-
-显式指定堆内存–Xms和-Xmx
+                                1. 什么是堆堆是一种满足以下条件的树：
+堆中的每一个节点值都大于等于（或小于等于）子树中所有节点的值。或者说，任意一个节点的值都大于等于（或小于等于）所有子节点的值。
+2. 堆的用途当我们只关心所有数据中的最大值或者最小值，存在多次获取最
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-20
                             </span>
                             <span class="publish-author">
                                 
@@ -285,12 +284,8 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/JVM/">
-                            <span class="chip bg-color">JVM</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                            <span class="chip bg-color">数据结构</span>
                         </a>
                         
                     </div>
@@ -300,27 +295,31 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/04/jvm-lei-jia-zai-qi/">
+                    <a href="/2022/10/20/shu-ju-jie-gou-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="JVM_类加载器">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="数据结构(补档)">
                             
-                            <span class="card-title">JVM_类加载器</span>
+                            <span class="card-title">数据结构(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 类加载器总结JVM 中内置了三个重要的 ClassLoader，除了 BootstrapClassLoader 其他类加载器均由 Java 实现且全部继承自java.lang.ClassLoader：
+                                红黑树红黑树特点 :
 
- BootstrapClass
+ 每个节点非红即黑；
+ 根节点总是黑色的；
+ 每个叶子节点都是黑色的空节点（NIL节点）；
+ 如果节点是红色的，则它的子节点必须是黑色的（反之不一定）；
+ 从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-20
                             </span>
                             <span class="publish-author">
                                 
@@ -334,12 +333,8 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/JVM/">
-                            <span class="chip bg-color">JVM</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                            <span class="chip bg-color">数据结构</span>
                         </a>
                         
                     </div>
@@ -349,26 +344,29 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/04/jvm-lei-jia-zai-guo-cheng/">
+                    <a href="/2022/10/19/shu/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="JVM_类加载过程">
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="树">
                             
-                            <span class="card-title">JVM_类加载过程</span>
+                            <span class="card-title">树</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 类的生命周期一个类的完整生命周期如下：
-2. 类加载过程一个Java文件从编码完成到最终运行，一般会经历两个阶段：编译期、运行期。编译，即通过javac命令，将Java文件转化为二进制字节码文件，即.class文件；运行，则是将.cl
+                                1. 树的基本概念树就是一种类似现实生活中的树的数据结构（倒置的树）。任何一颗非空树只有一个根节点。
+一棵树具有以下特点：
+
+ 一棵树中的任意两个结点有且仅有唯一的一条路径连通。
+ 一棵树如果有 n 个结点，那么它一定恰好有 n-1 条边。
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-19
                             </span>
                             <span class="publish-author">
                                 
@@ -382,12 +380,8 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/JVM/">
-                            <span class="chip bg-color">JVM</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                            <span class="chip bg-color">数据结构</span>
                         </a>
                         
                     </div>
@@ -397,28 +391,27 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/04/jvm-clsaa-wen-jian-jie-gou/">
+                    <a href="/2022/10/18/tu/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JVM_Clsaa文件结构">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="图">
                             
-                            <span class="card-title">JVM_Clsaa文件结构</span>
+                            <span class="card-title">图</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. Class 文件结构总结根据 Java 虚拟机规范，Class 文件通过 ClassFile 定义，有点类似 C 语言的结构体。
-ClassFile 的结构如下：
-ClassFile {
-    u4             magi
+                                1. 图的基本概念图就是由顶点的有穷非空集合和顶点之间的边组成的集合。通常表示为：**G(V,E)**，其中，G表示一个图，V表示顶点的集合，E表示边的集合。
+顶点图中的数据元素，我们称之为顶点，图至少有一个顶点（非空有穷集合）
+对应到好友
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-18
                             </span>
                             <span class="publish-author">
                                 
@@ -432,12 +425,8 @@ ClassFile {
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/JVM/">
-                            <span class="chip bg-color">JVM</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                            <span class="chip bg-color">数据结构</span>
                         </a>
                         
                     </div>
@@ -447,27 +436,27 @@ ClassFile {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/04/jvm-la-ji-hui-shou/">
+                    <a href="/2022/10/18/xian-xing-shu-ju-jie-gou/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="JVM_垃圾回收">
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="线性数据结构">
                             
-                            <span class="card-title">JVM_垃圾回收</span>
+                            <span class="card-title">线性数据结构</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 对象优先在 Eden 区分配大多数情况下，对象在新生代中 Eden 区分配。当 Eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC。
-public class GCTest {
-	public static voi
+                                1. 数组数组（Array） 是一种很常见的数据结构。它由相同类型的元素（element）组成，并且是使用一块连续的内存来存储。
+我们直接可以利用元素的索引（index）可以计算出该元素对应的存储地址。
+数组的特点是：提供随机访问 并且容量
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-18
                             </span>
                             <span class="publish-author">
                                 
@@ -481,12 +470,8 @@ public class GCTest {
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/JVM/">
-                            <span class="chip bg-color">JVM</span>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                            <span class="chip bg-color">数据结构</span>
                         </a>
                         
                     </div>
@@ -496,39 +481,29 @@ public class GCTest {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/03/jvm-nei-cun-qu-yu/">
+                    <a href="/2022/10/15/pai-xu-suan-fa-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="JVM_内存区域">
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="排序算法">
                             
-                            <span class="card-title">JVM_内存区域</span>
+                            <span class="card-title">排序算法</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. 运行时数据区域JDK 1.8 之前
-JDK 1.8 之后
-线程私有的：
+                                分类
+  内部排序 ：数据记录在内存中进行排序。
+  外部排序：因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。
 
-  程序计数器
-  虚拟机栈
-  本地方法栈
-
-线程共享的：
-
-  堆
-  方法区
-  直接内存 (非运行时数据区的一部分)
-
-Java 虚拟机规范对于运行时数
+常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-15
                             </span>
                             <span class="publish-author">
                                 
@@ -542,12 +517,8 @@ Java 虚拟机规范对于运行时数
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/JVM/">
-                            <span class="chip bg-color">JVM</span>
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">
+                            <span class="chip bg-color">算法</span>
                         </a>
                         
                     </div>
@@ -557,26 +528,28 @@ Java 虚拟机规范对于运行时数
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/03/java-duo-xian-cheng-03/">
+                    <a href="/2022/10/13/ji-suan-ji-wang-luo-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Java多线程_03">
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="计算机网络(补档)">
                             
-                            <span class="card-title">Java多线程_03</span>
+                            <span class="card-title">计算机网络(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. ThreadLocalThreadLocal 的作用通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。如果想实现每一个线程都有自己的专属本地变量该如何解决呢？
-JDK 中自带的ThreadLocal类正是为了解决这样的问题。
+                                OSI 的七层模型分别是什么
+物理层：底层数据传输，屏蔽掉具体传输介质和物理设备的差异，如网线；网卡标准。(比特流)
+数据链路层：定义数据的基本格式，如何传输，如何标识；如网卡MAC地址。(帧)
+网络层：定义IP编址，定义路由功能；如不同设
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-13
                             </span>
                             <span class="publish-author">
                                 
@@ -590,12 +563,8 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                            <span class="chip bg-color">多线程</span>
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                            <span class="chip bg-color">计算机网络</span>
                         </a>
                         
                     </div>
@@ -605,26 +574,27 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/03/jmm-java-nei-cun-mo-xing/">
+                    <a href="/2022/10/10/cao-zuo-xi-tong-bu-dang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="JMM（Java 内存模型）">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="操作系统(补档)">
                             
-                            <span class="card-title">JMM（Java 内存模型）</span>
+                            <span class="card-title">操作系统(补档)</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                什么是 JMM？为什么需要 JMM？Java 是最早尝试提供内存模型的编程语言。由于早期内存模型存在一些缺陷（比如非常容易削弱编译器的优化能力），从 Java5 开始，Java 开始使用新的内存模型 
-一般来说，编程语言也可以直接复用操作系
+                                基础什么是操作系统操作系统（Operating System，简称 OS）是管理计算机硬件与软件资源的程序，是计算机的基石。
+操作系统本质上是一个运行在计算机上的软件程序 ，用于管理计算机硬件和软件资源。
+从资源管理的角度来看，操作系统有 
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-10
                             </span>
                             <span class="publish-author">
                                 
@@ -638,12 +608,8 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                            <span class="chip bg-color">多线程</span>
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                            <span class="chip bg-color">操作系统</span>
                         </a>
                         
                     </div>
@@ -653,26 +619,30 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/03/02/java-duo-xian-cheng-02/">
+                    <a href="/2022/09/22/fang-niu-ke-wang-lun-tan-wang-zhan-kai-fa-liu-cheng-yi/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Java多线程_02">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="仿牛客网论坛网站开发流程一">
                             
-                            <span class="card-title">Java多线程_02</span>
+                            <span class="card-title">仿牛客网论坛网站开发流程一</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1. volatile 关键字保证变量的可见性可见性就是当一个线程修改了共享变量的值，其他线程能够立即得知这个修改。java内存模型在变量修改后将新的变量值同步回主内存，在其他线程读取该变量之前从主内存刷新变量值来实现可见性。
-在 Java
+                                技术栈
+Spring Boot、MySQL
+Spring、Spring MVC、MyBatis
+Redis、Kafka、Elasticsearch、Zookeeper
+Spring Security、Spring Actuator
+Caff
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-22
                             </span>
                             <span class="publish-author">
                                 
@@ -686,141 +656,44 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
+                        <a href="/tags/Spring/">
+                            <span class="chip bg-color">Spring</span>
                         </a>
                         
-                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                            <span class="chip bg-color">多线程</span>
+                        <a href="/tags/Spring-Boot/">
+                            <span class="chip bg-color">Spring Boot</span>
                         </a>
                         
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/03/02/java-io/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Java_IO">
-                            
-                            <span class="card-title">Java_IO</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1. Java中的IO流IO（Input Output）用于实现对数据的输入与输出操作，Java把不同的输入/输出源（键盘、文件、网络等）抽象表述为流（Stream）。流是从起源到接收的有序数据，有了它程序就可以采用同一方式访问不同的输入/
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-02
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Aiaa
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
+                        <a href="/tags/Spring-MVC/">
+                            <span class="chip bg-color">Spring MVC</span>
                         </a>
                         
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/03/02/java-ji-he-arraylist-yuan-ma-kuo-rong-ji-zhi/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Java集合_ArrayList源码&amp;扩容机制">
-                            
-                            <span class="card-title">Java集合_ArrayList源码&amp;扩容机制</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                ArrayList 简介ArrayList 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用ensureCapacity操作来增加 ArrayList 实例的容量。这可以减
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-02
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Aiaa
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
+                        <a href="/tags/MyBatis/">
+                            <span class="chip bg-color">MyBatis</span>
                         </a>
                         
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/03/02/java-ji-chu-bu-dang/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Java基础【补档】">
-                            
-                            <span class="card-title">Java基础【补档】</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1. JVM vs JDK vs JREJVMJava 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-02
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Aiaa
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
+                        <a href="/tags/Redis/">
+                            <span class="chip bg-color">Redis</span>
+                        </a>
                         
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
+                        <a href="/tags/Kafka/">
+                            <span class="chip bg-color">Kafka</span>
+                        </a>
+                        
+                        <a href="/tags/Elasticsearch/">
+                            <span class="chip bg-color">Elasticsearch</span>
+                        </a>
+                        
+                        <a href="/tags/Spring-Security/">
+                            <span class="chip bg-color">Spring Security</span>
+                        </a>
+                        
+                        <a href="/tags/Spring-Actuator/">
+                            <span class="chip bg-color">Spring Actuator</span>
+                        </a>
+                        
+                        <a href="/tags/%E8%AE%BA%E5%9D%9B%E7%BD%91%E7%AB%99/">
+                            <span class="chip bg-color">论坛网站</span>
                         </a>
                         
                     </div>
@@ -845,12 +718,11 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">4 / 5</div>
+            <div class="center-align b-text-gray">4 / 4</div>
         </div>
         <div class="col s6 m4 l4">
             
-            <a href="/page/5/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color">
+            <a class="right btn-floating btn-large disabled">
                 <i class="fas fa-angle-right"></i>
             </a>
             
@@ -876,7 +748,7 @@ JDK 中自带的ThreadLocal类正是为了解决这样的问题。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">233.1k</span>&nbsp;字
+                class="white-color">150k</span>&nbsp;字
             
             
             

@@ -1,0 +1,1477 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="排序算法, 艾AA">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>排序算法 | 艾AA</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+    <script>
+    <!--浏览器搞笑标题-->
+         var OriginTitle = document.title;
+         var titleTime;
+         document.addEventListener('visibilitychange', function () {
+             if (document.hidden) {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヽ(●-`Д′-)ノ你要玩捉迷藏嘛';
+                 clearTimeout(titleTime);
+             }
+             else {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヾ(???3)ノ好哦！' + OriginTitle;
+                 titleTime = setTimeout(function () {
+                     document.title = OriginTitle;
+                 }, 2000);
+             }
+         });
+    </script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">艾AA</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">艾AA</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">排序算法</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-10-15
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-08-31
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.2k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>  <strong>内部排序</strong> ：数据记录在内存中进行排序。</li>
+<li>  <strong>外部排序</strong>：因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。</li>
+</ul>
+<p>常见的内部排序算法有：<strong>插入排序</strong>、<strong>希尔排序</strong>、<strong>选择排序</strong>、<strong>冒泡排序</strong>、<strong>归并排序</strong>、<strong>快速排序</strong>、<strong>堆排序</strong>、<strong>基数排序</strong>等</p>
+<p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/01.png"></p>
+<p>稳定：冒泡排序、插入排序、归并排序<br>不稳定：快速排序、希尔排序、选择排序、堆排序</p>
+<p><strong>图片名词解释：</strong></p>
+<ul>
+<li>  <strong>n</strong>：数据规模</li>
+<li>  <strong>k</strong>：“桶” 的个数</li>
+<li>  <strong>In-place</strong>：占用常数内存，不占用额外内存</li>
+<li>  <strong>Out-place</strong>：占用额外内存</li>
+</ul>
+<p><strong>术语说明</strong></p>
+<ul>
+<li>  <strong>稳定</strong>：如果 A 原本在 B 前面，而 A=B，排序之后 A 仍然在 B 的前面。</li>
+<li>  <strong>不稳定</strong>：如果 A 原本在 B 的前面，而 A=B，排序之后 A 可能会出现在 B 的后面。</li>
+<li>  <strong>内排序</strong>：所有排序操作都在内存中完成。</li>
+<li>  <strong>外排序</strong>：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行。</li>
+<li>  <strong>时间复杂度</strong>： 定性描述一个算法执行所耗费的时间。</li>
+<li>  <strong>空间复杂度</strong>：定性描述一个算法执行所需内存的大小<br><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/02.png"></li>
+</ul>
+<h3 id="冒泡排序-Bubble-Sort"><a href="#冒泡排序-Bubble-Sort" class="headerlink" title="冒泡排序 (Bubble Sort)"></a>冒泡排序 (Bubble Sort)</h3><p>冒泡排序是一种简单的排序算法。它重复地遍历要排序的序列，依次比较两个元素，如果它们的顺序错误就把它们交换过来。遍历序列的工作是重复地进行直到没有再需要交换为止，此时说明该序列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢 “浮” 到数列的顶端。</p>
+<h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
+<li> 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
+<li> 针对所有的元素重复以上的步骤，除了最后一个；</li>
+<li> 重复步骤 1~3，直到排序完成。</li>
+</ol>
+<h4 id="图解算法"><a href="#图解算法" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/03.gif"></p>
+<h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong>：稳定</li>
+<li>  <strong>时间复杂度</strong>&nbsp;：最佳：O(n) ，最差：O(n2)， 平均：O(n2)</li>
+<li>  <strong>空间复杂度</strong>&nbsp;：O(1)</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  
+    <span class="token keyword">int</span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>  
+    <span class="token keyword">boolean</span> swapped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  
+  
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> swapped<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        swapped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                <span class="token comment">// 交换相邻元素  </span>
+                <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+                arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+                arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>  
+                swapped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="选择排序-Selection-Sort"><a href="#选择排序-Selection-Sort" class="headerlink" title="选择排序 (Selection Sort)"></a>选择排序 (Selection Sort)</h3><p>选择排序是一种简单直观的排序算法，无论什么数据进去都是 <code>O(n²)</code> 的时间复杂度。</p>
+<p>它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<h4 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置</li>
+<li> 再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。</li>
+<li> 重复第 2 步，直到所有元素均排序完毕。</li>
+</ol>
+<h4 id="图解算法-1"><a href="#图解算法-1" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/04.gif"></p>
+<h4 id="算法分析-1"><a href="#算法分析-1" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong>：不稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：O(n2) ，最差：O(n2)， 平均：O(n2)</li>
+<li>  <strong>空间复杂度</strong> ：O(1)</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">int</span> minIdx <span class="token operator">=</span> i<span class="token punctuation">;</span>  
+        <span class="token comment">// 在数组区间[i+1,j]中找出一个最小（比arr[i]还小的）的，记录其下标为minIdx  </span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&gt;</span> i<span class="token punctuation">;</span> <span class="token operator">--</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>minIdx<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                minIdx <span class="token operator">=</span> j<span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span>  
+        <span class="token comment">// 当minIdx发生变动，证明数组区间[i+1,j]中有比arr[i]小的值，进行交换  </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>minIdx <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token comment">// 交换数组arr中下标为i和minIdx的值  </span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">,</span> minIdx<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="插入排序-Insertion-Sort"><a href="#插入排序-Insertion-Sort" class="headerlink" title="插入排序 (Insertion Sort)"></a>插入排序 (Insertion Sort)</h3><p>插入排序是一种简单直观的排序算法。</p>
+<p>它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。扑克牌抓牌</p>
+<h4 id="算法步骤-2"><a href="#算法步骤-2" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 从第一个元素开始，该元素可以认为已经被排序；</li>
+<li> 取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
+<li> 如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
+<li> 重复步骤 3，直到找到已排序的元素小于或者等于新元素的位置；</li>
+<li> 将新元素插入到该位置后；</li>
+<li> 重复步骤 2~5。<h4 id="图解算法-2"><a href="#图解算法-2" class="headerlink" title="图解算法"></a>图解算法</h4></li>
+</ol>
+<p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/05.gif"></p>
+<h4 id="算法分析-2"><a href="#算法分析-2" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong>：稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：O(n) ，最差：O(n2)， 平均：O(n2)</li>
+<li>  <strong>空间复杂度</strong> ：O(1)</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment">// 每趟插入排序前，数组区间[0,i]经过上一趟插入排序处理后，是有序的  </span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">--</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token comment">// 数组元素交换  </span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+                <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="希尔排序-Shell-Sort"><a href="#希尔排序-Shell-Sort" class="headerlink" title="希尔排序 (Shell Sort)"></a>希尔排序 (Shell Sort)</h3><p>希尔排序也是一种插入排序，它是简单插入排序经过改进之后的一个更高效的版本，也称为递减增量排序算法</p>
+<p>希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录 “基本有序” 时，再对全体记录进行依次直接插入排序。</p>
+<h4 id="算法步骤-3"><a href="#算法步骤-3" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>我们来看下希尔排序的基本步骤，在此我们选择增量 <code>gap=length/2</code>，缩小增量继续以 <code>gap = gap/2</code> 的方式，这种增量选择我们可以用一个序列来表示，<code>{n/2, (n/2)/2, ..., 1}</code>，称为<strong>增量序列</strong>。</p>
+<p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：</p>
+<ul>
+<li>  选择一个增量序列 <code>{t1, t2, …, tk}</code>，其中 <code>(ti&gt;tj, i&lt;j, tk=1)</code>；</li>
+<li>  按增量序列个数 k，对序列进行 k 趟排序；</li>
+<li>  每趟排序，根据对应的增量 <code>t</code>，将待排序列分割成若干长度为 <code>m</code> 的子序列，分别对各子表进行直接插入排序。仅增量因子为 1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
+</ul>
+<h4 id="图解算法-3"><a href="#图解算法-3" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/06.png"></p>
+<h4 id="算法分析-3"><a href="#算法分析-3" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong>：不稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：O(nlogn)， 最差：O(n2) 平均：O(nlogn)</li>
+<li>  <strong>空间复杂度</strong> ：<code>O(1)</code></li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> len <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> incr <span class="token operator">=</span> len<span class="token punctuation">;</span>  
+    <span class="token keyword">while</span><span class="token punctuation">(</span>incr <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token comment">// 每趟希尔排序，都让增量的值折半  </span>
+        incr <span class="token operator">/=</span> <span class="token number">2</span><span class="token punctuation">;</span>  
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> incr<span class="token punctuation">;</span>i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>i <span class="token operator">-</span> incr<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+                <span class="token comment">// 分组插入排序  </span>
+                <span class="token comment">// 当遍历时遇到相对有序，直接进行下一趟排序  </span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span>j <span class="token operator">&gt;=</span> incr<span class="token punctuation">;</span>j <span class="token operator">-=</span> incr<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&lt;</span>arr<span class="token punctuation">[</span>j <span class="token operator">-</span> incr<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+                        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>j<span class="token punctuation">,</span>j <span class="token operator">-</span> incr<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                    <span class="token punctuation">}</span>  
+                <span class="token punctuation">}</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="归并排序-Merge-Sort"><a href="#归并排序-Merge-Sort" class="headerlink" title="归并排序 (Merge Sort)"></a>归并排序 (Merge Sort)</h3><p>将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为 2 路归并。</p>
+<h4 id="算法步骤-4"><a href="#算法步骤-4" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>归并排序算法是一个递归过程，边界条件为当输入序列仅有一个元素时，直接返回，具体过程如下：</p>
+<ol>
+<li> 如果输入内只有一个元素，则直接返回，否则将长度为 <code>n</code> 的输入序列分成两个长度为 <code>n/2</code> 的子序列；</li>
+<li> 分别对这两个子序列进行归并排序，使子序列变为有序状态；</li>
+<li> 设定两个指针，分别指向两个已经排序子序列的起始位置；</li>
+<li> 比较两个指针所指向的元素，选择相对小的元素放入到合并空间（用于存放排序结果），并移动指针到下一位置；</li>
+<li> 重复步骤 3 ~4 直到某一指针达到序列尾；</li>
+<li> 将另一序列剩下的所有元素直接复制到合并序列尾。</li>
+</ol>
+<h4 id="图解算法-4"><a href="#图解算法-4" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/07.gif"></p>
+<h4 id="算法分析-4"><a href="#算法分析-4" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong>：稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：O(nlogn)， 最差：O(nlogn)， 平均：O(nlogn)</li>
+<li>  <strong>空间复杂度</strong> ：O(n)</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//拆分  </span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">L</span><span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">R</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">L</span> <span class="token operator">&lt;</span> <span class="token class-name">R</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token class-name">L</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">R</span> <span class="token operator">-</span> <span class="token class-name">L</span><span class="token punctuation">)</span> <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token class-name">L</span><span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token class-name">L</span><span class="token punctuation">,</span> mid<span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token comment">//合并  </span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">L</span><span class="token punctuation">,</span> <span class="token keyword">int</span> mid<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">R</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> tmpArr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token class-name">R</span> <span class="token operator">-</span> <span class="token class-name">L</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> idx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token class-name">L</span><span class="token punctuation">,</span> j <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+    <span class="token comment">// 同时遍历arr数组中[L, mid]和[mid+1, R]两个区间，将较小值放入tmpArr临时数组中  </span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> mid <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;=</span> <span class="token class-name">R</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        tmpArr<span class="token punctuation">[</span>idx<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">?</span> arr<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">:</span> arr<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> mid<span class="token punctuation">)</span> tmpArr<span class="token punctuation">[</span>idx<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;=</span> <span class="token class-name">R</span><span class="token punctuation">)</span> tmpArr<span class="token punctuation">[</span>idx<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token comment">// 将tmpArr数组中排序完毕的值放回原数组中  </span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> val <span class="token operator">:</span> tmpArr<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        arr<span class="token punctuation">[</span><span class="token class-name">L</span><span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> val<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="快速排序-Quick-Sort"><a href="#快速排序-Quick-Sort" class="headerlink" title="快速排序 (Quick Sort)"></a>快速排序 (Quick Sort)</h3><p>快速排序的基本思想：通过一趟排序将待排序列分隔成独立的两部分，其中一部分记录的元素均比另一部分的元素小，则可分别对这两部分子序列继续进行排序，以达到整个序列有序。</p>
+<h4 id="算法步骤-5"><a href="#算法步骤-5" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>快速排序使用分治法策略来把一个序列分为较小和较大的 2 个子序列，然后递回地排序两个子序列。具体算法描述如下：</p>
+<ol>
+<li> 从序列中<strong>随机</strong>挑出一个元素，做为 “基准”(<code>pivot</code>)；</li>
+<li> 重新排列序列，将所有比基准值小的元素摆放在基准前面，所有比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个操作结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
+<li> 递归地把小于基准值元素的子序列和大于基准值元素的子序列进行快速排序。</li>
+</ol>
+<h4 id="图解算法-5"><a href="#图解算法-5" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/08.gif"></p>
+<h4 id="算法分析-5"><a href="#算法分析-5" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong> ：不稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：O(nlogn)， 最差：O(nlogn)，平均：O(nlogn)</li>
+<li>  <strong>空间复杂度</strong> ：O(logn)</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">L</span><span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">R</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token comment">// 递归出口为L追上R的时候  </span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">L</span> <span class="token operator">&gt;=</span> <span class="token class-name">R</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token class-name">L</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token class-name">R</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> key <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token class-name">L</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment">// 从右边开始，找到第一个小于key的数  </span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> j <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> key<span class="token punctuation">)</span> <span class="token operator">--</span>j<span class="token punctuation">;</span>  
+        <span class="token comment">// 再从左边开始，找到第一个大于key的数  </span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> j <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> key<span class="token punctuation">)</span> <span class="token operator">++</span>i<span class="token punctuation">;</span>  
+        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+    <span class="token comment">// 将基准值放在划分数组大小的中间轴上  </span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token class-name">L</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token comment">// 递归进行排序  </span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token class-name">L</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="堆排序-Heap-Sort"><a href="#堆排序-Heap-Sort" class="headerlink" title="堆排序 (Heap Sort)"></a>堆排序 (Heap Sort)</h3><p>堆排序是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构，并同时满足<strong>堆的性质</strong>：即<strong>子结点的值总是小于（或者大于）它的父节点</strong>。</p>
+<h4 id="算法步骤-6"><a href="#算法步骤-6" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 将初始待排序列 <code>(R1, R2, ……, Rn)</code> 构建成大顶堆，此堆为初始的无序区；</li>
+<li> 将堆顶元素 <code>R[1]</code> 与最后一个元素 <code>R[n]</code> 交换，此时得到新的无序区 <code>(R1, R2, ……, Rn-1)</code> 和新的有序区 (Rn), 且满足 <code>R[1, 2, ……, n-1]&lt;=R[n]</code>；</li>
+<li> 由于交换后新的堆顶 <code>R[1]</code> 可能违反堆的性质，因此需要对当前无序区 <code>(R1, R2, ……, Rn-1)</code> 调整为新堆，然后再次将 R [1] 与无序区最后一个元素交换，得到新的无序区 <code>(R1, R2, ……, Rn-2)</code> 和新的有序区 <code>(Rn-1, Rn)</code>。不断重复此过程直到有序区的元素个数为 <code>n-1</code>，则整个排序过程完成。</li>
+</ol>
+<h4 id="图解算法-6"><a href="#图解算法-6" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/09.gif"></p>
+<h4 id="算法分析-6"><a href="#算法分析-6" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong> ：不稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：O(nlogn)， 最差：O(nlogn)， 平均：O(nlogn)</li>
+<li>  <strong>空间复杂度</strong> ：O(1)</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//调整堆  </span>
+<span class="token comment">//小结点不断下沉  </span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">heapAdjust</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> heap<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token comment">// 记录传入节点值  </span>
+    <span class="token keyword">int</span> tmp <span class="token operator">=</span> heap<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token comment">// 从i节点的左子节点开始，即i*2+1  </span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> k <span class="token operator">=</span> k <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment">// 当左子节点小于右子节点，则让父节点与右子节点相比  </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> len <span class="token operator">&amp;&amp;</span> heap<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">&lt;</span> heap<span class="token punctuation">[</span>k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token operator">++</span>k<span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+        <span class="token comment">// 若最大的子节点比传入节点大，则将最大的子节点的位置移到传入节点上  </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>heap<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">&gt;</span> tmp<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            heap<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> heap<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+            i <span class="token operator">=</span> k<span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">break</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+    <span class="token comment">// 传入节点值放在最终的位置  </span>
+    heap<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> len <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>  
+    <span class="token comment">// 1. 构建大顶堆  </span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> len <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment">// 从第一个非叶子结点从下至上，从右至左调整结构  </span>
+        <span class="token function">heapAdjust</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+    <span class="token comment">// 2. 每一趟排序，都将大顶堆的堆顶与数组的索引j处的值交换  </span>
+    <span class="token comment">// 索引j最开始指向数组尾部，随着每一趟排序的结束自减，直到指向数组头部  </span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">--</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">heapAdjust</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="计数排序-Counting-Sort"><a href="#计数排序-Counting-Sort" class="headerlink" title="计数排序 (Counting Sort)"></a>计数排序 (Counting Sort)</h3><p>计数排序的核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。 作为一种线性时间复杂度的排序，<strong>计数排序要求输入的数据必须是有确定范围的整数</strong>。</p>
+<h4 id="算法步骤-7"><a href="#算法步骤-7" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 找出数组中的最大值 <code>max</code>、最小值 <code>min</code>；</li>
+<li> 创建一个新数组 <code>C</code>，其长度是 <code>max-min+1</code>，其元素默认值都为 0；</li>
+<li> 遍历原数组 <code>A</code> 中的元素 <code>A[i]</code>，以 <code>A[i]-min</code> 作为 <code>C</code> 数组的索引，以 <code>A[i]</code> 的值在 <code>A</code> 中元素出现次数作为 <code>C[A[i]-min]</code> 的值；</li>
+<li> 对 <code>C</code> 数组变形，<strong>新元素的值是该元素与前一个元素值的和</strong>，即当 <code>i&gt;1</code> 时 <code>C[i] = C[i] + C[i-1]</code>；</li>
+<li> 创建结果数组 <code>R</code>，长度和原始数组一样。</li>
+<li> <strong>从后向前</strong>遍历原始数组 <code>A</code> 中的元素 <code>A[i]</code>，使用 <code>A[i]</code> 减去最小值 <code>min</code> 作为索引，在计数数组 <code>C</code> 中找到对应的值 <code>C[A[i]-min]</code>，<code>C[A[i]-min]-1</code> 就是 <code>A[i]</code> 在结果数组 <code>R</code> 中的位置，做完上述这些操作，将 <code>count[A[i]-min]</code> 减小 1。</li>
+</ol>
+<h4 id="图解算法-7"><a href="#图解算法-7" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/10.gif"></p>
+<h4 id="算法分析-7"><a href="#算法分析-7" class="headerlink" title="算法分析"></a>算法分析</h4><p>当输入的元素是 <code>n</code> 个 <code>0</code> 到 <code>k</code> 之间的整数时，它的运行时间是 <code>O(n+k)</code>。计数排序不是比较排序，排序的速度快于任何比较排序算法。由于用来计数的数组 <code>C</code> 的长度取决于待排序数组中数据的范围（等于待排序数组的<strong>最大值与最小值的差加上 1</strong>），这使得计数排序对于数据范围很大的数组，需要大量额外内存空间。</p>
+<ul>
+<li>  <strong>稳定性</strong> ：稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：<code>O(n+k)</code> 最差：<code>O(n+k)</code> 平均：<code>O(n+k)</code></li>
+<li>  <strong>空间复杂度</strong> ：<code>O(k)</code></li>
+</ul>
+<h3 id="桶排序-Bucket-Sort"><a href="#桶排序-Bucket-Sort" class="headerlink" title="桶排序 (Bucket Sort)"></a>桶排序 (Bucket Sort)</h3><p>桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。为了使桶排序更加高效，我们需要做到这两点：</p>
+<ol>
+<li> 在额外空间充足的情况下，尽量增大桶的数量</li>
+<li> 使用的映射函数能够将输入的 N 个数据均匀的分配到 K 个桶中</li>
+</ol>
+<p>桶排序的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行。</p>
+<h4 id="算法步骤-8"><a href="#算法步骤-8" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 设置一个 BucketSize，作为每个桶所能放置多少个不同数值；</li>
+<li> 遍历输入数据，并且把数据依次映射到对应的桶里去；</li>
+<li> 对每个非空的桶进行排序，可以使用其它排序方法，也可以递归使用桶排序；</li>
+<li> 从非空桶里把排好序的数据拼接起来。</li>
+</ol>
+<h4 id="图解算法-8"><a href="#图解算法-8" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/11.gif"></p>
+<h4 id="算法分析-8"><a href="#算法分析-8" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong> ：稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：<code>O(n+k)</code> 最差：<code>O(n²)</code> 平均：<code>O(n+k)</code></li>
+<li>  <strong>空间复杂度</strong> ：<code>O(k)</code></li>
+</ul>
+<h3 id="基数排序-Radix-Sort"><a href="#基数排序-Radix-Sort" class="headerlink" title="基数排序 (Radix Sort)"></a>基数排序 (Radix Sort)</h3><p>基数排序也是非比较的排序算法，对元素中的每一位数字进行排序，从最低位开始排序，复杂度为 <code>O(n×k)</code>，<code>n</code> 为数组长度，<code>k</code> 为数组中元素的最大的位数；</p>
+<p>基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。</p>
+<h4 id="算法步骤-9"><a href="#算法步骤-9" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li> 取得数组中的最大数，并取得位数，即为迭代次数 <code>N</code>（例如：数组中最大数值为 1000，则 <code>N=4</code>）；</li>
+<li> <code>A</code> 为原始数组，从最低位开始取每个位组成 <code>radix</code> 数组；</li>
+<li> 对 <code>radix</code> 进行计数排序（利用计数排序适用于小范围数的特点）；</li>
+<li> 将 <code>radix</code> 依次赋值给原数组；</li>
+<li> 重复 2~4 步骤 <code>N</code> 次</li>
+</ol>
+<h4 id="图解算法-9"><a href="#图解算法-9" class="headerlink" title="图解算法"></a>图解算法</h4><p><img src="/images/image_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/12.gif"></p>
+<h4 id="算法分析-9"><a href="#算法分析-9" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li>  <strong>稳定性</strong> ：稳定</li>
+<li>  <strong>时间复杂度</strong> ：最佳：<code>O(n×k)</code> 最差：<code>O(n×k)</code> 平均：<code>O(n×k)</code></li>
+<li>  <strong>空间复杂度</strong> ：<code>O(n+k)</code></li>
+</ul>
+<p><strong>基数排序 vs 计数排序 vs 桶排序</strong></p>
+<p>这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：</p>
+<ul>
+<li>  基数排序：根据键值的每位数字来分配桶</li>
+<li>  计数排序：每个桶只存储单一键值</li>
+<li>  桶排序：每个桶存储一定范围的数值</li>
+</ul>
+<h3 id="LRU缓存"><a href="#LRU缓存" class="headerlink" title="LRU缓存"></a>LRU缓存</h3><p><strong>双向链表</strong>：按照被使用的顺序存储了这些键值对，靠近头部的键值对是最近使用的，而靠近尾部的键值对是最久未使用的。<br><strong>哈希表</strong>：即为普通的哈希映射（HashMap），通过缓存数据的键映射到其在双向链表中的位置。  </p>
+<p>首先使用哈希表进行定位，找出缓存项在双向链表中的位置，随后将其移动到双向链表的头部， 即可在O(1) 的时间内完成 get 或者 put 操作。  </p>
+<p>对于 get 操作，首先判断 key 是否存在： </p>
+<ul>
+<li>如果 key 不存在，则返回 −1-1−1；  </li>
+<li>如果 key 存在，则 key 对应的节点是最近被使用的节点。通过哈希表定位到该节点在双向链表中的位置，并将其移动到双向链表的头部，最后返回该节点的值。  </li>
+</ul>
+<p>对于 put 操作，首先判断 key 是否存在：  </p>
+<ul>
+<li>如果 key 不存在，使用 key 和 value 创建一个新的节点，在双向链表的头部添加该节点，并将 key 和该节点添加进哈希表中。然后判断双向链表的节点数是否超出容量，如果超出容量，则删除双向链表的尾部节点，并删除哈希表中对应的项； </li>
+<li>如果 key 存在，则与 get 操作类似，先通过哈希表定位，再将对应的节点的值更新为 value，并将该节点移到双向链表的头部。  </li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LRUCache</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">DLinkedNode</span><span class="token punctuation">&gt;</span></span> cache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span>  
+    <span class="token keyword">private</span> <span class="token keyword">int</span> capacity<span class="token punctuation">;</span>  
+    <span class="token keyword">private</span> <span class="token class-name">DLinkedNode</span> head<span class="token punctuation">,</span>tail<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token class-name">LRUCache</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> capacity<span class="token punctuation">;</span>  
+        <span class="token comment">//虚拟头尾节点  </span>
+        head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DLinkedNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        tail <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DLinkedNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        head<span class="token punctuation">.</span>next <span class="token operator">=</span> tail<span class="token punctuation">;</span>  
+        tail<span class="token punctuation">.</span>prev <span class="token operator">=</span> head<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token class-name">DLinkedNode</span> node <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">if</span><span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+        <span class="token comment">//移到头部  </span>
+        <span class="token function">moveToHead</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">return</span> node<span class="token punctuation">.</span>value<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token class-name">DLinkedNode</span> node <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">if</span><span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+            <span class="token comment">// 如果 key 不存在，创建一个新的节点  </span>
+            <span class="token class-name">DLinkedNode</span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DLinkedNode</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token comment">// 添加进哈希表  </span>
+            cache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span>newNode<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token comment">// 添加至双向链表的头部  </span>
+            <span class="token function">addToHead</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            size<span class="token operator">++</span><span class="token punctuation">;</span>  
+            <span class="token keyword">if</span><span class="token punctuation">(</span>size <span class="token operator">&gt;</span> capacity<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+                <span class="token comment">// 如果超出容量，删除双向链表的尾部节点  </span>
+                <span class="token class-name">DLinkedNode</span> tail <span class="token operator">=</span> <span class="token function">removeTail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                <span class="token comment">// 删除哈希表中对应的项  </span>
+                cache<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>tail<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                size<span class="token operator">--</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>  
+            <span class="token comment">// 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部  </span>
+            node<span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>  
+            <span class="token function">moveToHead</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token comment">//定义双向链表  </span>
+    <span class="token keyword">class</span> <span class="token class-name">DLinkedNode</span><span class="token punctuation">{</span>  
+        <span class="token keyword">int</span> key<span class="token punctuation">;</span>  
+        <span class="token keyword">int</span> value<span class="token punctuation">;</span>  
+        <span class="token class-name">DLinkedNode</span> prev<span class="token punctuation">;</span>  
+        <span class="token class-name">DLinkedNode</span> next<span class="token punctuation">;</span>  
+        <span class="token keyword">public</span> <span class="token class-name">DLinkedNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
+        <span class="token keyword">public</span> <span class="token class-name">DLinkedNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+            <span class="token keyword">this</span><span class="token punctuation">.</span>key <span class="token operator">=</span> key<span class="token punctuation">;</span>  
+            <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">addToHead</span><span class="token punctuation">(</span><span class="token class-name">DLinkedNode</span> node<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        node<span class="token punctuation">.</span>prev <span class="token operator">=</span> head<span class="token punctuation">;</span>  
+        node<span class="token punctuation">.</span>next <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>  
+        head<span class="token punctuation">.</span>next<span class="token punctuation">.</span>prev <span class="token operator">=</span> node<span class="token punctuation">;</span>  
+        head<span class="token punctuation">.</span>next <span class="token operator">=</span> node<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">removeNode</span><span class="token punctuation">(</span><span class="token class-name">DLinkedNode</span> node<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        node<span class="token punctuation">.</span>prev<span class="token punctuation">.</span>next <span class="token operator">=</span> node<span class="token punctuation">.</span>next<span class="token punctuation">;</span>  
+        node<span class="token punctuation">.</span>next<span class="token punctuation">.</span>prev <span class="token operator">=</span> node<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">moveToHead</span><span class="token punctuation">(</span><span class="token class-name">DLinkedNode</span> node<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token function">removeNode</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">addToHead</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">private</span> <span class="token class-name">DLinkedNode</span> <span class="token function">removeTail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token class-name">DLinkedNode</span> res <span class="token operator">=</span> tail<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>  
+        <span class="token function">removeNode</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<p>使用内置数据结构LinkedHashMap</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">LRUCache2</span> <span class="token keyword">extends</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>  
+    <span class="token keyword">private</span> <span class="token keyword">int</span> capacity<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token class-name">LRUCache2</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment">//容量，负载因子，是否顺序访问（默认false插序访问）  </span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>capacity<span class="token punctuation">,</span> <span class="token number">0.75F</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> capacity<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">getOrDefault</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">removeEldestEntry</span><span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> eldest<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> capacity<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Aiaa</a>
+                </span>
+            </div>
+<!--             <div class="reprint__type"> -->
+<!--                 <span class="reprint-meta" style="font-weight: bold;"> -->
+<!--                     <i class="fas fa-link"> -->
+<!--                         文章链接: -->
+<!--                     </i> -->
+<!--                 </span> -->
+<!--                 <span class="reprint-info"> -->
+<!--                     <a href="http://ailiaa.github.io/2022/10/15/pai-xu-suan-fa-bu-dang/">http://ailiaa.github.io/2022/10/15/pai-xu-suan-fa-bu-dang/</a> -->
+<!--                 </span> -->
+<!--             </div> -->
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Aiaa</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/10/18/xian-xing-shu-ju-jie-gou/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="线性数据结构">
+                        
+                        <span class="card-title">线性数据结构</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/10/13/ji-suan-ji-wang-luo-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="计算机网络(补档)">
+                        
+                        <span class="card-title">计算机网络(补档)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 艾AA<br />'
+            + '文章作者: Aiaa<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <span id="year">2023</span>
+            <a href="/about" target="_blank">Aiaa</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">150k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2023";
+                    var startMonth = "2";
+                    var startDate = "10";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/AiLiaa" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1067550651@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1067550651" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1067550651" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+
+</body>
+
+</html>
