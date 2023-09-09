@@ -49,9 +49,9 @@
          });
     </script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
 </head>
 
 
@@ -344,14 +344,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.3k
+                    9.6k
                 </div>
                 
 
@@ -736,9 +736,16 @@
 <p>Spring MVC拦截器的开发步骤如下：</p>
 <ol>
 <li>开发拦截器： 实现handlerInterceptor接口，从三个方法中选择合适的方法，实现拦截时要执行的具体业务逻辑。</li>
-<li>注册拦截器： 定义配置类，并让它实现WebMvcConfigurer接口，在接口的addInterceptors方法中，注册拦截器，并定义该拦截器匹配哪些请求路径。<h3 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h3></li>
+<li>注册拦截器： 定义配置类，并让它实现WebMvcConfigurer接口，在接口的addInterceptors方法中，注册拦截器，并定义该拦截器匹配哪些请求路径。</li>
 </ol>
-<p>推荐使用注解的方式统一异常处理，具体会使用到 <code>@ControllerAdvice</code> + <code>@ExceptionHandler</code> 这两个注解 。</p>
+<h3 id="拦截器和过滤器的区别是什么"><a href="#拦截器和过滤器的区别是什么" class="headerlink" title="拦截器和过滤器的区别是什么"></a>拦截器和过滤器的区别是什么</h3><ol>
+<li>位置不同：拦截器是在应用<strong>程序内部具体方法</strong>级别的组件。过滤器位于应用程序外部，处于<strong>请求和响应的路径之间</strong></li>
+<li>作用不同：拦截器主要用于在方法调用前后执行特定的操作，如日志记录、性能监视、安全检查等。过滤器主要用于在请求进入应用程序或响应离开应用程序之前进行预处理或后处理操作，如身份验证、请求转发、响应包装等。</li>
+<li>原理不同：拦截器通常是基于面向切面编程（AOP）的概念。过滤器则是基于Servlet规范的一部分，它们通过在web.xml文件中进行配置，并按照一定的顺序进行调用。</li>
+<li>作用范围不同：拦截器作用范围局限于特定的方法或一组方法。过滤器是作用范围可以覆盖整个应用程序，甚至整个Web容器。</li>
+</ol>
+<p>拦截器适用于对<strong>方法级别</strong>的操作和控制，而过滤器更适用于对<strong>请求和响应</strong>进行全局的预处理和后处理。</p>
+<h3 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h3><p>推荐使用注解的方式统一异常处理，具体会使用到 <code>@ControllerAdvice</code> + <code>@ExceptionHandler</code> 这两个注解 。</p>
 <p>在这种异常处理方式下，会给所有或者指定的 <code>Controller</code> 织入异常处理的逻辑（AOP），当 <code>Controller</code> 中的方法抛出异常的时候，由被<code>@ExceptionHandler</code> 注解修饰的方法进行处理。</p>
 <h3 id="Spring-Boot、Spring-MVC-和-Spring-有什么区别"><a href="#Spring-Boot、Spring-MVC-和-Spring-有什么区别" class="headerlink" title="Spring Boot、Spring MVC 和 Spring 有什么区别"></a>Spring Boot、Spring MVC 和 Spring 有什么区别</h3><p>spring是⼀个IOC容器，⽤来管理Bean，使⽤依赖注⼊实现控制反转，可以很⽅便的整合各种框架，提供AOP机制弥补OOP的代码重复问题、更⽅便将不同类不同⽅法中的共同处理抽取成切⾯、⾃动注⼊给⽅法执⾏，⽐如⽇志、异常等</p>
 <p>Spring MVC 是 Spring 中的一个很重要的模块，主要赋予 Spring 快速构建 MVC 架构的 Web 程序的能力。MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
@@ -1180,7 +1187,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">150k</span>&nbsp;字
+                class="white-color">151.2k</span>&nbsp;字
             
             
             

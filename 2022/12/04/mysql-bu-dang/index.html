@@ -49,9 +49,9 @@
          });
     </script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
 </head>
 
 
@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.3k
+                    8.4k
                 </div>
                 
 
@@ -696,6 +696,14 @@ SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span><
 <span class="token operator">+</span><span class="token comment">----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+</span>
 <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">1</span> warning <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="MySQL的explain执行计划的type属性值表示的是什么"><a href="#MySQL的explain执行计划的type属性值表示的是什么" class="headerlink" title="MySQL的explain执行计划的type属性值表示的是什么"></a>MySQL的explain执行计划的type属性值表示的是什么</h3><p>常见取值及其含义：</p>
+<ol>
+<li>const（常量）：表示通过索引一次查找就可以定位到唯一的行。</li>
+<li>ref（索引查找）：表示通过非唯一索引进行查找并返回匹配条件的行。</li>
+<li>range（范围查找）：表示通过索引的范围查找，返回匹配指定条件范围的行。</li>
+<li>index（索引扫描）：表示全索引扫描，遍历索引树上的每个节点。</li>
+<li>all（全表扫描）：表示对整个表进行完全扫描，没有使用索引。</li>
+</ol>
 <h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><h4 id="什么是分库分表"><a href="#什么是分库分表" class="headerlink" title="什么是分库分表"></a>什么是分库分表</h4><p><strong>分库</strong> 就是将数据库中的数据分散到不同的数据库上，可以垂直分库，也可以水平分库。<br><strong>分表</strong> 就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。</p>
 <h3 id="分库分表的拆分方法有哪些"><a href="#分库分表的拆分方法有哪些" class="headerlink" title="分库分表的拆分方法有哪些"></a>分库分表的拆分方法有哪些</h3><ul>
 <li>水平分库：以库为依据，按照一定策略（hash、range等），将一个库中的数据拆分到多个库中。</li>
@@ -1140,7 +1148,7 @@ SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span><
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">150k</span>&nbsp;字
+                class="white-color">151.2k</span>&nbsp;字
             
             
             

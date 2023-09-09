@@ -49,9 +49,9 @@
          });
     </script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
 </head>
 
 
@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4.1k
                 </div>
                 
 
@@ -403,6 +403,12 @@
 <li><p><strong>分布式系统易于扩展</strong>：所有的 producer、broker 和 consumer 都会有多个，均为分布式的。无需停机即可扩展机器。</p>
 </li>
 </ul>
+<h3 id="Kafka和RabbitMQ的区别"><a href="#Kafka和RabbitMQ的区别" class="headerlink" title="Kafka和RabbitMQ的区别"></a>Kafka和RabbitMQ的区别</h3><ol>
+<li>数据处理模型：Kafka是一个分布式发布-订阅消息系统，以高吞吐量和持久性为目标。RabbitMQ是一个基于AMQP（高级消息队列协议）的消息中间件，它使用队列模型来处理消息。</li>
+<li>处理方式：Kafka通过分区和复制机制来实现高吞吐量和高可靠性。RabbitMQ使用先进先出（FIFO）的队列模型来处理消息，按照顺序逐一传递和消费消息。</li>
+<li>数据保证：Kafka提供的是至少一次交付的语义，即消息不会丢失，但可能会重复。RabbitMQ提供的是恰好一次交付的语义，即消息不会丢失也不会重复。它使用确认机制和消息确认应答来确保消息的可靠性。</li>
+<li>适用场景：Kafka适用于处理高吞吐量和持久化的流式数据，而RabbitMQ适用于可靠的点对点通信和任务队列。</li>
+</ol>
 <h3 id="什么是Producer、Consumer、Broker、Topic、Partition"><a href="#什么是Producer、Consumer、Broker、Topic、Partition" class="headerlink" title="什么是Producer、Consumer、Broker、Topic、Partition"></a>什么是Producer、Consumer、Broker、Topic、Partition</h3><ul>
 <li> <strong>Producer（生产者）</strong> : 产生消息的一方。</li>
 <li> <strong>Consumer（消费者）</strong> : 消费消息的一方。</li>
@@ -501,6 +507,10 @@ future<span class="token punctuation">.</span><span class="token function">addCa
 <li>因为表中某个字段带有唯一索引，如果插入成功，证明表中没有这次请求的信息，则执行后续的业务逻辑</li>
 <li>如果插入失败，则代表已经执行过当前请求，直接返回</li>
 </ol>
+<h3 id="Kafka时间轮片是什么"><a href="#Kafka时间轮片是什么" class="headerlink" title="Kafka时间轮片是什么"></a>Kafka时间轮片是什么</h3><p>Kafka中的时间轮片是用于处理延迟消息的一种机制。</p>
+<p>时间轮片的概念基于时间轮（time wheel），时间轮是一种计时器算法，用于处理定时任务或延迟任务。Kafka中的时间轮由一组时间轮片组成，每个时间轮片代表一个时间单位，例如1秒、1分钟等。</p>
+<p>当生产者发送一个延迟消息时，Kafka会将该消息放入对应的时间轮片中。随着时间的推移，时间轮不断转动，当一个时间轮片到达指定的时间单位后，其中的消息就可以被消费者消费了。消费者会定期检查时间轮，并处理到期的消息。</p>
+<p>时间轮片提供了一种高效的方式来管理和触发到期的延迟消息。对于某些需要处理定时任务或具有延迟要求的场景非常有用，例如实时日志处理、事件驱动架构等。</p>
 <h3 id="大量消息在-MQ-里长时间积压，该如何解决"><a href="#大量消息在-MQ-里长时间积压，该如何解决" class="headerlink" title="大量消息在 MQ 里长时间积压，该如何解决"></a>大量消息在 MQ 里长时间积压，该如何解决</h3><p>一般这个时候，只能临时紧急扩容了，具体操作步骤和思路如下：</p>
 <ol>
 <li>先修复 consumer 的问题，确保其恢复消费速度，然后将现有 consumer 都停掉；</li>
@@ -905,7 +915,7 @@ future<span class="token punctuation">.</span><span class="token function">addCa
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">150k</span>&nbsp;字
+                class="white-color">151.2k</span>&nbsp;字
             
             
             
