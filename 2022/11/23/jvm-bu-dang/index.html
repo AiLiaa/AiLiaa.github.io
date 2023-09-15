@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-09
+                    2023-09-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.5k
+                    11.9k
                 </div>
                 
 
@@ -456,6 +456,15 @@
 <p>主要是因为方法区的 GC 回收效率太低，只有在整堆收集 (Full GC)的时候才会被执行 GC。</p>
 <p>Java 程序中通常会有大量的被创建的字符串等待回收，将字符串常量池放到堆中，能够更高效及时地回收字符串内存。</p>
 <h4 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h4><p>直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，直接内存受到本机总内存大小以及处理器寻址空间的限制。</p>
+<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><ol>
+<li>数据结构：堆是动态分配的内存区域，用于存储程序运行时创建的对象。而栈是一种具有后进先出（LIFO）结构的内存区域，用于管理函数调用和局部变量。</li>
+<li>内存管理：堆的内存分配和释放是手动控制的，需要显式地申请和释放内存。而栈的内存管理是自动的，由编译器根据函数调用和返回自动分配和释放。</li>
+<li>分配方式：堆的内存分配是动态的，通过函数如malloc()或new来进行分配。而栈的内存分配是静态的，编译器在编译阶段就确定了函数调用栈的大小。</li>
+<li>内存空间：堆的空间较大，通常取决于操作系统和硬件。栈的空间较小，通常有限制，一般几MB到几十MB。</li>
+<li>生命周期：堆上的对象的生命周期可以是任意长的，直到被显式地释放。而栈上的对象的生命周期与函数调用有关，只存在于函数执行期间。</li>
+<li>访问速度：由于栈上的数据是连续分配的，所以访问速度较快。而堆上的数据是动态分配的，访问速度较慢。</li>
+<li>分配效率：堆的内存分配效率较低，需要在运行时进行内存管理，容易产生内存碎片。而栈的内存分配效率较高，只需要简单地移动栈指针。</li>
+</ol>
 <h2 id="HotSpot-虚拟机对象"><a href="#HotSpot-虚拟机对象" class="headerlink" title="HotSpot 虚拟机对象"></a>HotSpot 虚拟机对象</h2><h3 id="说说对象的创建过程"><a href="#说说对象的创建过程" class="headerlink" title="说说对象的创建过程"></a>说说对象的创建过程</h3><ol>
 <li><p>类加载检查：JVM检查这个类否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。</p>
 </li>
@@ -486,9 +495,9 @@
 <h3 id="如何解决内存分配并发问题"><a href="#如何解决内存分配并发问题" class="headerlink" title="如何解决内存分配并发问题"></a>如何解决内存分配并发问题</h3><p>创建对象是很频繁的事情，作为虚拟机来说，必须要保证线程是安全的</p>
 <ul>
 <li>  <strong>CAS+失败重试：</strong> 采用 CAS 配上失败重试的方式保证更新操作的原子性。</li>
-<li>  <strong>TLAB：</strong> 为每一个线程预先在 Eden 区分配一块儿内存，JVM 在给线程中的对象分配内存时，首先在 TLAB 分配，当对象大于 TLAB 中的剩余内存或 TLAB 的内存已用尽时，再采用上述的 CAS 进行内存分配<h3 id="对象的内存布局了解吗"><a href="#对象的内存布局了解吗" class="headerlink" title="对象的内存布局了解吗"></a>对象的内存布局了解吗</h3></li>
+<li>  <strong>TLAB：</strong> 为每一个线程预先在 Eden 区分配一块儿内存，JVM 在给线程中的对象分配内存时，首先在 TLAB 分配，当对象大于 TLAB 中的剩余内存或 TLAB 的内存已用尽时，再采用上述的 CAS 进行内存分配</li>
 </ul>
-<p>在 Hotspot 虚拟机中，对象在内存中的布局可以分为 3 块区域：<strong>对象头</strong>、<strong>实例数据</strong>和<strong>对齐填充</strong>。</p>
+<h3 id="对象的内存布局了解吗"><a href="#对象的内存布局了解吗" class="headerlink" title="对象的内存布局了解吗"></a>对象的内存布局了解吗</h3><p>在 Hotspot 虚拟机中，对象在内存中的布局可以分为 3 块区域：<strong>对象头</strong>、<strong>实例数据</strong>和<strong>对齐填充</strong>。</p>
 <ul>
 <li><p><strong>对象头</strong>：</p>
 <ul>
@@ -1016,9 +1025,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Java多线程2(补档)">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Java多线程3(补档)">
                         
-                        <span class="card-title">Java多线程2(补档)</span>
+                        <span class="card-title">Java多线程3(补档)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1233,7 +1242,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

@@ -344,7 +344,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-10
                 </div>
                 
 
@@ -443,11 +443,12 @@
 <li>使用<code>#{}</code>可以有效的防止SQL注入，提高系统安全性。#{}是经过预编译的，是安全的；${}是未经过预编译的，仅仅是取变量的值，是非安全的，存在SQL注入。</li>
 </ol>
 <h3 id="mybatis是如何做到防止sql注入的"><a href="#mybatis是如何做到防止sql注入的" class="headerlink" title="mybatis是如何做到防止sql注入的"></a>mybatis是如何做到防止sql注入的</h3><p>SQL注入是一种常见的攻击方式。攻击者在界面的表单信息或URL上输入一些奇怪的SQL片段（例如“or ‘1’=’1’”这样的语句），有可能入侵参数检验不足的应用程序。</p>
-<p>MyBatis的SQL是一个具有“输入+输出”的功能，类似于函数的结构。使用#的即输入参数在SQL中拼接的部分，传入参数后，打印出执行的SQL语句，会看到SQL是这样的：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">select id<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password from user where username<span class="token operator">=</span><span class="token operator">?</span> and password<span class="token operator">=</span><span class="token operator">?</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>MyBatis启用了预编译功能，在SQL执行前，会先将上面的SQL发送给数据库进行编译；执行时，直接使用编译好的SQL，替换占位符“?”就可以了。</p>
-<p>因为SQL注入只能对编译过程起作用，所以这样的方式就很好地避免了SQL注入的问题。</p>
+<p>MyBatis 通过参数绑定和预编译语句两个方面来防止 SQL 注入。</p>
+<ol>
+<li><strong>参数绑定</strong>：使用 <code>#{}</code> 语法来表示参数占位符“？”。这样可以确保参数值会被正确地转义和处理。避免了直接将参数值拼接到 SQL 语句中的情况。</li>
+<li><strong>预编译语句</strong>：预编译语句是一种将 SQL 语句分成两步执行的机制，首先将 SQL 语句发送给数据库进行编译，然后再将参数值传递给编译后的语句执行。参数值会以参数的形式传递给数据库，而不是直接拼接到 SQL 语句中。</li>
+</ol>
+<p>SQL注入只能对编译过程起作用，所以这样的方式就很好地避免了SQL注入的问题。</p>
 <h3 id="实体类的属性名和表的字段名不一样怎么办"><a href="#实体类的属性名和表的字段名不一样怎么办" class="headerlink" title="实体类的属性名和表的字段名不一样怎么办"></a>实体类的属性名和表的字段名不一样怎么办</h3><ol>
 <li>通过在查询的sql语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。</li>
 <li>使用 @Results 和 @Result 注解来配置映射关系。</li>
@@ -832,7 +833,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java多线程2(补档), 艾AA">
+    <meta name="keywords" content="Java多线程3(补档), 艾AA">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java多线程2(补档) | 艾AA</title>
+    <title>Java多线程3(补档) | 艾AA</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -200,12 +200,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java多线程2(补档)</h1>
+                    <h1 class="description center-align post-title">Java多线程3(补档)</h1>
                 </div>
             </div>
         </div>
@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    4.2k
                 </div>
                 
 
@@ -438,10 +438,10 @@
 </ul>
 <h3 id="线程池的饱和策略有哪些"><a href="#线程池的饱和策略有哪些" class="headerlink" title="线程池的饱和策略有哪些"></a>线程池的饱和策略有哪些</h3><p>如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，<code>ThreadPoolTaskExecutor</code> 定义一些策略:</p>
 <ol>
-<li>AbortPolicy：拒绝新任务，抛出异常。</li>
-<li>CallerRunsPolicy：只用调用者所在线程来运行任务。</li>
-<li>DiscardOldestPolicy：丢弃队列里最近的一个任务，并执行当前任务。</li>
-<li>DiscardPolicy：不处理，丢弃掉。</li>
+<li>AbortPolicy（丢弃任务并抛出异常策略）：丢弃新任务，抛出异常。</li>
+<li>CallerRunsPolicy（调用者运行策略）：新任务会由提交任务的线程来执行</li>
+<li>DiscardOldestPolicy（丢弃队列最旧的任务策略）：丢弃队列里最早加入的一个任务，添加新任务</li>
+<li>DiscardPolicy（丢弃任务不抛异常策略）：不处理，丢弃掉。</li>
 </ol>
 <h3 id="线程池常用的阻塞队列有哪些"><a href="#线程池常用的阻塞队列有哪些" class="headerlink" title="线程池常用的阻塞队列有哪些"></a>线程池常用的阻塞队列有哪些</h3><p>新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。</p>
 <p>不同的线程池会选用不同的阻塞队列，我们可以结合内置线程池来分析。</p>
@@ -468,6 +468,19 @@
 <li><p>submit() 方法用于提交需要返回值的任务。线程池会返回一个 Future 类型的对象，通过这个 Future 对象可以判断任务是否执行成功，并且可以通过 Future 的 get() 方法来获取返回值</p>
 </li>
 </ul>
+<h3 id="线程池的生命周期"><a href="#线程池的生命周期" class="headerlink" title="线程池的生命周期"></a>线程池的生命周期</h3><ol>
+<li>创建（Creation）：线程池被创建，但还未开始执行任务。可以使用 <code>Executors</code> 类的静态方法或者 <code>ThreadPoolExecutor</code> 类的构造方法来创建线程池。</li>
+<li>运行（Running）：线程池接受任务并开始执行。</li>
+<li>关闭（Shutting Down）：线程池停止接受新的任务，并且继续执行已提交的任务。</li>
+<li>已终止（Terminated）：线程池中的所有任务都执行完毕，所有线程都已关闭。线程池进入最终的终止状态。</li>
+</ol>
+<p>生命周期转换：</p>
+<ul>
+<li>创建 -&gt; 运行：调用 <code>execute()</code> 或 <code>submit()</code> 方法提交任务，线程池开始执行任务。</li>
+<li>运行 -&gt; 关闭：调用 <code>shutdown()</code> 方法关闭线程池。线程池不再接受新的任务，但会继续执行已提交的任务，直到所有任务执行完毕。</li>
+<li>关闭 -&gt; 已终止：当所有任务执行完毕后，线程池进入已终止状态。</li>
+</ul>
+<p>线程池关闭后无法重新启动或添加新的任务，如果需要再次使用线程池，则需要重新创建一个新的线程池。</p>
 <h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><h3 id="Future-类有什么用"><a href="#Future-类有什么用" class="headerlink" title="Future 类有什么用"></a>Future 类有什么用</h3><p><code>Future</code> 类是异步思想的典型运用，主要用在一些需要执行耗时任务的场景，避免程序一直原地等待耗时任务执行完成，执行效率太低。</p>
 <p>在 Java 中，<code>Future</code> 类只是一个泛型接口，位于 <code>java.util.concurrent</code> 包下，主要包括下面这 4 个功能：</p>
 <ul>
@@ -894,7 +907,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

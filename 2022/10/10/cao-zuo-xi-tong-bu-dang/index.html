@@ -344,14 +344,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.6k
+                    7.8k
                 </div>
                 
 
@@ -380,9 +380,9 @@
 <li><strong>文件管理</strong>：文件的读、写、创建及删除等。</li>
 <li><strong>设备管理</strong>：完成设备（输入输出设备和外部存储设备等）的请求或释放，以及设备启动等功能。</li>
 <li><strong>网络管理</strong>：操作系统负责管理计算机网络的使用。网络是计算机系统中连接不同计算机的方式，操作系统需要管理计算机网络的配置、连接、通信和安全等，以提供高效可靠的网络服务。</li>
-<li><strong>安全管理</strong>：用户的身份认证、访问控制、文件加密等，以防止非法用户对系统资源的访问和操作<h3 id="用户态和内核态的区别"><a href="#用户态和内核态的区别" class="headerlink" title="用户态和内核态的区别"></a>用户态和内核态的区别</h3></li>
+<li><strong>安全管理</strong>：用户的身份认证、访问控制、文件加密等，以防止非法用户对系统资源的访问和操作</li>
 </ol>
-<p>根据进程访问资源的特点，我们可以把进程在系统上的运行分为两个级别：</p>
+<h3 id="用户态和内核态的区别"><a href="#用户态和内核态的区别" class="headerlink" title="用户态和内核态的区别"></a>用户态和内核态的区别</h3><p>根据进程访问资源的特点，我们可以把进程在系统上的运行分为两个级别：</p>
 <ul>
 <li>用户态(user mode) : 用户态运行的进程可以直接读取用户程序的数据。处于用户态的 CPU 只能受限的访问内存，并且不允许访问外围设备</li>
 <li>系统态(kernel mode) : 系统态运行的进程或程序几乎可以访问计算机的任何资源，不受限制。</li>
@@ -415,14 +415,12 @@
 </ul>
 <p>并行在多处理器系统中存在，而并发可以在单处理器和多处理器系统中都存在<br>最关键点是：是否是 <strong>同时</strong> 执行。</p>
 <h3 id="同步和异步的区别"><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h3><ul>
-<li><p> <strong>同步</strong> ： 发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</p>
-</li>
-<li><p> <strong>异步</strong> ：调用在发出之后，不用等待返回结果，该调用直接返回。</p>
-<h3 id="阻塞和非阻塞的区别"><a href="#阻塞和非阻塞的区别" class="headerlink" title="阻塞和非阻塞的区别"></a>阻塞和非阻塞的区别</h3></li>
-<li><p><strong>阻塞</strong>：是指调用结果返回前，当前线程会被挂起，即阻塞。</p>
-</li>
-<li><p><strong>非阻塞</strong>：是指即使调用结果没返回，也不会阻塞当前线程。</p>
-</li>
+<li> <strong>同步</strong> ： 发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</li>
+<li> <strong>异步</strong> ：调用在发出之后，不用等待返回结果，该调用直接返回。</li>
+</ul>
+<h3 id="阻塞和非阻塞的区别"><a href="#阻塞和非阻塞的区别" class="headerlink" title="阻塞和非阻塞的区别"></a>阻塞和非阻塞的区别</h3><ul>
+<li><strong>阻塞</strong>：是指调用结果返回前，当前线程会被挂起，即阻塞。</li>
+<li><strong>非阻塞</strong>：是指即使调用结果没返回，也不会阻塞当前线程。</li>
 </ul>
 <h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h3 id="线程、进程、协程是什么"><a href="#线程、进程、协程是什么" class="headerlink" title="线程、进程、协程是什么"></a>线程、进程、协程是什么</h3><p>进程：进程是系统进行资源分配的基本单位，进程就是运行起来的可执行程序。</p>
 <p>线程：线程是程序执行的最基本的单位，是轻量级的进程，多个线程可以在同一个进程中同时执行，并且共享进程的资源比如内存空间、文件句柄、网络连接等。</p>
@@ -432,17 +430,17 @@
 <li><strong>包含关系</strong>：线程是进程划分成的更小的运行单位,一个进程在其执行的过程中可以产生多个线程。</li>
 <li><strong>独立性</strong>：各进程基本上是独立的，而同一进程中的线程极有可能会相互影响。</li>
 <li><strong>开销</strong>：线程执行开销小，但不利于资源的管理和保护；而进程正相反</li>
-<li><strong>通信</strong>：线程间可以通过直接读写同一进程的数据进行通信，但是进程通信需要借助一些复杂的方法。<h3 id="线程间的同步的方式有哪些"><a href="#线程间的同步的方式有哪些" class="headerlink" title="线程间的同步的方式有哪些"></a>线程间的同步的方式有哪些</h3></li>
+<li><strong>通信</strong>：线程间可以通过直接读写同一进程的数据进行通信，但是进程通信需要借助一些复杂的方法。</li>
 </ul>
-<p>线程同步是两个或多个共享关键资源的线程的并发执行。</p>
+<h3 id="线程间的同步的方式有哪些"><a href="#线程间的同步的方式有哪些" class="headerlink" title="线程间的同步的方式有哪些"></a>线程间的同步的方式有哪些</h3><p>线程同步是两个或多个共享关键资源的线程的并发执行。</p>
 <ol>
 <li>**互斥锁(Mutex)**：只有拥有互斥对象的线程才有访问公共资源的权限。(synchronized、Lock)</li>
 <li><strong>读写锁（Read-Write Lock）</strong>：允许多个线程同时读取共享资源，但只有一个线程可以对共享资源进行写操作。</li>
 <li>**信号量(Semaphore)**：它允许同一时刻多个线程访问同一资源，但是需要控制同一时刻访问此资源的最大线程数量。</li>
 <li><strong>屏障（Barrier）</strong>：屏障是一种同步原语，用于等待多个线程到达某个点再一起继续执行。(CyclicBarrier)</li>
-<li><strong>事件(Event)</strong> : Wait/Notify：通过通知操作的方式来保持多线程同步<h3 id="PCB-是什么"><a href="#PCB-是什么" class="headerlink" title="PCB 是什么"></a>PCB 是什么</h3></li>
+<li><strong>事件(Event)</strong> : Wait/Notify：通过通知操作的方式来保持多线程同步</li>
 </ol>
-<p><strong>PCB（Process Control Block）</strong> 即进程控制块，是操作系统中用来管理和跟踪进程的数据结构，操作系统会根据这些信息来管理和调度进程。</p>
+<h3 id="PCB-是什么"><a href="#PCB-是什么" class="headerlink" title="PCB 是什么"></a>PCB 是什么</h3><p><strong>PCB（Process Control Block）</strong> 即进程控制块，是操作系统中用来管理和跟踪进程的数据结构，操作系统会根据这些信息来管理和调度进程。</p>
 <p>PCB 主要包含下面几部分的内容：</p>
 <ul>
 <li>进程的<strong>描述信息</strong>，包括进程的名称、标识符等等；</li>
@@ -451,13 +449,20 @@
 <li><strong>处理机</strong>的状态信息，包括通用寄存器、指令计数器、程序状态字 PSW、用户栈指针</li>
 </ul>
 <p>PCB使得多道程序环境下，使得程序可以并发执行</p>
+<h3 id="进程切换的流程"><a href="#进程切换的流程" class="headerlink" title="进程切换的流程"></a>进程切换的流程</h3><ol>
+<li>当前进程的时间片用完或者发生了阻塞等等原因，触发进程切换。</li>
+<li>操作系统保存当前进程的上下文信息。包括寄存器的值、程序计数器（PC）等。这些信息可以通过保存在进程控制块（PCB）中。</li>
+<li>根据调度算法，选择一个新的就绪状态（Ready）的进程来执行。</li>
+<li>加载被选中进程的上下文信息。将PCB中保存的上下文信息恢复到相应的寄存器和PC等。</li>
+<li>进程切换完成后，操作系统将控制权交给新选中的进程，开始执行它的指令。</li>
+</ol>
 <h3 id="进程有哪几种状态"><a href="#进程有哪几种状态" class="headerlink" title="进程有哪几种状态"></a>进程有哪几种状态</h3><p>有<strong>创建状态、就绪状态、运行状态、阻塞状态、结束状态</strong>。</p>
 <ul>
 <li>其中只有就绪状态和运行状态能互相转化，当进程为就绪态时，等待 CPU 分配时间片，得到时间片后就进入 运行状态</li>
 <li>运行状态在使用完 CPU 时间片后，又重回就绪态。</li>
-<li>阻塞状态是进程在运行状态时，需要等待某个资源比如打印机资源，而进入一个挂起的状态，等资源拿到后会回到就绪状态，等待 CPU 时间片。<h3 id="进程间的通信方式有哪些"><a href="#进程间的通信方式有哪些" class="headerlink" title="进程间的通信方式有哪些"></a>进程间的通信方式有哪些</h3></li>
+<li>阻塞状态是进程在运行状态时，需要等待某个资源比如打印机资源，而进入一个挂起的状态，等资源拿到后会回到就绪状态，等待 CPU 时间片。</li>
 </ul>
-<p>进程间通信（IPC，InterProcess Communication）是指在不同进程之间传播或交换信息。</p>
+<h3 id="进程间的通信方式有哪些"><a href="#进程间的通信方式有哪些" class="headerlink" title="进程间的通信方式有哪些"></a>进程间的通信方式有哪些</h3><p>进程间通信（IPC，InterProcess Communication）是指在不同进程之间传播或交换信息。</p>
 <p><strong>无名管道</strong></p>
 <ol>
 <li>用于具有亲缘关系的父子进程间或者兄弟进程之间的通信。</li>
@@ -490,6 +495,10 @@
 <p><strong>套接字(Sockets)</strong> </p>
 <ol>
 <li>主要用于在客户端和服务器之间通过网络进行通信。支持不同主机上的两个进程 IPC</li>
+</ol>
+<p><strong>RPC</strong></p>
+<ol>
+<li>远程过程调用（RPC，Remote Procedure Call）：RPC允许一个进程调用另一个进程中的过程或函数，并获取返回值。</li>
 </ol>
 <h3 id="进程的调度算法有哪些"><a href="#进程的调度算法有哪些" class="headerlink" title="进程的调度算法有哪些"></a>进程的调度算法有哪些</h3><ul>
 <li><p><strong>先到先服务调度算法(FCFS，First Come, First Served)</strong> </p>
@@ -537,23 +546,18 @@
 <ol>
 <li>资源剥夺：挂起某些死锁进程，并抢占它的资源</li>
 <li>撤销进程：强制撤销部分、甚至全部死锁进程并剥夺这些进程的资源</li>
-<li>进程回退：让一个或多个进程回退到足以避免死锁的地步。<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2></li>
+<li>进程回退：让一个或多个进程回退到足以避免死锁的地步。</li>
 </ol>
-<h3 id="内存管理是干什么的"><a href="#内存管理是干什么的" class="headerlink" title="内存管理是干什么的"></a>内存管理是干什么的</h3><ul>
-<li><p><strong>内存的分配与回收</strong>：对进程所需的内存进行分配和释放</p>
-</li>
-<li><p><strong>地址转换</strong>：将程序中的虚拟地址转换成内存中的物理地址。</p>
-</li>
-<li><p><strong>内存扩充</strong>：当系统没有足够的内存时，利用虚拟内存技术或自动覆盖技术，从逻辑上扩充内存。</p>
-</li>
-<li><p><strong>内存映射</strong>：将一个文件直接映射到进程的进程空间中，这样可以通过内存指针用读写内存的办法直接存取文件内容，速度更快。</p>
-</li>
-<li><p><strong>内存安全</strong>：保证进程之间使用内存互不干扰，避免一些恶意程序通过修改内存来破坏系统的安全性。</p>
-<h3 id="什么是内存碎片"><a href="#什么是内存碎片" class="headerlink" title="什么是内存碎片"></a>什么是内存碎片</h3></li>
-<li><p><strong>内部内存碎片</strong>：已经分配给进程使用但未被使用的内存。</p>
-</li>
-<li><p><strong>外部内存碎片</strong>：并未分配给进程但又太小导致无法使用的内存。这些内存碎片不能满足任意进程所需要的内存分配请求</p>
-</li>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="内存管理是干什么的"><a href="#内存管理是干什么的" class="headerlink" title="内存管理是干什么的"></a>内存管理是干什么的</h3><ul>
+<li><strong>内存的分配与回收</strong>：对进程所需的内存进行分配和释放</li>
+<li><strong>地址转换</strong>：将程序中的虚拟地址转换成内存中的物理地址。</li>
+<li><strong>内存扩充</strong>：当系统没有足够的内存时，利用虚拟内存技术或自动覆盖技术，从逻辑上扩充内存。</li>
+<li><strong>内存映射</strong>：将一个文件直接映射到进程的进程空间中，这样可以通过内存指针用读写内存的办法直接存取文件内容，速度更快。</li>
+<li><strong>内存安全</strong>：保证进程之间使用内存互不干扰，避免一些恶意程序通过修改内存来破坏系统的安全性。</li>
+</ul>
+<h3 id="什么是内存碎片"><a href="#什么是内存碎片" class="headerlink" title="什么是内存碎片"></a>什么是内存碎片</h3><ul>
+<li><strong>内部内存碎片</strong>：已经分配给进程使用但未被使用的内存。</li>
+<li><strong>外部内存碎片</strong>：并未分配给进程但又太小导致无法使用的内存。这些内存碎片不能满足任意进程所需要的内存分配请求</li>
 </ul>
 <h3 id="什么是虚拟地址（逻辑地址）和物理地址"><a href="#什么是虚拟地址（逻辑地址）和物理地址" class="headerlink" title="什么是虚拟地址（逻辑地址）和物理地址"></a>什么是虚拟地址（逻辑地址）和物理地址</h3><p><strong>物理地址</strong>：它是地址转换的最终地址，进程在运行时执行指令和访问数据最后都要通过物理地址从主存中存取，是内存单元真正的地址。</p>
 <p><strong>逻辑地址</strong>：是指计算机用户看到的地址。编程时的指针值，数组在逻辑地址上是连续的，在物理地址上并不连续，操作系统通过地址映射，将逻辑地址映射成连续的。（CPU 芯片中的一个重要组件&nbsp;<strong>MMU</strong>，地址转换）</p>
@@ -575,9 +579,9 @@
 <ul>
 <li><strong>段式管理</strong>：以段(—段连续的物理内存)的形式管理/分配物理内存。应用程序的虚拟地址空间被分为大小不等的段，段是有实际意义的，每个段定义了一组逻辑信息</li>
 <li><strong>页式管理</strong>：把物理内存分为连续等长的物理页，应用程序的虚拟地址空间划也被分为连续等长的虚拟页</li>
-<li><strong>段页式管理机制</strong>：结合了段式管理和页式管理的一种内存管理机制，把物理内存先分成若干段，每个段又继续分成若干大小相等的页。<h3 id="介绍一下分页机制"><a href="#介绍一下分页机制" class="headerlink" title="介绍一下分页机制"></a>介绍一下分页机制</h3></li>
+<li><strong>段页式管理机制</strong>：结合了段式管理和页式管理的一种内存管理机制，把物理内存先分成若干段，每个段又继续分成若干大小相等的页。</li>
 </ul>
-<p><strong>分页机制</strong> 把主存（物理内存）分为连续等长的物理页（一般是4或8字节），应用程序的虚拟地址空间划也被分为连续等长的虚拟页。现代操作系统广泛采用分页机制。</p>
+<h3 id="介绍一下分页机制"><a href="#介绍一下分页机制" class="headerlink" title="介绍一下分页机制"></a>介绍一下分页机制</h3><p><strong>分页机制</strong> 把主存（物理内存）分为连续等长的物理页（一般是4或8字节），应用程序的虚拟地址空间划也被分为连续等长的虚拟页。现代操作系统广泛采用分页机制。</p>
 <p>在分页机制下，应用程序虚拟地址空间中的任意虚拟页可以被映射到物理内存中的任意物理页上，因此可以实现物理内存资源的离散分配。</p>
 <p>分页机制按照固定页大小分配物理内存，使得物理内存资源易于管理，可有效避免分段机制中外部内存碎片的问题。</p>
 <h3 id="页表有什么用？地址翻译过程是怎样的？"><a href="#页表有什么用？地址翻译过程是怎样的？" class="headerlink" title="页表有什么用？地址翻译过程是怎样的？"></a>页表有什么用？地址翻译过程是怎样的？</h3><p>分页管理通过&nbsp;<strong>页表（Page Table）</strong>&nbsp;映射虚拟地址和物理地址。</p>
@@ -591,9 +595,9 @@
 <ol>
 <li>MMU 首先解析得到虚拟地址中的虚拟页号；</li>
 <li>通过虚拟页号去该应用程序的页表中取出对应的物理页号（找到对应的页表项）；</li>
-<li>用该物理页号对应的物理页起始地址（物理地址）加上虚拟地址中的页内偏移量得到最终的物理地址。<h3 id="多级页表是什么，作用是什么"><a href="#多级页表是什么，作用是什么" class="headerlink" title="多级页表是什么，作用是什么"></a>多级页表是什么，作用是什么</h3></li>
+<li>用该物理页号对应的物理页起始地址（物理地址）加上虚拟地址中的页内偏移量得到最终的物理地址。</li>
 </ol>
-<p>多级页表就是，存放下一个页表地址的页表<br>目的是避免把全部页表一直放在内存中占用过多空间。</p>
+<h3 id="多级页表是什么，作用是什么"><a href="#多级页表是什么，作用是什么" class="headerlink" title="多级页表是什么，作用是什么"></a>多级页表是什么，作用是什么</h3><p>多级页表就是，存放下一个页表地址的页表<br>目的是避免把全部页表一直放在内存中占用过多空间。</p>
 <p>多级页表属于时间换空间的典型场景。利用增加页表查询的次数减少页表占用的空间。</p>
 <h3 id="快表是什么，使用快表之后的地址转换流程"><a href="#快表是什么，使用快表之后的地址转换流程" class="headerlink" title="快表是什么，使用快表之后的地址转换流程"></a>快表是什么，使用快表之后的地址转换流程</h3><p>为了提高虚拟地址到物理地址的转换速度，操作系统在 <strong>页表方案</strong> 基础之上引入了 <strong>快表</strong>（TLB） 来加速虚拟地址到物理地址的转换。可以把快表理解为一种特殊的高速缓冲存储器（Cache），其中的内容是页表的一部分。作为页表的 Cache，它的作用与页表相似，但是提高了访问速率。</p>
 <p>由于采用页表做地址转换，读写内存数据时 CPU 要访问两次主存。有了快表，有时只要访问一次高速缓冲存储器，一次主存，这样可加速查找并提高指令执行速度。</p>
@@ -618,9 +622,9 @@
 <li><strong>提高内存使用安全性</strong>：控制进程对物理内存的访问，隔离不同进程的访问权限，提高系统的安全性。</li>
 <li><strong>提升物理内存利用率</strong>：有了虚拟地址空间后，操作系统只需要将进程当前正在使用的部分数据或指令加载入物理内存。</li>
 <li><strong>提供更大的可使用内存空间</strong>：可以让程序拥有超过系统物理内存大小的可用内存空间。当物理内存不够用时，可以利用磁盘充当物理内存。</li>
-<li><strong>简化内存管理</strong>：进程都有一个一致且私有的虚拟地址空间，程序员不用和真正的物理内存打交道，而是借助虚拟地址空间访问物理内存，从而简化了内存管理。<h3 id="虚拟内存的技术实现方式"><a href="#虚拟内存的技术实现方式" class="headerlink" title="虚拟内存的技术实现方式"></a>虚拟内存的技术实现方式</h3></li>
+<li><strong>简化内存管理</strong>：进程都有一个一致且私有的虚拟地址空间，程序员不用和真正的物理内存打交道，而是借助虚拟地址空间访问物理内存，从而简化了内存管理。</li>
 </ul>
-<p>虚拟内存的实现需要建立在<strong>离散分配</strong>的内存管理方式的基础上。</p>
+<h3 id="虚拟内存的技术实现方式"><a href="#虚拟内存的技术实现方式" class="headerlink" title="虚拟内存的技术实现方式"></a>虚拟内存的技术实现方式</h3><p>虚拟内存的实现需要建立在<strong>离散分配</strong>的内存管理方式的基础上。</p>
 <ol>
 <li> <strong>请求分页存储管理</strong> ：建立在分页管理之上，在作业开始运行之前，仅装入当前要执行的部分段即可运行。发现要访问的页面不在内存，<strong>缺页中断</strong>，调入内存</li>
 <li> <strong>请求分段存储管理</strong> ：建立在分段存储管理之上，如同请求分页储存管理方式一样。</li>
@@ -636,15 +640,15 @@
 <li>  <strong>OPT（最佳页面置换算法）</strong> ：选未来最远将使用的页淘汰，是一种最优的方案</li>
 <li>  <strong>FIFO（先进先出页面置换算法）</strong> : 淘汰最先进入内存的页面</li>
 <li>  <strong>LRU（最近最久未使用页面置换算法）</strong> ：选择最近最久未使用的页面予以淘汰</li>
-<li>  <strong>LFU （最少使用页面置换算法）</strong> : 选择在之前使用最少的页面作为淘汰页。<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="文件系统主要做了什么"><a href="#文件系统主要做了什么" class="headerlink" title="文件系统主要做了什么"></a>文件系统主要做了什么</h3></li>
+<li>  <strong>LFU （最少使用页面置换算法）</strong> : 选择在之前使用最少的页面作为淘汰页。</li>
 </ul>
-<ol>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="文件系统主要做了什么"><a href="#文件系统主要做了什么" class="headerlink" title="文件系统主要做了什么"></a>文件系统主要做了什么</h3><ol>
 <li><strong>存储管理</strong>：将文件数据存储到物理存储介质中，并且管理空间分配。</li>
 <li><strong>文件管理</strong>：文件的创建、删除、移动、重命名、压缩、加密、共享等等。</li>
 <li><strong>目录管理</strong>：目录的创建、删除、移动、重命名等等。</li>
-<li><strong>文件访问控制</strong>：管理不同用户或进程对文件的访问权限，保证文件的安全性和保密性。<h3 id="常见的磁盘调度算法有哪些"><a href="#常见的磁盘调度算法有哪些" class="headerlink" title="常见的磁盘调度算法有哪些"></a>常见的磁盘调度算法有哪些</h3></li>
+<li><strong>文件访问控制</strong>：管理不同用户或进程对文件的访问权限，保证文件的安全性和保密性。</li>
 </ol>
-<ul>
+<h3 id="常见的磁盘调度算法有哪些"><a href="#常见的磁盘调度算法有哪些" class="headerlink" title="常见的磁盘调度算法有哪些"></a>常见的磁盘调度算法有哪些</h3><ul>
 <li><strong>先来先服务算法（FCFS）</strong>：按照请求到达磁盘调度器的顺序进行处理，先到达的请求的先被服务。</li>
 <li><strong>最短寻道时间优先算法（SSTF）</strong>：优先选择距离当前磁头位置最近的请求进行服务。</li>
 <li><strong>扫描算法（SCAN）</strong>：也被称为电梯（Elevator）算法。磁头沿着一个方向扫描磁盘，如果经过的磁道有请求就处理，直到到达磁盘的边界，然后改变移动方向，依此往复。</li>
@@ -901,44 +905,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring/">
-                        <span class="chip bg-color">Spring</span>
-                    </a>
-                    
-                    <a href="/tags/Spring-Boot/">
-                        <span class="chip bg-color">Spring Boot</span>
-                    </a>
-                    
-                    <a href="/tags/Spring-MVC/">
-                        <span class="chip bg-color">Spring MVC</span>
-                    </a>
-                    
-                    <a href="/tags/MyBatis/">
-                        <span class="chip bg-color">MyBatis</span>
-                    </a>
-                    
-                    <a href="/tags/Redis/">
-                        <span class="chip bg-color">Redis</span>
-                    </a>
-                    
-                    <a href="/tags/Kafka/">
-                        <span class="chip bg-color">Kafka</span>
-                    </a>
-                    
-                    <a href="/tags/Elasticsearch/">
-                        <span class="chip bg-color">Elasticsearch</span>
-                    </a>
-                    
-                    <a href="/tags/Spring-Security/">
-                        <span class="chip bg-color">Spring Security</span>
-                    </a>
-                    
-                    <a href="/tags/Spring-Actuator/">
-                        <span class="chip bg-color">Spring Actuator</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AE%BA%E5%9D%9B%E7%BD%91%E7%AB%99/">
-                        <span class="chip bg-color">论坛网站</span>
+                    <a href="/tags/%E7%A4%BE%E5%8C%BA%E7%BD%91%E7%AB%99/">
+                        <span class="chip bg-color">社区网站</span>
                     </a>
                     
                 </div>
@@ -1124,7 +1092,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

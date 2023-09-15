@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.2k
                 </div>
                 
 
@@ -380,18 +380,14 @@
 <p>线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>资源，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong></p>
 <p>基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。</p>
 <h3 id="创建线程的方式有哪些"><a href="#创建线程的方式有哪些" class="headerlink" title="创建线程的方式有哪些"></a>创建线程的方式有哪些</h3><ol>
-<li><p>继承 Thread 类创建线程；</p>
-</li>
-<li><p>实现 Runnable 接口创建线程；</p>
-</li>
-<li><p>通过 Callable 接口并利用 Future 创建线程；</p>
-</li>
-<li><p>通过线程池创建线程。</p>
-<h3 id="Runnable-和-Callable-有什么区别"><a href="#Runnable-和-Callable-有什么区别" class="headerlink" title="Runnable 和 Callable 有什么区别"></a>Runnable 和 Callable 有什么区别</h3></li>
-<li><p>Runnable 接口中的 run() 方法的返回值是 void，它做的事情只是去执行 run() 方法中的代码</p>
-</li>
-<li><p>Callable 接口中的 call() 方法是有返回值的，是一个泛型，和 Future、FutureTask 配合可以用来获取异步执行的结果。</p>
-</li>
+<li>继承 Thread 类创建线程；</li>
+<li>实现 Runnable 接口创建线程；</li>
+<li>通过 Callable 接口并利用 Future 创建线程；</li>
+<li>通过线程池创建线程。</li>
+</ol>
+<h3 id="Runnable-和-Callable-有什么区别"><a href="#Runnable-和-Callable-有什么区别" class="headerlink" title="Runnable 和 Callable 有什么区别"></a>Runnable 和 Callable 有什么区别</h3><ol>
+<li>Runnable 接口中的 run() 方法的返回值是 void，它做的事情只是去执行 run() 方法中的代码</li>
+<li>Callable 接口中的 call() 方法是有返回值的，是一个泛型，和 Future、FutureTask 配合可以用来获取异步执行的结果。</li>
 </ol>
 <h3 id="说说线程的生命周期和状态"><a href="#说说线程的生命周期和状态" class="headerlink" title="说说线程的生命周期和状态"></a>说说线程的生命周期和状态</h3><p>Java 线程在运行的生命周期中的指定时刻只可能处于下面 6 种不同状态的其中一个状态：</p>
 <ul>
@@ -448,6 +444,7 @@
 Thread[线程 2,5,main]get resource2
 Thread[线程 1,5,main]waiting get resource2
 Thread[线程 2,5,main]waiting get resource1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="实现线程同步的方法有哪些"><a href="#实现线程同步的方法有哪些" class="headerlink" title="实现线程同步的方法有哪些"></a>实现线程同步的方法有哪些</h3><ol>
 <li>使用 Synchronized 关键字；</li>
 <li>wait 和 notify 等待和通知；</li>
@@ -460,9 +457,9 @@ Thread[线程 2,5,main]waiting get resource1<span aria-hidden="true" class="line
 <h3 id="线程之间通信的方法有哪些"><a href="#线程之间通信的方法有哪些" class="headerlink" title="线程之间通信的方法有哪些"></a>线程之间通信的方法有哪些</h3><ol>
 <li>线程之间采用synchronized：可以利用**wait()、notify()、notifyAll()**来实现线程通信。</li>
 <li>线程之间采用Lock：可以利用**await()、signal()、signalAll()**来实现线程通信。</li>
-<li><strong>BlockingQueue</strong>：程序的两个线程通过交替向BlockingQueue中放入元素、取出元素，即可很好地控制线程的通信。<h3 id="sleep-方法和-wait-方法对比"><a href="#sleep-方法和-wait-方法对比" class="headerlink" title="sleep() 方法和 wait() 方法对比"></a>sleep() 方法和 wait() 方法对比</h3></li>
+<li><strong>BlockingQueue</strong>：程序的两个线程通过交替向BlockingQueue中放入元素、取出元素，即可很好地控制线程的通信。</li>
 </ol>
-<p><strong>共同点</strong>：两者都可以暂停线程的执行。</p>
+<h3 id="sleep-方法和-wait-方法对比"><a href="#sleep-方法和-wait-方法对比" class="headerlink" title="sleep() 方法和 wait() 方法对比"></a>sleep() 方法和 wait() 方法对比</h3><p><strong>共同点</strong>：两者都可以暂停线程的执行。</p>
 <p><strong>区别</strong>：</p>
 <ul>
 <li><strong>锁的释放</strong>：<code>sleep()</code> 方法没有释放锁，而 <code>wait()</code> 方法释放了锁 。</li>
@@ -476,6 +473,14 @@ Thread[线程 2,5,main]waiting get resource1<span aria-hidden="true" class="line
 <p>如果 sleep、wait等可以让线程进入阻塞的方法使线程休眠了，而处于休眠中的线程被中断，那么线程是可以感受到中断信号的，并且会<strong>抛出一个 InterruptedException异常</strong>，同时清除中断信号，将中断标记位设置成 false。</p>
 <p><strong>用 volatile 标记位的停止方法</strong></p>
 <p>关于 volatile 作为标记位的核心就是他的可见性特性，可以while(mark)作为线程中循环的条件</p>
+<h3 id="线程并发会带来哪些问题"><a href="#线程并发会带来哪些问题" class="headerlink" title="线程并发会带来哪些问题"></a>线程并发会带来哪些问题</h3><ol>
+<li>产生不同结果：当多个线程同时访问共享资源，并尝试同时修改该资源时，由于执行顺序的不确定性，可能导致结果依赖于线程执行的具体顺序，从而产生意想不到的结果。</li>
+<li>死锁：当线程之间存在循环依赖的资源请求关系时，可能导致死锁，使得所有线程都无法继续执行。</li>
+<li>活锁：活锁类似于死锁，但不同之处在于线程不是阻塞，而是一直响应其他线程，导致它们无法继续工作。比如两线程一直同时申请一个资源，一直失败</li>
+<li>资源竞争：如果资源分配和释放策略不当，可能会导致某些线程长时间无法获得资源。线程饥饿</li>
+<li>数据不一致：当多个线程同时访问和修改共享数据时，由于缺乏适当的同步机制，可能导致数据的不一致性。例如，一个线程正在修改数据时，另一个线程可能读取到中间状态的数据。</li>
+<li>上下文切换开销：由于线程切换的开销较大，多线程并发执行可能会导致频繁的上下文切换，消耗额外的CPU时间和系统资源。</li>
+</ol>
 <h3 id="可以直接调用-Thread-类的-run-方法吗？"><a href="#可以直接调用-Thread-类的-run-方法吗？" class="headerlink" title="可以直接调用 Thread 类的 run 方法吗？"></a>可以直接调用 Thread 类的 run 方法吗？</h3><p>可以</p>
 <p>但是，直接执行 <code>run()</code> 方法，会把 <code>run()</code> 方法当成一个 main 线程下的普通方法去执行，并不会在某个线程中执行它，所以这并不是多线程工作。</p>
 <h3 id="JUC了解吗"><a href="#JUC了解吗" class="headerlink" title="JUC了解吗"></a>JUC了解吗</h3><p>JUC是java.util.concurrent的缩写，是Java提供的并发包，包含了我们在并发编程时用到的一些工具</p>
@@ -876,7 +881,7 @@ Thread[线程 2,5,main]waiting get resource1<span aria-hidden="true" class="line
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

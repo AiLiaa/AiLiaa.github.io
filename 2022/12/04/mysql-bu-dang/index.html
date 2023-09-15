@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-09
+                    2023-09-15
                 </div>
                 
 
@@ -385,9 +385,9 @@
 <li> 兼容性好，支持常见的操作系统，支持多种开发语言。</li>
 <li> 社区活跃，生态完善。</li>
 <li> 事务支持优秀， InnoDB 存储引擎默认使用 REPEATABLE-READ 并不会有任何性能损失，并且，InnoDB 实现的 REPEATABLE-READ 隔离级别其实是可以解决幻读问题发生的。</li>
-<li> 支持分库分表、读写分离、高可用。<h3 id="一条SQL语句在MySQL中如何执行的"><a href="#一条SQL语句在MySQL中如何执行的" class="headerlink" title="一条SQL语句在MySQL中如何执行的"></a>一条SQL语句在MySQL中如何执行的</h3></li>
+<li> 支持分库分表、读写分离、高可用。</li>
 </ol>
-<p>MySQL逻辑架构图</p>
+<h3 id="一条SQL语句在MySQL中如何执行的"><a href="#一条SQL语句在MySQL中如何执行的" class="headerlink" title="一条SQL语句在MySQL中如何执行的"></a>一条SQL语句在MySQL中如何执行的</h3><p>MySQL逻辑架构图</p>
 <p>MySQL分为Server层和存储引擎层两个部分，不同的存储引擎共用一个Server层。</p>
 <p><img src="/images/image_%E6%95%B0%E6%8D%AE%E5%BA%93/08.png"></p>
 <p>Server层：大多数MySQL的核心服务功能都在这一层，包括连接处理、授权认证、查询解析、分析、优化、缓存以及所有的内置函数（例如，日期、时间、数学和加密函数），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
@@ -424,9 +424,9 @@
 <li>  MyISAM 不支持 MVCC，而 InnoDB 支持。</li>
 <li>  虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。（非聚簇和聚簇）</li>
 <li>  MyISAM 不支持数据库异常崩溃后的安全恢复，而 InnoDB 支持。</li>
-<li>  InnoDB 的性能比 MyISAM 更强大。<h3 id="MySQL用什么类型数据存储时间"><a href="#MySQL用什么类型数据存储时间" class="headerlink" title="MySQL用什么类型数据存储时间"></a>MySQL用什么类型数据存储时间</h3></li>
+<li>  InnoDB 的性能比 MyISAM 更强大。</li>
 </ul>
-<ol>
+<h3 id="MySQL用什么类型数据存储时间"><a href="#MySQL用什么类型数据存储时间" class="headerlink" title="MySQL用什么类型数据存储时间"></a>MySQL用什么类型数据存储时间</h3><ol>
 <li>不要用字符串存储日期，简单直白，但是占用的空间更大，计算和比较效率低</li>
 <li>DateTime 类型没有时区信息，Timestamp 和时区有关</li>
 <li>DateTime 类型耗费空间更大，Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗费 8 个字节的存储空间</li>
@@ -598,22 +598,16 @@ SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span><
 </ul>
 <p><strong>按照应用维度划分</strong></p>
 <ul>
-<li><p>  主键索引：是⼀种特殊的唯⼀索引，在⼀张表中只能定义⼀个主键索引，主键⽤于唯⼀标识⼀条记录，使⽤关键字 PRIMARY KEY 来创建。（不可以有 NULL）</p>
-</li>
-<li><p>  普通索引：允许被索引的数据列包含重复的值。（可以有 NULL）</p>
-</li>
-<li><p>  唯一索引：可以保证数据记录的唯⼀性。（可以有 NULL）</p>
-</li>
-<li><p>  覆盖索引：一个索引包含（或者说覆盖）所有需要查询的字段的值。</p>
-</li>
-<li><p>  联合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并。</p>
-</li>
-<li><p>  全文索引：通过建⽴倒排索引 ,可以极⼤的提升检索效率,解决判断字段是否包含的问题。目前只有 <code>CHAR</code>、<code>VARCHAR</code> ，<code>TEXT</code> 列上可以创建全文索引。一般不会使用，效率较低，通常使用搜索引擎如 ElasticSearch 代替。</p>
-<h3 id="聚簇索引与非聚簇索引的区别是什么"><a href="#聚簇索引与非聚簇索引的区别是什么" class="headerlink" title="聚簇索引与非聚簇索引的区别是什么"></a>聚簇索引与非聚簇索引的区别是什么</h3></li>
-<li><p>聚簇索引：即索引结构和数据一起存放的索引，并不是一种单独的索引类型。InnoDB 中的主键索引就属于聚簇索引。</p>
-</li>
-<li><p>对于 InnoDB 引擎表来说，该表的索引(B+树)的每个非叶子节点存储索引，叶子节点存储索引和索引对应的数据。</p>
-</li>
+<li>  主键索引：是⼀种特殊的唯⼀索引，在⼀张表中只能定义⼀个主键索引，主键⽤于唯⼀标识⼀条记录，使⽤关键字 PRIMARY KEY 来创建。（不可以有 NULL）</li>
+<li>  普通索引：允许被索引的数据列包含重复的值。（可以有 NULL）</li>
+<li>  唯一索引：可以保证数据记录的唯⼀性。（可以有 NULL）</li>
+<li>  覆盖索引：一个索引包含（或者说覆盖）所有需要查询的字段的值。</li>
+<li>  联合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并。</li>
+<li>  全文索引：通过建⽴倒排索引 ,可以极⼤的提升检索效率,解决判断字段是否包含的问题。目前只有 <code>CHAR</code>、<code>VARCHAR</code> ，<code>TEXT</code> 列上可以创建全文索引。一般不会使用，效率较低，通常使用搜索引擎如 ElasticSearch 代替。</li>
+</ul>
+<h3 id="聚簇索引与非聚簇索引的区别是什么"><a href="#聚簇索引与非聚簇索引的区别是什么" class="headerlink" title="聚簇索引与非聚簇索引的区别是什么"></a>聚簇索引与非聚簇索引的区别是什么</h3><ul>
+<li>聚簇索引：即索引结构和数据一起存放的索引，并不是一种单独的索引类型。InnoDB 中的主键索引就属于聚簇索引。</li>
+<li>对于 InnoDB 引擎表来说，该表的索引(B+树)的每个非叶子节点存储索引，叶子节点存储索引和索引对应的数据。</li>
 </ul>
 <hr>
 <ul>
@@ -650,32 +644,21 @@ SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span><
 <h3 id="索引下推是什么"><a href="#索引下推是什么" class="headerlink" title="索引下推是什么"></a>索引下推是什么</h3><p><strong>索引下推（Index Condition Pushdown）</strong> 是 <strong>MySQL 5.6</strong> 版本中提供的一项索引优化功能，可以在非聚簇索引遍历过程中，对索引中包含的字段先做判断，过滤掉不符合条件的记录，减少回表次数。</p>
 <h3 id="最左前缀原则是什么"><a href="#最左前缀原则是什么" class="headerlink" title="最左前缀原则是什么"></a>最左前缀原则是什么</h3><p>当⼀个SQL想要利⽤索引，就⼀定要提供该索引所对应的字段中最左边的字段，也就是排在最前⾯的字段，⽐如针对a,b,c三个字段建⽴了⼀个联合索引，那么在写⼀个sql时就⼀定要提供a字段的条件，这样才能⽤到联合索引，这是由于在建⽴a,b,c三个字段的联合索引时，底层的B+树是按照a,b,c三个字段从左往右去⽐较⼤⼩进⾏排序的，所以如果想要利⽤B+树进⾏快速查找也得符合这个规则</p>
 <h3 id="索引哪些情况会失效"><a href="#索引哪些情况会失效" class="headerlink" title="索引哪些情况会失效"></a>索引哪些情况会失效</h3><ul>
-<li><p>查询条件包含or，会导致索引失效。</p>
-</li>
-<li><p>隐式类型转换，会导致索引失效，例如age字段类型是int，where age = “1”，这样就会触发隐式类型转换。</p>
-</li>
-<li><p>like通配符会导致索引失效。注意：”ABC%“会走range索引，”%ABC”索引才会失效。</p>
-</li>
-<li><p>联合索引，查询时的条件列不是联合索引中的第一个列，索引失效。</p>
-</li>
-<li><p>对索引字段进行函数运算。</p>
-</li>
-<li><p>对索引列运算（如，+、-、*、/），索引失效。</p>
-</li>
-<li><p>索引字段上使用（!= 或者 &lt; &gt;，not in）时，会导致索引失效。</p>
-</li>
-<li><p>索引字段上使用is null， is not null，可能导致索引失效。</p>
-</li>
-<li><p>相join的两个表的字符编码不同，不能命中索引，会导致笛卡尔积的循环计算</p>
-</li>
-<li><p>mysql估计使用全表扫描要比使用索引快,则不使用索引。</p>
-<h3 id="索引不适合哪些场景"><a href="#索引不适合哪些场景" class="headerlink" title="索引不适合哪些场景"></a>索引不适合哪些场景</h3></li>
-<li><p>数据量少的不适合加索引</p>
-</li>
-<li><p>更新比较频繁的也不适合加索引</p>
-</li>
-<li><p>离散性低的字段不适合加索引（如性别）</p>
-</li>
+<li>查询条件包含or，会导致索引失效。</li>
+<li>隐式类型转换，会导致索引失效，例如age字段类型是int，where age = “1”，这样就会触发隐式类型转换。</li>
+<li>like通配符会导致索引失效。注意：”ABC%“会走range索引，”%ABC”索引才会失效。</li>
+<li>联合索引，查询时的条件列不是联合索引中的第一个列，索引失效。</li>
+<li>对索引字段进行函数运算。</li>
+<li>对索引列运算（如，+、-、*、/），索引失效。</li>
+<li>索引字段上使用（!= 或者 &lt; &gt;，not in）时，会导致索引失效。</li>
+<li>索引字段上使用is null， is not null，可能导致索引失效。</li>
+<li>相join的两个表的字符编码不同，不能命中索引，会导致笛卡尔积的循环计算</li>
+<li>mysql估计使用全表扫描要比使用索引快,则不使用索引。</li>
+</ul>
+<h3 id="索引不适合哪些场景"><a href="#索引不适合哪些场景" class="headerlink" title="索引不适合哪些场景"></a>索引不适合哪些场景</h3><ul>
+<li>数据量少的不适合加索引</li>
+<li>更新比较频繁的也不适合加索引</li>
+<li>离散性低的字段不适合加索引（如性别）</li>
 </ul>
 <p><strong>选择合适的字段创建索引</strong></p>
 <ul>
@@ -683,9 +666,9 @@ SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span><
 <li>  <strong>被频繁查询的字段</strong> ：我们创建索引的字段应该是查询操作非常频繁的字段。</li>
 <li>  <strong>被作为条件查询的字段</strong> ：被作为 WHERE 条件查询的字段，应该被考虑建立索引。</li>
 <li>  <strong>频繁需要排序的字段</strong> ：索引已经排序，这样查询可以利用索引的排序，加快排序查询时间。</li>
-<li>  <strong>被经常频繁用于连接的字段</strong> ：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。<h3 id="如何分析语句是否走索引查询"><a href="#如何分析语句是否走索引查询" class="headerlink" title="如何分析语句是否走索引查询"></a>如何分析语句是否走索引查询</h3></li>
+<li>  <strong>被经常频繁用于连接的字段</strong> ：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。</li>
 </ul>
-<p>我们可以使用 <code>EXPLAIN</code> 命令来分析 SQL 的 <strong>执行计划</strong> ，这样就知道语句是否命中索引了。执行计划是指一条 SQL 语句在经过 MySQL 查询优化器的优化会后，具体的执行方式。</p>
+<h3 id="如何分析语句是否走索引查询"><a href="#如何分析语句是否走索引查询" class="headerlink" title="如何分析语句是否走索引查询"></a>如何分析语句是否走索引查询</h3><p>我们可以使用 <code>EXPLAIN</code> 命令来分析 SQL 的 <strong>执行计划</strong> ，这样就知道语句是否命中索引了。执行计划是指一条 SQL 语句在经过 MySQL 查询优化器的优化会后，具体的执行方式。</p>
 <p><code>EXPLAIN</code> 并不会真的去执行相关的语句，而是通过 <strong>查询优化器</strong> 对语句进行分析，找出最优的查询方案，并显示对应的信息。</p>
 <p><code>EXPLAIN</code> 的输出格式如下：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token identifier"><span class="token punctuation">`</span>score<span class="token punctuation">`</span></span><span class="token punctuation">,</span><span class="token identifier"><span class="token punctuation">`</span>name<span class="token punctuation">`</span></span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>cus_order<span class="token punctuation">`</span></span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token identifier"><span class="token punctuation">`</span>score<span class="token punctuation">`</span></span> <span class="token keyword">DESC</span><span class="token punctuation">;</span>
@@ -1148,7 +1131,7 @@ SELECT ... FOR UPDATE;<span aria-hidden="true" class="line-numbers-rows"><span><
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

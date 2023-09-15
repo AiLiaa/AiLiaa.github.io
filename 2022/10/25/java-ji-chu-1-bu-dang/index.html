@@ -344,7 +344,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-15
                 </div>
                 
 
@@ -435,9 +435,9 @@
 <p>在修饰类时，该类只有两种访问权限，对应的访问权限的含义如下：</p>
 <ul>
 <li>  default：该类可以被同一包下其他的类访问；</li>
-<li>  public：该类可以被任意包下，任意的类所访问。<h3 id="i-和-i的区别是什么"><a href="#i-和-i的区别是什么" class="headerlink" title="i++和++i的区别是什么"></a>i++和++i的区别是什么</h3></li>
+<li>  public：该类可以被任意包下，任意的类所访问。</li>
 </ul>
-<p>自增运算符（++)<br>自减运算符（- - )</p>
+<h3 id="i-和-i的区别是什么"><a href="#i-和-i的区别是什么" class="headerlink" title="i++和++i的区别是什么"></a>i++和++i的区别是什么</h3><p>自增运算符（++)<br>自减运算符（- - )</p>
 <p>当运算符放在变量之前时(前缀)，先自增/减，再赋值；<br>当运算符放在变量之后时(后缀)，先赋值，再自增/减。</p>
 <h3 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h3><p>移位运算符是最基本的运算符之一，被操作的数据被视为二进制数，移位就是将其向左或向右移动若干位的运算。</p>
 <p>在 Java 代码里使用&nbsp;<code>&lt;&lt;</code>&nbsp;、&nbsp;<code>&gt;&gt;</code>&nbsp;和<code>&gt;&gt;&gt;</code>转换成的指令码运行起来会更高效些。</p>
@@ -473,17 +473,17 @@
 <li>  float：4字节（32位）默认值：0f</li>
 <li>  double：8字节（64位）0d<br>字符型：</li>
 <li>  char：2字节（16位）默认值：’u0000’<br>布尔型：</li>
-<li>  boolean：1位 默认值：false<h3 id="基本类型与包装类的区别"><a href="#基本类型与包装类的区别" class="headerlink" title="基本类型与包装类的区别"></a>基本类型与包装类的区别</h3></li>
+<li>  boolean：1位 默认值：false</li>
 </ul>
-<p>Java语言是面向对象的语言，8种基本数据类型不具备对象的特性。所以Java为每个基本数据类型都定义了一个对应的引用类型，这就是包装类。</p>
+<h3 id="基本类型与包装类的区别"><a href="#基本类型与包装类的区别" class="headerlink" title="基本类型与包装类的区别"></a>基本类型与包装类的区别</h3><p>Java语言是面向对象的语言，8种基本数据类型不具备对象的特性。所以Java为每个基本数据类型都定义了一个对应的引用类型，这就是包装类。</p>
 <ul>
 <li><strong>用途</strong>：包装类型可用于<strong>泛型</strong>，基本类型不可以。</li>
 <li><strong>存储方式</strong>：基本数据类型的局部变量存放在 Java 虚拟机栈中的<strong>局部变量表</strong>中，基本数据类型的成员变量（未被 <code>static</code> 修饰 ）存放在 Java 虚拟机的<strong>堆</strong>中。</li>
 <li><strong>占用空间</strong>：相比于包装类型， 基本数据类型占用的空间往往非常小。</li>
 <li><strong>默认值</strong>：成员变量包装类型不赋值就是 <code>null</code> ，而基本类型有默认值且不是 <code>null</code>。</li>
-<li><strong>比较方式</strong>：对于基本数据类型来说，<code>==</code> 比较的是值。对于包装数据类型来说，<code>==</code> 比较的是对象的内存地址。所有包装类对象之间值的比较，全部使用 <code>equals()</code> 方法<h3 id="包装类型的缓存机制了解么"><a href="#包装类型的缓存机制了解么" class="headerlink" title="包装类型的缓存机制了解么"></a>包装类型的缓存机制了解么</h3></li>
+<li><strong>比较方式</strong>：对于基本数据类型来说，<code>==</code> 比较的是值。对于包装数据类型来说，<code>==</code> 比较的是对象的内存地址。所有包装类对象之间值的比较，全部使用 <code>equals()</code> 方法</li>
 </ul>
-<p>Java 基本数据类型的包装类型的大部分都用到了缓存机制来提升性能。</p>
+<h3 id="包装类型的缓存机制了解么"><a href="#包装类型的缓存机制了解么" class="headerlink" title="包装类型的缓存机制了解么"></a>包装类型的缓存机制了解么</h3><p>Java 基本数据类型的包装类型的大部分都用到了缓存机制来提升性能。</p>
 <p><code>Byte</code>,<code>Short</code>,<code>Integer</code>,<code>Long</code> 这 4 种包装类默认创建了数值 <strong>[-128，127]</strong> 的相应类型的缓存数据，<code>Character</code> 创建了数值在 <strong>[0,127]</strong> 范围的缓存数据，<code>Boolean</code> 直接返回 <code>True</code> or <code>False</code>。</p>
 <p>如果超出对应范围仍然会去创建新的对象，缓存的范围区间的大小只是在性能和资源之间的权衡。</p>
 <p>两种浮点数类型的包装类 <code>Float</code>,<code>Double</code> 并没有实现缓存机制。</p>
@@ -514,9 +514,9 @@
 <li><strong>语法形式</strong>：成员变量是在类的范围里定义的变量；局部变量是在方法里定义的变量；</li>
 <li><strong>默认值</strong>：成员变量有默认初始值；（ 0, 0.0, ‘\u0000’, false ）；局部变量没有默认初始值；</li>
 <li><strong>存储方式</strong>：未被static修饰的成员变量也叫实例变量，它存储于对象所在的堆内存中，被static修饰的成员变量也叫类变量，它存储于方法区中；局部变量存储于栈内存中</li>
-<li><strong>生命周期</strong>：未被static修饰的成员变量是对象的一部分，生命周期与对象相同，被static修饰的成员变量是类的一部分，生命周期与类相同；局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。<h3 id="静态变量有什么作用"><a href="#静态变量有什么作用" class="headerlink" title="静态变量有什么作用"></a>静态变量有什么作用</h3></li>
+<li><strong>生命周期</strong>：未被static修饰的成员变量是对象的一部分，生命周期与对象相同，被static修饰的成员变量是类的一部分，生命周期与类相同；局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。</li>
 </ul>
-<p>静态变量也就是被 <code>static</code> 关键字修饰的变量。它可以被类的所有实例共享，无论一个类创建了多少个对象，它们都共享同一份静态变量。</p>
+<h3 id="静态变量有什么作用"><a href="#静态变量有什么作用" class="headerlink" title="静态变量有什么作用"></a>静态变量有什么作用</h3><p>静态变量也就是被 <code>static</code> 关键字修饰的变量。它可以被类的所有实例共享，无论一个类创建了多少个对象，它们都共享同一份静态变量。</p>
 <p>静态变量只会被分配一次内存，即使创建多个对象，这样可以节省内存。</p>
 <p>通常情况下，静态变量会被&nbsp;<code>final</code>&nbsp;关键字修饰成为常量</p>
 <h3 id="字符型常量和字符串常量的区别"><a href="#字符型常量和字符串常量的区别" class="headerlink" title="字符型常量和字符串常量的区别"></a>字符型常量和字符串常量的区别</h3><ul>
@@ -722,9 +722,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="MySQL(补档)">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="数据库(补档)">
                         
-                        <span class="card-title">MySQL(补档)</span>
+                        <span class="card-title">数据库(补档)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -935,7 +935,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

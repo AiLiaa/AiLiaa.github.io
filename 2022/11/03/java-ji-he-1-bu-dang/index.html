@@ -344,7 +344,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-15
                 </div>
                 
 
@@ -451,9 +451,9 @@
 </ul>
 </li>
 <li><strong>是否支持快速随机访问：</strong> <code>LinkedList</code> 不支持高效的随机元素访问，而 <code>ArrayList</code> 支持。</li>
-<li><strong>内存空间占用：</strong> <code>ArrayList</code> 在列表的结尾会预留一定的容量空间，而 LinkedList 的的每一个元素都需要消耗比 ArrayList 更多的空间。<h3 id="说说ArrayList-的扩容机制"><a href="#说说ArrayList-的扩容机制" class="headerlink" title="说说ArrayList 的扩容机制"></a>说说ArrayList 的扩容机制</h3></li>
+<li><strong>内存空间占用：</strong> <code>ArrayList</code> 在列表的结尾会预留一定的容量空间，而 LinkedList 的的每一个元素都需要消耗比 ArrayList 更多的空间。</li>
 </ul>
-<ol>
+<h3 id="说说ArrayList-的扩容机制"><a href="#说说ArrayList-的扩容机制" class="headerlink" title="说说ArrayList 的扩容机制"></a>说说ArrayList 的扩容机制</h3><ol>
 <li>初始容量：ArrayList在创建时会分配一个初始容量，默认为10。可以通过构造函数或<code>ensureCapacity()</code>方法设置初始容量。（初始其实是空数组，当添加第一个元素的时候数组容量才变成10）</li>
 <li>扩容策略：当向ArrayList中添加元素时，如果当前元素数量已达到容量上限，就会触发扩容操作。</li>
 <li>增量扩容：默认情况下，ArrayList的扩容增量是当前容量的50%。扩容操作会将元素数据从旧数组复制到一个新的、更大容量的数组中。</li>
@@ -463,14 +463,12 @@
 <p>在写操作时会复制一份新的List，在新的List上完成写操作，然后再将原引用指向新的List。</p>
 <p>在上锁执行写操作的过程中，如果有需要读操作，会作用在原容器上，因此上锁的写操作不会影响到并发访问的读操作。</p>
 <ul>
-<li><p>  优点：读操作性能很高，因为无需任何同步措施，比较适用于读多写少的并发场景。</p>
-</li>
-<li><p>  缺点：内存占用问题，可能会引起频繁GC。无法保证实时性，读到的可能是老数据</p>
-<h3 id="ArrayList和Vector的区别是什么"><a href="#ArrayList和Vector的区别是什么" class="headerlink" title="ArrayList和Vector的区别是什么"></a>ArrayList和Vector的区别是什么</h3></li>
-<li><p>  <code>ArrayList</code> 是 <code>List</code> 的主要实现类，底层使用 <code>Object[]</code>存储，线程不安全 ；</p>
-</li>
-<li><p>  <code>Vector</code> 是 <code>List</code> 的古老实现类，底层使用<code>Object[]</code> 存储，对读写操作上锁，线程安全。</p>
-</li>
+<li>  优点：读操作性能很高，因为无需任何同步措施，比较适用于读多写少的并发场景。</li>
+<li>  缺点：内存占用问题，可能会引起频繁GC。无法保证实时性，读到的可能是老数据</li>
+</ul>
+<h3 id="ArrayList和Vector的区别是什么"><a href="#ArrayList和Vector的区别是什么" class="headerlink" title="ArrayList和Vector的区别是什么"></a>ArrayList和Vector的区别是什么</h3><ul>
+<li>  <code>ArrayList</code> 是 <code>List</code> 的主要实现类，底层使用 <code>Object[]</code>存储，线程不安全 ；</li>
+<li>  <code>Vector</code> 是 <code>List</code> 的古老实现类，底层使用<code>Object[]</code> 存储，对读写操作上锁，线程安全。</li>
 </ul>
 <h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="比较-HashSet、LinkedHashSet-和-TreeSet-三者的异同"><a href="#比较-HashSet、LinkedHashSet-和-TreeSet-三者的异同" class="headerlink" title="比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同"></a>比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同</h3><p>同：</p>
 <ul>
@@ -911,7 +909,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

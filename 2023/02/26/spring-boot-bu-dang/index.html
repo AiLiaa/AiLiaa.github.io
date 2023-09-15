@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.8k
                 </div>
                 
 
@@ -396,25 +396,43 @@
 <li>@Component：该注解用于将一个普通的Java类定义为一个Bean，使其能够被Spring容器管理。</li>
 <li>@SpringBootTest：该注解用于测试Spring Boot应用程序，可以模拟出完整的Web服务接口供测试调用。</li>
 </ol>
-<h3 id="Spring-Boot自动装配的过程"><a href="#Spring-Boot自动装配的过程" class="headerlink" title="Spring Boot自动装配的过程"></a>Spring Boot自动装配的过程</h3><p>Spring Boot通过@EnableAutoConfiguration注解开启自动配置，加载spring.factories中注册的各种AutoConfiguration类。</p>
-<p>当某个AutoConfiguration类满足其注解@Conditional指定的生效条件（Starters提供的依赖、配置或Spring容器中是否存在某个Bean等）时，实例化该AutoConfiguration类中定义的Bean（组件等），并注入Spring容器，就可以完成依赖框架的自动配置。</p>
-<h3 id="Spring-Boot启动流程"><a href="#Spring-Boot启动流程" class="headerlink" title="Spring Boot启动流程"></a>Spring Boot启动流程</h3><ol>
-<li>首先从main找到run()方法，在执行run()方法之前new一个SpringApplication对象</li>
-<li>进入run()方法，创建应用监听器SpringApplicationRunListeners开始监听</li>
-<li>然后加载SpringBoot配置环境(ConfigurableEnvironment)，然后把配置环境(Environment)加入监听对象中</li>
-<li>然后加载应用上下文(ConfigurableApplicationContext)，当做run方法的返回对象</li>
-<li>最后创建Spring容器，refreshContext(context)，实现starter自动化配置和bean的实例化等工作。</li>
-</ol>
-<h3 id="如何理解-Spring-Boot-中的-Starter"><a href="#如何理解-Spring-Boot-中的-Starter" class="headerlink" title="如何理解 Spring Boot 中的 Starter"></a>如何理解 Spring Boot 中的 Starter</h3><p>starter就是定义⼀个starter的jar包，写⼀个@Configuration配置类、将这些bean定义在⾥⾯，然后在starter包的META-INF/spring.factories中写⼊该配置类，springboot会按照约定来加载该配置类</p>
+<h3 id="Spring-Boot自动装配的过程"><a href="#Spring-Boot自动装配的过程" class="headerlink" title="Spring Boot自动装配的过程"></a>Spring Boot自动装配的过程</h3><p>Spring Boot通过@EnableAutoConfiguration注解开启自动配置</p>
+<p>通过SpringFactoriesLoader扫描autoconfigure包下的META-INF/spring.factories中所有路径下的类，并通过反射实例化成一个个的配置类并注入到Spring容器中，从而实现了自动装配</p>
+<h3 id="Spring-Boot启动流程"><a href="#Spring-Boot启动流程" class="headerlink" title="Spring Boot启动流程"></a>Spring Boot启动流程</h3><ul>
+<li>首先，SpringBoot会读取配置文件与启动类，配置文件指定了项目的各种配置信息，启动类是应用程序的入口。</li>
+<li>然后，SpringBoot会使用Spring框架初始化Spring容器，包含创建bean实例、依赖注入等操作。</li>
+<li>接着，SpringBoot会开启自动配置功能，扫描项目中的类，自动注册bean，以便于可以方便地使用。</li>
+<li>在完成了自动配置后，SpringBoot会启动内嵌的Web服务器，比如Tomcat或Jetty，在Web服务器上部署应用程序。</li>
+<li>最后，SpringBoot会启动应用程序本身，启动相应的线程进行服务处理。</li>
+</ul>
+<h3 id="如何理解-Spring-Boot-中的-Starter"><a href="#如何理解-Spring-Boot-中的-Starter" class="headerlink" title="如何理解 Spring Boot 中的 Starter"></a>如何理解 Spring Boot 中的 Starter</h3><p>在 Spring Boot 中，Starter 是一种特殊的依赖包，用于简化和快速启动特定功能或技术栈的应用程序开发。它提供了一组预配置的依赖项和默认配置，以便开发人员可以更轻松地集成和使用特定的功能。</p>
+<p>starter就是定义⼀个starter的jar包，写⼀个@Configuration配置类、将这些bean定义在⾥⾯，然后在starter包的META-INF/spring.factories中写⼊该配置类，springboot会按照约定来加载该配置类</p>
 <p>开发⼈员只需要将相应的starter包依赖进应⽤，进⾏相应的属性配置（使⽤默认配置时，不需要配置），就可以直接进⾏代码开发，使⽤对应的功能了，⽐如mybatis-spring-boot–starter，spring-boot-starter-redis</p>
-<h3 id="Spring-Boot是如何启动Tomcat的"><a href="#Spring-Boot是如何启动Tomcat的" class="headerlink" title="Spring Boot是如何启动Tomcat的"></a>Spring Boot是如何启动Tomcat的</h3><ol>
-<li><p>⾸先，SpringBoot在启动时会先创建⼀个Spring容器</p>
-</li>
-<li><p>在创建Spring容器过程中，会利⽤@ConditionalOnClass技术来判断当前classpath中是否存在Tomcat依赖，如果存在则会⽣成⼀个启动Tomcat的Bean</p>
-</li>
-<li><p>Spring容器创建完之后，就会获取启动Tomcat的Bean，并创建Tomcat对象，并绑定端⼝等，然后启动Tomcat</p>
-</li>
+<h3 id="Spring-Boot是如何启动Tomcat的"><a href="#Spring-Boot是如何启动Tomcat的" class="headerlink" title="Spring Boot是如何启动Tomcat的"></a>Spring Boot是如何启动Tomcat的</h3><p>在 Spring Boot 中，Tomcat 是默认的嵌入式 Web 服务器。</p>
+<p>使用 Spring Boot 创建一个 Web 应用程序时，通常会添加 <code>spring-boot-starter-web</code> 依赖项，会自动引入 Tomcat 作为嵌入式 Web 服务器的实现。</p>
+<p>下面是 Spring Boot 如何启动 Tomcat 的简要过程：</p>
+<ol>
+<li>在启动应用程序时，Spring Boot 会自动在类路径上查找并加载适当的 Tomcat 类。</li>
+<li>Spring Boot 根据内置的默认配置创建一个 Tomcat 实例，并对其进行必要的配置。</li>
+<li>Tomcat 实例会创建一个基于线程池的 Connector，用于监听传入的 HTTP 请求。</li>
+<li>Spring Boot 根据应用程序配置（如端口号）设置 Connector 的属性。</li>
+<li>Spring Boot 将 Web 应用程序的 WAR 文件或可执行 JAR 文件部署到 Tomcat 实例中。</li>
+<li>Tomcat 启动并开始监听指定端口上的请求。</li>
+<li>当收到 HTTP 请求时，Tomcat 调用 Spring Boot 中的 DispatcherServlet 处理请求，并将其分派给相应的控制器。</li>
+<li>控制器处理请求并生成响应，然后返回给 Tomcat。</li>
+<li>Tomcat 将响应发送回客户端。</li>
 </ol>
+<h3 id="Tomcat和Servlet"><a href="#Tomcat和Servlet" class="headerlink" title="Tomcat和Servlet"></a>Tomcat和Servlet</h3><p>Tomcat（全称为Apache Tomcat）是一个开源的、轻量级的、独立的Java Web应用服务器。它实现了Java Servlet、JavaServer Pages（JSP）、Java Expression Language（EL）等相关技术规范，并提供了一个运行和管理这些Web技术的环境。</p>
+<p>Servlet 是 Java Web 开发中的一种技术，用于处理来自客户端的请求并生成相应的响应。它是基于 Java 的服务器端组件，主要运行在 Servlet 容器（如 Tomcat）中。</p>
+<p>Servlet 可以接收客户端发送的请求，执行一些逻辑处理，并生成动态的网页内容作为响应返回给客户端。</p>
+<p>Servlet 主要用于处理 HTTP 请求，包括 GET、POST 等方法。开发者可以通过覆写 Servlet 中对应的方法，如 <code>doGet()</code> 和 <code>doPost()</code> 方法，在其中编写处理请求的业务逻辑。</p>
+<p>Tomcat 和 Servlet 之间的关系可以理解为：</p>
+<ol>
+<li>Servlet 规范：Servlet 规范是 Java Enterprise Edition (Java EE) 的一部分，定义了开发基于 Java 的 Web 应用程序的标准。它规定了 Servlet 是如何编写和运行的，以及与容器进行交互的方式。</li>
+<li>Tomcat 的角色：Tomcat 充当了 Servlet 容器的角色，它实现了 Servlet 规范并提供了一个运行和管理 Servlet 的环境。Tomcat 负责加载、实例化和管理 Servlet，并在收到客户端请求时将请求转发给适当的 Servlet 进行处理。</li>
+<li>部署 Servlet：通过将自己编写的 Servlet 部署到 Tomcat 中，Tomcat 将负责对 Servlet 进行生命周期管理，包括初始化 Servlet、调用 Servlet 的方法（如 <code>doGet()</code>、<code>doPost()</code> 等）处理请求和生成响应，以及销毁 Servlet。</li>
+</ol>
+<p>Tomcat 是一个实现了 Servlet 规范的容器，它提供了运行和管理 Servlet 的环境。通过部署 Servlet 到 Tomcat，我们可以利用 Servlet 技术来开发 Java Web 应用程序，并由 Tomcat 在运行时负责管理和执行 Servlet 的相关操作。</p>
 
                 
             </div>
@@ -795,7 +813,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             

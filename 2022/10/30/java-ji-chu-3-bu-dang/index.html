@@ -344,7 +344,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-15
                 </div>
                 
 
@@ -479,9 +479,9 @@ integerList<span class="token punctuation">.</span><span class="token function">
 <li>创建对象：可以通过反射动态地创建类的实例，即使在编译时无法确定具体的类名。</li>
 <li>调用方法：可以通过反射调用类的方法，包括公有方法、私有方法以及静态方法。</li>
 <li>操作字段：可以通过反射读取和修改类的字段的值，包括公有字段和私有字段。</li>
-<li>动态代理：反射可以用于实现动态代理，动态地生成代理类并在运行时处理方法的调用。<h3 id="反射的优缺点有哪些"><a href="#反射的优缺点有哪些" class="headerlink" title="反射的优缺点有哪些"></a>反射的优缺点有哪些</h3></li>
+<li>动态代理：反射可以用于实现动态代理，动态地生成代理类并在运行时处理方法的调用。</li>
 </ol>
-<p><strong>优点：</strong></p>
+<h3 id="反射的优缺点有哪些"><a href="#反射的优缺点有哪些" class="headerlink" title="反射的优缺点有哪些"></a>反射的优缺点有哪些</h3><p><strong>优点：</strong></p>
 <p>运行期类型的判断，class.forName() 动态加载类，提高代码的灵活度；</p>
 <p><strong>缺点：</strong></p>
 <p>（1）性能开销 ：反射涉及了动态类型的解析，JVM 无法对这些代码进行优化。</p>
@@ -489,16 +489,16 @@ integerList<span class="token punctuation">.</span><span class="token function">
 <h3 id="Java反射在实际项目中的应用场景"><a href="#Java反射在实际项目中的应用场景" class="headerlink" title="Java反射在实际项目中的应用场景"></a>Java反射在实际项目中的应用场景</h3><ul>
 <li>使用JDBC时，如果要创建数据库的连接，则需要先通过反射机制加载数据库的驱动程序；</li>
 <li>多数框架都支持注解/XML配置，从配置中解析出来的类是字符串，需要利用反射机制实例化；</li>
-<li>  面向切面编程（AOP）的实现方案，是在程序运行时创建目标对象的代理类，这必须由反射机制来实现。<h3 id="Java-中的动态代理是什么"><a href="#Java-中的动态代理是什么" class="headerlink" title="Java 中的动态代理是什么"></a>Java 中的动态代理是什么</h3></li>
+<li>  面向切面编程（AOP）的实现方案，是在程序运行时创建目标对象的代理类，这必须由反射机制来实现。</li>
 </ul>
-<p>动态代理（Dynamic Proxy）是一种在运行时创建代理类和对象的机制。</p>
+<h3 id="Java-中的动态代理是什么"><a href="#Java-中的动态代理是什么" class="headerlink" title="Java 中的动态代理是什么"></a>Java 中的动态代理是什么</h3><p>动态代理（Dynamic Proxy）是一种在运行时创建代理类和对象的机制。</p>
 <p>通过动态代理，可以在不事先知道接口具体实现类的情况下，动态地创建一个代理对象，该代理对象可以代替原始对象执行相同的操作，并且可以在方法调用前后进行额外的处理</p>
 <h3 id="动态代理有哪些应用场景"><a href="#动态代理有哪些应用场景" class="headerlink" title="动态代理有哪些应用场景"></a>动态代理有哪些应用场景</h3><ul>
 <li>添加日志、性能统计等横切逻辑，而不必修改原始类的代码。</li>
 <li>实现AOP（面向切面编程）中的切面对象。</li>
-<li>实现远程调用（RPC）框架中的代理对象。<h3 id="怎么实现动态代理？"><a href="#怎么实现动态代理？" class="headerlink" title="怎么实现动态代理？"></a>怎么实现动态代理？</h3></li>
+<li>实现远程调用（RPC）框架中的代理对象。</li>
 </ul>
-<p>Java 中，实现动态代理有两种方式：  </p>
+<h3 id="怎么实现动态代理？"><a href="#怎么实现动态代理？" class="headerlink" title="怎么实现动态代理？"></a>怎么实现动态代理？</h3><p>Java 中，实现动态代理有两种方式：  </p>
 <p>1、<strong>JDK 动态代理</strong>：java.lang.reflect 包中的 Proxy 类和 InvocationHandler 接口提供了生成动态代理类的能力。<br>2、<strong>Cglib 动态代理</strong>：Cglib (Code Generation Library )是一个第三方代码生成类库，运行时在内存中动态生成一个子类对象从而实现对目标对象功能的扩展。</p>
 <h3 id="JDK-动态代理和-Cglib-动态代理的区别"><a href="#JDK-动态代理和-Cglib-动态代理的区别" class="headerlink" title="JDK 动态代理和 Cglib 动态代理的区别"></a>JDK 动态代理和 Cglib 动态代理的区别</h3><ol>
 <li><p>JDK 的动态代理有一个限制，就是使用动态代理的对象必须实现一个或多个接口。  cglib 代理的对象则无需实现接口，达到代理类无侵入。</p>
@@ -565,9 +565,9 @@ integerList<span class="token punctuation">.</span><span class="token function">
 <h3 id="I-O-流为什么要分为字节流和字符流呢"><a href="#I-O-流为什么要分为字节流和字符流呢" class="headerlink" title="I/O 流为什么要分为字节流和字符流呢"></a>I/O 流为什么要分为字节流和字符流呢</h3><p>各有优缺点</p>
 <ul>
 <li><strong>字节流更快</strong>：字符流是由 Java 虚拟机将字节转换得到的，这个过程还算是比较耗时；</li>
-<li><strong>字节流可能会乱码</strong>：如果我们不知道编码类型的话，使用字节流的过程中很容易出现乱码问题。<h3 id="BIO、NIO、AIO-有什么区别"><a href="#BIO、NIO、AIO-有什么区别" class="headerlink" title="BIO、NIO、AIO 有什么区别"></a>BIO、NIO、AIO 有什么区别</h3></li>
+<li><strong>字节流可能会乱码</strong>：如果我们不知道编码类型的话，使用字节流的过程中很容易出现乱码问题。</li>
 </ul>
-<p>BIO（Blocking I/O）、NIO（Non-blocking I/O）和AIO（Asynchronous I/O）是Java中不同的I/O模型，它们有以下区别：</p>
+<h3 id="BIO、NIO、AIO-有什么区别"><a href="#BIO、NIO、AIO-有什么区别" class="headerlink" title="BIO、NIO、AIO 有什么区别"></a>BIO、NIO、AIO 有什么区别</h3><p>BIO（Blocking I/O）、NIO（Non-blocking I/O）和AIO（Asynchronous I/O）是Java中不同的I/O模型，它们有以下区别：</p>
 <ol>
 <li>阻塞与非阻塞：<ul>
 <li>BIO是阻塞式I/O模型，即在执行I/O操作时，线程会被阻塞，直到操作完成。</li>
@@ -962,7 +962,7 @@ integerList<span class="token punctuation">.</span><span class="token function">
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">156.5k</span>&nbsp;字
             
             
             
