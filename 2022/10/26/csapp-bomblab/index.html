@@ -1,0 +1,1347 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="CSAPP-BombLab, 艾AA">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>CSAPP-BombLab | 艾AA</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+    <script>
+    <!--浏览器搞笑标题-->
+         var OriginTitle = document.title;
+         var titleTime;
+         document.addEventListener('visibilitychange', function () {
+             if (document.hidden) {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヽ(●-`Д′-)ノ你要玩捉迷藏嘛';
+                 clearTimeout(titleTime);
+             }
+             else {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヾ(???3)ノ好哦！' + OriginTitle;
+                 titleTime = setTimeout(function () {
+                     document.title = OriginTitle;
+                 }, 2000);
+             }
+         });
+    </script>
+
+<meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">艾AA</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">艾AA</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CSAPP-BombLab</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CSAPP/">
+                                <span class="chip bg-color">CSAPP</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-10-26
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-09-26
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.2k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="binary-bombs"><a href="#binary-bombs" class="headerlink" title="binary bombs"></a>binary bombs</h3><p>拆除“binary bombs”。一个“binary bombs”（二进制炸弹，下文将简称为炸弹）是一个Linux可执行程序，包含了6个阶段（或层次、关卡）。炸弹运行的每个阶段要求你输入一个特定字符串，你的输入符合程序预期的输入，该阶段的炸弹就被拆除引信即解除了，否则炸弹“爆炸”打印输出 “BOOM!!!”。实验的目标是拆除尽可能多的炸弹层次。 每个炸弹阶段考察了机器级程序语言的一个不同方面，难度逐级递增</p>
+<p>另外还有一个隐藏阶段，只有在第4阶段的解后附加一特定字符串后才会出现</p>
+<p>拆除“binary bombs”，增强对程序的机器级表示、汇编语言、调试器和逆向工程等方面原理与技能的掌握。</p>
+<pre><code>·&nbsp;阶段1：字符串比较
+·&nbsp;阶段2：循环
+·&nbsp;阶段3：条件/分支
+·&nbsp;阶段4：递归调用和栈
+·&nbsp;阶段5：指针
+·&nbsp;阶段6：链表/指针/结构
+</code></pre>
+<p>构造自己的bomb</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8731.png">&nbsp;</p>
+<h3 id="phase-1"><a href="#phase-1" class="headerlink" title="phase_1"></a>phase_1</h3><p>首先调用objdump –d bomb &gt; bomb_disas.txt&nbsp;对bomb进行反汇编并将汇编源代码输出到boomb_disas.txt文本文件中。</p>
+<p>查看该汇编源代码文件，可以在main函数中找到如下语句，从而得知第一关的处理程序包含在main()函数所调用的函数phase_1()中，判断的过程可以参照bomb.c文件源码。</p>
+<p>在反汇编代码中寻找这个子函数phase_1:</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8732.png"></p>
+<p>接下来，使用gdb调试bomb二进制文件：gdb bomb后，运行break phase_1，也就是在phase_1函数处设置一个断点，然后运行run，开始调试。运行disas&nbsp;phase_1，得到如下信息:</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8733.png"></p>
+<p>可以看到%esi中装入的就是待比较的目标字符串地址:</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8734.png"></p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入这个字符串。</p>
+<p>第一关解除。</p>
+<h3 id="phase-2"><a href="#phase-2" class="headerlink" title="phase_2"></a>phase_2</h3><p>按照第一关的思路和步骤进行调试：</p>
+<pre class="line-numbers language-none"><code class="language-none">000000000400f0c &lt;phase_2&gt;:
+&nbsp;&nbsp;400f0c: 55 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%rbp//把数据压入栈
+&nbsp;&nbsp;400f0d: 53 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%rbx//把数据压入栈
+&nbsp;&nbsp;400f0e: 48 83 ec 28 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x28,%rsp//把栈指针减少40，提供局部变量空间
+&nbsp;&nbsp;400f12: 48 89 e6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%rsp,%rsi//把栈指针状态存入%rsi中
+&nbsp;&nbsp;400f15: e8 e5 06 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015ff &lt;read_six_numbers&gt;// 调用函数read_six_numbers，读取6个数字，此时(%rsp)已被赋值
+&nbsp;&nbsp;400f1a: 83 3c 24 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmpl &nbsp;&nbsp;$0x0,(%rsp)//(%rsp)的值即输入的第一个参数的值，将(%rsp)的值与0比较，需要等于0来避免bomb。
+&nbsp;&nbsp;400f1e: 79 24 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jns &nbsp;&nbsp;&nbsp;400f44 &lt;phase_2+0x38&gt;//若相等则跳转
+&nbsp;&nbsp;400f20: e8 a4 06 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;//否则爆炸
+&nbsp;&nbsp;400f25: eb 1d &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400f44 &lt;phase_2+0x38&gt;//jmp指令无条件跳转400f44
+&nbsp;&nbsp;400f27: 89 d8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%ebx,%eax&nbsp;&nbsp;&nbsp;&nbsp;//%eax=ebx
+&nbsp;&nbsp;400f29: 03 45 fc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;-0x4(%rbp),%eax&nbsp;&nbsp;&nbsp;&nbsp;//%eax=%eax+num1。
+&nbsp;&nbsp;400f2c: 39 45 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%eax,0x0(%rbp)&nbsp;//比较%eax和num2
+&nbsp;&nbsp;400f2f: 74 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;400f36 &lt;phase_2+0x2a&gt;&nbsp;//相等
+&nbsp;&nbsp;400f31: e8 93 06 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;&nbsp;&nbsp;//不相等
+&nbsp;&nbsp;400f36: 83 c3 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x1,%ebx&nbsp;//%ebx+1
+&nbsp;&nbsp;400f39: 48 83 c5 04 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x4,%rbp&nbsp;//下一个num地址
+&nbsp;&nbsp;400f3d: 83 fb 06 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x6,%ebx&nbsp;//比较
+&nbsp;&nbsp;400f40: 75 e5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;400f27 &lt;phase_2+0x1b&gt;&nbsp;//不相等
+&nbsp;&nbsp;400f42: eb 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400f50 &lt;phase_2+0x44&gt;&nbsp;//相等
+&nbsp;&nbsp;400f44: 48 8d 6c 24 04 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x4(%rsp),%rbp//将%rsp+4代表的地址移入%rbx，即第2个输入数的地址
+&nbsp;&nbsp;400f49: bb 01 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x1,%ebx //%ebx=1
+&nbsp;&nbsp;400f4e: eb d7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400f27 &lt;phase_2+0x1b&gt;//跳转
+&nbsp;&nbsp;400f50: 48 83 c4 28 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x28,%rsp&nbsp;//释放空间
+&nbsp;&nbsp;400f54: 5b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%rbx
+&nbsp;&nbsp;400f55: 5d &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%rbp
+&nbsp;&nbsp;400f56: c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retq &nbsp;&nbsp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>分析汇编代码：</p>
+<p>由<read_six_numbers>和%rsp与$0x0比较可知道：</read_six_numbers></p>
+<p>我们需要输入6个数，并且第一个数（num1=0）需要等于0来避免bomb。</p>
+<p>接下来跳转到0x400f44地址处的指令,%rbp=(%rsp)地址的偏移4处的值，也就是num2。%ebx=1。跳转到0x400f27，开始循环。</p>
+<p>%eax=ebx=1。%eax=%eax+num1。比较%eax和num2，相等不会bomb，所以num2=1。接下来add指令，%ebx+=1,%rbp+=4,也就是%rbp=num3。跳转到循环，直到%ebx&gt;6。</p>
+<p>第二次循环，%eax=ebx=2。%eax=%eax+num2=3。比较%eax和num3。避免bomb,所以num3=3。</p>
+<p>同理，推得这六个数：0 1 3 6 10 15</p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入这六个数。</p>
+<p>第二关解除。</p>
+<h3 id="phase-3"><a href="#phase-3" class="headerlink" title="phase_3"></a>phase_3</h3><pre class="line-numbers language-none"><code class="language-none">0000000000400f57 &lt;phase_3&gt;:
+&nbsp;&nbsp;400f57: 48 83 ec 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x18,%rsp//把栈指针减少24，提供局部变量空间
+&nbsp;&nbsp;400f5b: 48 8d 4c 24 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x8(%rsp),%rcx//加载地址，将0x8(%rsp)设为num2
+&nbsp;&nbsp;400f60: 48 8d 54 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0xc(%rsp),%rdx//加载地址，将0xc(%rsp)设为num1
+&nbsp;&nbsp;400f65: be 21 28 40 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x402821,%esi//经测试，0x4025cf对应字符串"%d %d"
+&nbsp;&nbsp;400f6a: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax//初始化%eax
+&nbsp;&nbsp;400f6f: e8 bc fc ff ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;400c30 &lt;__isoc99_sscanf@plt&gt;
+&nbsp;&nbsp;400f74: 83 f8 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x1,%eax
+&nbsp;&nbsp;400f77: 7f 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jg &nbsp;&nbsp;&nbsp;&nbsp;400f7e &lt;phase_3+0x27&gt;//jg:有符号大于则跳转，说明scanf输入数据的个数必须大于1
+&nbsp;&nbsp;400f79: e8 4b 06 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;//否则爆炸
+&nbsp;&nbsp;400f7e: 83 7c 24 0c 07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmpl &nbsp;&nbsp;$0x7,0xc(%rsp)
+&nbsp;&nbsp;400f83: 77 66 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ja &nbsp;&nbsp;&nbsp;&nbsp;400feb &lt;phase_3+0x94&gt;//ja:无符号大于则跳转,至爆炸，说明num1为无符号数，大于0且需要小于等于7，所以num1=[0,7]
+&nbsp;&nbsp;400f85: 8b 44 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0xc(%rsp),%eax &nbsp;//将num1储存到%eax中
+&nbsp;&nbsp;400f89: ff 24 c5 80 25 40 00 jmpq &nbsp;&nbsp;*0x402580(,%rax,8) //根据该指令和后续的指令格式，很容易判断此处是switch语句的跳转表
+&nbsp;&nbsp;400f90: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax &nbsp;//1
+&nbsp;&nbsp;400f95: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400f9c &lt;phase_3+0x45&gt;
+&nbsp;&nbsp;400f97: b8 aa 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0xaa,%eax &nbsp;//0
+&nbsp;&nbsp;400f9c: 2d e2 02 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x2e2,%eax
+&nbsp;&nbsp;400fa1: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400fa8 &lt;phase_3+0x51&gt;
+&nbsp;&nbsp;400fa3: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax &nbsp;//2
+&nbsp;&nbsp;400fa8: 05 e2 01 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x1e2,%eax
+&nbsp;&nbsp;400fad: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400fb4 &lt;phase_3+0x5d&gt;
+&nbsp;&nbsp;400faf: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax &nbsp;//3
+&nbsp;&nbsp;400fb4: 2d 6b 01 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x16b,%eax
+&nbsp;&nbsp;400fb9: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400fc0 &lt;phase_3+0x69&gt;
+&nbsp;&nbsp;400fbb: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax &nbsp;// 4
+&nbsp;&nbsp;400fc0: 05 6b 01 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x16b,%eax
+&nbsp;&nbsp;400fc5: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400fcc &lt;phase_3+0x75&gt;
+&nbsp;&nbsp;400fc7: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax // 5
+&nbsp;&nbsp;400fcc: 2d 6b 01 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x16b,%eax
+&nbsp;&nbsp;400fd1: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400fd8 &lt;phase_3+0x81&gt;
+&nbsp;&nbsp;400fd3: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax &nbsp;//6
+&nbsp;&nbsp;400fd8: 05 6b 01 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x16b,%eax
+&nbsp;&nbsp;400fdd: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400fe4 &lt;phase_3+0x8d&gt;
+&nbsp;&nbsp;400fdf: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax //7
+&nbsp;&nbsp;400fe4: 2d 6b 01 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x16b,%eax
+&nbsp;&nbsp;400fe9: eb 0a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;400ff5 &lt;phase_3+0x9e&gt;
+&nbsp;&nbsp;400feb: e8 d9 05 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;400ff0: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax
+&nbsp;&nbsp;400ff5: 83 7c 24 0c 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmpl &nbsp;&nbsp;$0x5,0xc(%rsp) //比较num1和5
+&nbsp;&nbsp;400ffa: 7f 06 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jg &nbsp;&nbsp;&nbsp;&nbsp;401002 &lt;phase_3+0xab&gt; //不相等就爆炸
+&nbsp;&nbsp;400ffc: 3b 44 24 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;0x8(%rsp),%eax &nbsp;//比较%eax的值和num2
+&nbsp;&nbsp;401000: 74 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;401007 &lt;phase_3+0xb0&gt;//je：若相等则跳转至结束
+&nbsp;&nbsp;401002: e8 c2 05 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;401007: 48 83 c4 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x18,%rsp //释放空间
+&nbsp;&nbsp;40100b: c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retq &nbsp;&nbsp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>分析汇编代码：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8735.png"></p>
+<p>得知输入了两个数，推测%rcx=num2,%rdx=num1。输入数的个数必须大于1，否则bomb。如果num1&gt;0x7，bomb。</p>
+<p>由jmpq 0x402580(,%rax,8)可知，间接跳转，再根据后面一系列jmp,推测此次是switch语句。查找跳转表的存储地址：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8736.png"></p>
+<p>在switch case出来后，计算出的%eax=num2，否则bomb。</p>
+<p>Cmpl $0x5,0xc(%rsp) 所以num1=5,否则bomb。</p>
+<p>将num1=5代入，得%eax=-363。</p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入5 -363。</p>
+<p>第三关解除。</p>
+<h3 id="phase-4"><a href="#phase-4" class="headerlink" title="phase_4"></a>phase_4</h3><pre class="line-numbers language-none"><code class="language-none">000000000040103f &lt;phase_4&gt;:
+&nbsp;&nbsp;40103f: 48 83 ec 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x18,%rsp//开辟空间
+&nbsp;&nbsp;401043: 48 8d 4c 24 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x8(%rsp),%rcx//加载地址，将0x8(%rsp)设为num2
+&nbsp;&nbsp;401048: 48 8d 54 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0xc(%rsp),%rdx//加载地址，将0xc(%rsp)设为num1
+&nbsp;&nbsp;40104d: be 21 28 40 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x402821,%esi&nbsp;//scanf函数输入格式， %d %d
+&nbsp;&nbsp;401052: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax
+&nbsp;&nbsp;401057: e8 d4 fb ff ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;400c30 &lt;__isoc99_sscanf@plt&gt;
+&nbsp;&nbsp;40105c: 83 f8 02 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x2,%eax&nbsp;//当scanf输入数据个数不等于2时，跳转至爆炸
+&nbsp;&nbsp;40105f: 75 07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;401068 &lt;phase_4+0x29&gt;
+&nbsp;&nbsp;401061: 83 7c 24 0c 0e &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmpl &nbsp;&nbsp;$0xe,0xc(%rsp)//jdb：无符号小于等于跳转，当num1小于等于14时，跳转至40106d，否则爆炸，所以num1的限制条件为[0,14]
+&nbsp;&nbsp;401066: 76 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jbe &nbsp;&nbsp;&nbsp;40106d &lt;phase_4+0x2e&gt;
+&nbsp;&nbsp;401068: e8 5c 05 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;40106d: ba 0e 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0xe,%edx&nbsp;//func4参数z
+&nbsp;&nbsp;401072: be 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%esi//func4参数y
+&nbsp;&nbsp;401077: 8b 7c 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0xc(%rsp),%edi//func4参数x
+&nbsp;&nbsp;40107b: e8 8c ff ff ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;40100c &lt;func4&gt;&nbsp;// 传参x=num1,y=0,z=14
+&nbsp;&nbsp;401080: 83 f8 15 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x15,%eax&nbsp;//返回值比较
+&nbsp;&nbsp;401083: 75 07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;40108c &lt;phase_4+0x4d&gt;&nbsp;//不等于21就爆炸
+&nbsp;&nbsp;401085: 83 7c 24 08 15 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmpl &nbsp;&nbsp;$0x15,0x8(%rsp)
+&nbsp;&nbsp;40108a: 74 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;401091 &lt;phase_4+0x52&gt;
+&nbsp;&nbsp;40108c: e8 38 05 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;401091: 48 83 c4 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x18,%rsp&nbsp;//释放空间
+&nbsp;&nbsp;401095: c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retq &nbsp;&nbsp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">000000000040100c &lt;func4&gt;:
+&nbsp;&nbsp;40100c: 53 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%rbx
+&nbsp;&nbsp;40100d: 89 d0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%edx,%eax
+&nbsp;&nbsp;40100f: 29 f0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;%esi,%eax
+&nbsp;&nbsp;401011: 89 c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%eax,%ebx
+&nbsp;&nbsp;401013: c1 eb 1f &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shr &nbsp;&nbsp;&nbsp;$0x1f,%ebx
+&nbsp;&nbsp;401016: 01 d8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;%ebx,%eax
+&nbsp;&nbsp;401018: d1 f8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sar &nbsp;&nbsp;&nbsp;%eax
+&nbsp;&nbsp;40101a: 8d 1c 30 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;(%rax,%rsi,1),%ebx
+&nbsp;&nbsp;40101d: 39 fb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%edi,%ebx
+&nbsp;&nbsp;40101f: 7e 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jle &nbsp;&nbsp;&nbsp;40102d &lt;func4+0x21&gt;
+&nbsp;&nbsp;401021: 8d 53 ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;-0x1(%rbx),%edx
+&nbsp;&nbsp;401024: e8 e3 ff ff ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;40100c &lt;func4&gt;
+&nbsp;&nbsp;401029: 01 d8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;%ebx,%eax
+&nbsp;&nbsp;40102b: eb 10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;40103d &lt;func4+0x31&gt;
+&nbsp;&nbsp;40102d: 89 d8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%ebx,%eax
+&nbsp;&nbsp;40102f: 39 fb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%edi,%ebx
+&nbsp;&nbsp;401031: 7d 0a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jge &nbsp;&nbsp;&nbsp;40103d &lt;func4+0x31&gt;
+&nbsp;&nbsp;401033: 8d 73 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x1(%rbx),%esi
+&nbsp;&nbsp;401036: e8 d1 ff ff ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;40100c &lt;func4&gt;
+&nbsp;&nbsp;40103b: 01 d8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;%ebx,%eax
+&nbsp;&nbsp;40103d: 5b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%rbx
+&nbsp;&nbsp;40103e: c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retq &nbsp;&nbsp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>分析汇编代码：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8737.png"></p>
+<p>我们需要输入两个数。</p>
+<p>cmpl $0xe ,0xc(%rsp) 得知：num1小于等于14。</p>
+<p>%edx = 14,%esi = 0 ,%edi = num1 作为参数执行func4。Func4的返回值%eax=21,否则bomb。比较num2和21，num2=21，否则bomb。</p>
+<p>分析func4：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8738.png"></p>
+<p>要使返回值t=21,传入的num1=x=6。</p>
+<p>所以num1=6,num2=21。</p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入6 21。</p>
+<p>第四关解除。</p>
+<h3 id="phase-5"><a href="#phase-5" class="headerlink" title="phase_5"></a>phase_5</h3><pre class="line-numbers language-none"><code class="language-none">0000000000401096 &lt;phase_5&gt;:
+&nbsp;&nbsp;401096: 48 83 ec 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x18,%rsp //开辟空间
+&nbsp;&nbsp;40109a: 48 8d 4c 24 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x8(%rsp),%rcx//加载地址，将0x8(%rsp)设为num2
+&nbsp;&nbsp;40109f: 48 8d 54 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0xc(%rsp),%rdx//加载地址，将0xc(%rsp)设为num1
+&nbsp;&nbsp;4010a4: be 21 28 40 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x402821,%esi //d d格式,需要输入两个数
+&nbsp;&nbsp;4010a9: b8 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%eax //初始化%eax
+&nbsp;&nbsp;4010ae: e8 7d fb ff ff &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;400c30 &lt;__isoc99_sscanf@plt&gt;
+&nbsp;&nbsp;4010b3: 83 f8 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x1,%eax // 输入个数大于1,否则跳转到爆炸
+&nbsp;&nbsp;4010b6: 7f 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jg &nbsp;&nbsp;&nbsp;&nbsp;4010bd &lt;phase_5+0x27&gt;
+&nbsp;&nbsp;4010b8: e8 0c 05 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;4010bd: 8b 44 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0xc(%rsp),%eax //%eax=num1（结合后面代码来看，num1是第一个取数的下标）
+&nbsp;&nbsp;4010c1: 83 e0 0f &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and &nbsp;&nbsp;&nbsp;$0xf,%eax //取出来的num1的低四位与0xf作比较，若相等，则跳转到爆炸函数，否则，执行下一步，由此可见，num1的低四位不为1111。
+&nbsp;&nbsp;4010c4: 89 44 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%eax,0xc(%rsp)
+&nbsp;&nbsp;4010c8: 83 f8 0f &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0xf,%eax
+&nbsp;&nbsp;4010cb: 74 2c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;4010f9 &lt;phase_5+0x63&gt;
+&nbsp;&nbsp;4010cd: b9 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%ecx // 赋值，%ecx=0,%edx=0,%edx+=1。
+&nbsp;&nbsp;4010d2: ba 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%edx
+&nbsp;&nbsp;4010d7: 83 c2 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x1,%edx //计数器+1
+&nbsp;&nbsp;4010da: 48 98 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cltq &nbsp;&nbsp;
+&nbsp;&nbsp;4010dc: 8b 04 85 c0 25 40 00 mov &nbsp;&nbsp;&nbsp;0x4025c0(,%rax,4),%eax //eax=*(4rax+0x4025c0)，此处以4*eax为步长，推测0x4025c0是一个数组的首地址，rax是上次取的数组里的数
+&nbsp;&nbsp;4010e3: 01 c1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;%eax,%ecx //%ecx存储累加结果
+&nbsp;&nbsp;4010e5: 83 f8 0f &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0xf,%eax //比较15和 数组取出来的数
+&nbsp;&nbsp;4010e8: 75 ed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;4010d7 &lt;phase_5+0x41&gt; //不相等继续循环,所以最后取出来的数是15
+&nbsp;&nbsp;4010ea: 89 44 24 0c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%eax,0xc(%rsp)
+&nbsp;&nbsp;4010ee: 83 fa 07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x7,%edx //与7比较，不相等就爆炸。所以取七个数，最后一个数是15
+&nbsp;&nbsp;4010f1: 75 06 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;4010f9 &lt;phase_5+0x63&gt;
+&nbsp;&nbsp;4010f3: 3b 4c 24 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;0x8(%rsp),%ecx //累计结果和num2比较，不相等就爆炸
+&nbsp;&nbsp;4010f7: 74 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;4010fe &lt;phase_5+0x68&gt;
+&nbsp;&nbsp;4010f9: e8 cb 04 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;4010fe: 48 83 c4 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x18,%rsp
+&nbsp;&nbsp;401102: c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retq &nbsp;&nbsp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8739.png"></p>
+<p>同样需要输入两个数，输入的参数个数必须大于1个。%rdx=num1,%rcx=num2</p>
+<p>把取出来的num1的低四位与0xf作比较，若相等，则跳转到爆炸函数，否则，执行下一步，由此可见，参数1的低四位不为1111。</p>
+<p>赋值，%ecx=0,%edx=0,%edx+=1。</p>
+<p>而后执行操作得到eax=<em>(4rax+0x4025c0)，此处以4</em>eax为步长，推测0x4025c0是一个数组的首地址，接着把存储在地址*(0x4025c0+4eax)处的值与%ecx相加存储在%ecx中。</p>
+<p>接着把%eax存储的值（应该是数组的序号）与0xf也就是15作比较，若不等于，则跳到&lt;phase_5+65&gt;处继续循环，否则，接着执行后续代码，由此可知，&lt;phase_5+65&gt;处开始应该是一个循环，每次循环取出数组中的一个值累加存储到%ecx中，最后一次取出的值应该是15，接着把%edx与7作比较，不相等则爆炸，反之，执行后续代码。</p>
+<p>我们打印出数组连续的16位：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8740.png"></p>
+<p>所以我们最后一个取到的数是15，一共取7个数。初次%rax=num1，取数组里面的A[num1],第二次取A[ %rax ],此时%rax = %eax =A[num1]。</p>
+<p>数组序列：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8758.png"></p>
+<p>取数顺序：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8759.png"></p>
+<p>逆推，取七个数，也就是A[num1] = 0,num1=8。%ecx = 0+10+1+2+14+6+15=48</p>
+<p>而num2=%ecx=48,否则爆炸。</p>
+<p>所以num1 = 8，num2=48。</p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入8 48。</p>
+<p>第五关解除。</p>
+<h3 id="phase-6"><a href="#phase-6" class="headerlink" title="phase_6"></a>phase_6</h3><pre class="line-numbers language-none"><code class="language-none">0000000000401103 &lt;phase_6&gt;:
+&nbsp;&nbsp;401103: 41 55 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%r13
+&nbsp;&nbsp;401105: 41 54 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%r12
+&nbsp;&nbsp;401107: 55 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%rbp
+&nbsp;&nbsp;401108: 53 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; push &nbsp;&nbsp;%rbx
+&nbsp;&nbsp;401109: 48 83 ec 58 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x58,%rsp&nbsp;// 开辟空间
+&nbsp;&nbsp;40110d: 48 8d 74 24 30 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x30(%rsp),%rsi
+&nbsp;&nbsp;401112: e8 e8 04 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015ff &lt;read_six_numbers&gt;&nbsp;// 读取输入的六个数
+&nbsp;&nbsp;401117: 4c 8d 6c 24 30 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x30(%rsp),%r13
+&nbsp;&nbsp;40111c: 41 bc 00 00 00 00 &nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%r12d
+&nbsp;&nbsp;401122: 4c 89 ed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%r13,%rbp &nbsp;//初始 %rbp=%r13=%rsp
+&nbsp;&nbsp;401125: 41 8b 45 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0x0(%r13),%eax&nbsp;//%eax=num[i]
+&nbsp;&nbsp;401129: 83 e8 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x1,%eax
+&nbsp;&nbsp;40112c: 83 f8 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x5,%eax
+&nbsp;&nbsp;40112f: 76 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jbe &nbsp;&nbsp;&nbsp;401136 &lt;phase_6+0x33&gt;//无符号数比较，说明num为无符号数，即大于等于0，401129~40112f&nbsp;num[i]-1&lt;=5,所以num[i]&lt;=6
+&nbsp;&nbsp;401131: e8 93 04 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;401136: 41 83 c4 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x1,%r12d
+&nbsp;&nbsp;40113a: 41 83 fc 06 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x6,%r12d
+&nbsp;&nbsp;40113e: 75 07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;401147 &lt;phase_6+0x44&gt;
+&nbsp;&nbsp;401140: be 00 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x0,%esi
+&nbsp;&nbsp;401145: eb 42 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;401189 &lt;phase_6+0x86&gt;
+&nbsp;&nbsp;401147: 44 89 e3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%r12d,%ebx&nbsp;//401136~401147 退出大循环的条件:6个数字全部遍历到
+&nbsp;&nbsp;40114a: 48 63 c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; movslq %ebx,%rax
+&nbsp;&nbsp;40114d: 8b 44 84 30 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0x30(%rsp,%rax,4),%eax
+&nbsp;&nbsp;401151: 39 45 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%eax,0x0(%rbp)
+&nbsp;&nbsp;401154: 75 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;40115b &lt;phase_6+0x58&gt;
+&nbsp;&nbsp;401156: e8 6e 04 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;40115b: 83 c3 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x1,%ebx
+&nbsp;&nbsp;40115e: 83 fb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x5,%ebx
+&nbsp;&nbsp;401161: 7e e7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jle &nbsp;&nbsp;&nbsp;40114a &lt;phase_6+0x47&gt;//小循环，判断数组元素是否相等
+&nbsp;&nbsp;401163: 49 83 c5 04 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x4,%r13
+&nbsp;&nbsp;401167: eb b9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;401122 &lt;phase_6+0x1f&gt;//大循环，每次将%r13加4，之后回到401122,%r13赋给了%eax<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这部分伪代码：两层循环，说明输入的每个数字要求不大于6，且互不相同</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8760.png"></p>
+<pre class="line-numbers language-none"><code class="language-none">&nbsp;&nbsp;401169: 48 8b 52 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0x8(%rdx),%rdx
+&nbsp;&nbsp;40116d: 83 c0 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x1,%eax
+&nbsp;&nbsp;401170: 39 c8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%ecx,%eax
+&nbsp;&nbsp;401172: 75 f5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;401169 &lt;phase_6+0x66&gt;
+&nbsp;&nbsp;401174: eb 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;40117b &lt;phase_6+0x78&gt;
+&nbsp;&nbsp;401176: ba f0 42 60 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x6042f0,%edx
+&nbsp;&nbsp;40117b: 48 89 14 74 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%rdx,(%rsp,%rsi,2)
+&nbsp;&nbsp;40117f: 48 83 c6 04 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x4,%rsi
+&nbsp;&nbsp;401183: 48 83 fe 18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x18,%rsi
+&nbsp;&nbsp;401187: 74 15 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;40119e &lt;phase_6+0x9b&gt;
+&nbsp;&nbsp;401189: 8b 4c 34 30 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0x30(%rsp,%rsi,1),%ecx
+&nbsp;&nbsp;40118d: 83 f9 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;$0x1,%ecx
+&nbsp;&nbsp;401190: 7e e4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jle &nbsp;&nbsp;&nbsp;401176 &lt;phase_6+0x73&gt;
+&nbsp;&nbsp;401192: b8 01 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x1,%eax
+&nbsp;&nbsp;401197: ba f0 42 60 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x6042f0,%edx
+&nbsp;&nbsp;40119c: eb cb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;401169 &lt;phase_6+0x66&gt;
+&nbsp;&nbsp;40119e: 48 8b 1c 24 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;(%rsp),%rbx
+&nbsp;&nbsp;4011a2: 48 8d 44 24 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x8(%rsp),%rax
+&nbsp;&nbsp;4011a7: 48 8d 74 24 30 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lea &nbsp;&nbsp;&nbsp;0x30(%rsp),%rsi
+&nbsp;&nbsp;4011ac: 48 89 d9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%rbx,%rcx
+&nbsp;&nbsp;4011af: 48 8b 10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;(%rax),%rdx
+&nbsp;&nbsp;4011b2: 48 89 51 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%rdx,0x8(%rcx)
+&nbsp;&nbsp;4011b6: 48 83 c0 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x8,%rax
+&nbsp;&nbsp;4011ba: 48 39 f0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%rsi,%rax
+&nbsp;&nbsp;4011bd: 74 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; je &nbsp;&nbsp;&nbsp;&nbsp;4011c4 &lt;phase_6+0xc1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这部分伪代码：</p>
+<p>如果把链表中编号为id的节点地址叫做L[id]，那么这一部分干的事情就是P[i] = L[num[i]]</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8741.png"></p>
+<pre class="line-numbers language-none"><code class="language-none">&nbsp;&nbsp;4011bf: 48 89 d1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;%rdx,%rcx
+&nbsp;&nbsp;4011c2: eb eb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jmp &nbsp;&nbsp;&nbsp;4011af &lt;phase_6+0xac&gt;
+&nbsp;&nbsp;4011c4: 48 c7 42 08 00 00 00 movq &nbsp;&nbsp;$0x0,0x8(%rdx)
+&nbsp;&nbsp;4011cb: 00
+&nbsp;&nbsp;4011cc: bd 05 00 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;$0x5,%ebp
+&nbsp;&nbsp;4011d1: 48 8b 43 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0x8(%rbx),%rax
+&nbsp;&nbsp;4011d5: 8b 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;(%rax),%eax
+&nbsp;&nbsp;4011d7: 39 03 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp &nbsp;&nbsp;&nbsp;%eax,(%rbx)
+&nbsp;&nbsp;4011d9: 7e 05 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jle &nbsp;&nbsp;&nbsp;4011e0 &lt;phase_6+0xdd&gt;
+&nbsp;&nbsp;4011db: e8 e9 03 00 00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callq &nbsp;4015c9 &lt;explode_bomb&gt;
+&nbsp;&nbsp;4011e0: 48 8b 5b 08 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov &nbsp;&nbsp;&nbsp;0x8(%rbx),%rbx
+&nbsp;&nbsp;4011e4: 83 ed 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub &nbsp;&nbsp;&nbsp;$0x1,%ebp
+&nbsp;&nbsp;4011e7: 75 e8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jne &nbsp;&nbsp;&nbsp;4011d1 &lt;phase_6+0xce&gt;
+&nbsp;&nbsp;4011e9: 48 83 c4 58 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add &nbsp;&nbsp;&nbsp;$0x58,%rsp
+&nbsp;&nbsp;4011ed: 5b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%rbx
+&nbsp;&nbsp;4011ee: 5d &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%rbp
+&nbsp;&nbsp;4011ef: 41 5c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%r12
+&nbsp;&nbsp;4011f1: 41 5d &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pop &nbsp;&nbsp;&nbsp;%r13
+&nbsp;&nbsp;4011f3: c3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retq &nbsp;&nbsp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这部分伪代码：是按照L[num[0]]-&gt;L[num[1]]-&gt;…-&gt;L[num[5]]的顺序重排链表</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8742.png"></p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8743.png"></p>
+<p>发现它访问了node前4字节的值，就叫它val</p>
+<p>这一部分，所做的事情是检查是否满足P[0]-&gt;val &gt;&nbsp;… &gt;&nbsp;P[5]-&gt;val</p>
+<p>分析结构体：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8744.png"></p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8745.png"></p>
+<p>偏移4字节为结点编号，偏移8字节为下一个结构体地址，所以是链表。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">node</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> value<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> number<span class="token punctuation">;</span>
+node<span class="token operator">*</span> next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后打印各个结点的val值,排序</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8746.png"></p>
+<p>因此得出序列：1 5 6 4 3 2</p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入1 5 6 4 3 2。</p>
+<p>第六关解除。</p>
+<h3 id="secret-phase"><a href="#secret-phase" class="headerlink" title="secret_phase"></a>secret_phase</h3><p>入口寻找</p>
+<p>在第六关汇编代码下面还有一个fun7函数以及secret_phase部分，这很明显就说明了有隐藏关卡。我们观察给出的c语言代码可以发现每个关卡函数里面都有一个函数调用 phase_defused()。</p>
+<p>找到该函数汇编代码：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8747.png"></p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8748.png"></p>
+<p>分析可知当输入两个数字和一个字符串的组合时就调用了隐藏关卡，第四关是输入两个数字的，所以我们需要在后面再输入某个字符串，隐藏关卡是在结束第六关才会出现的，所以字符的密码就隐藏在第六关，设置断点，查看需要传入的字符串，是 DrEvil，在第四关输入两个数字之后输入DrEvil，结束第六关之后，成功跳出隐藏关卡。</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8749.png"></p>
+<p>分析汇编代码：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8750.png"></p>
+<p>输入并读取一行字符，将字符转换为长整型，并规定了长整型的大小。</p>
+<p>调用fun7函数，并且返回值必须是5.</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8751.png"></p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8752.png"></p>
+<p>这是一个递归调用函数，其结构类似于二叉树，其中首次传进去的这一个地址0x 604110就是根节点地址。</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8753.png"></p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8754.png"></p>
+<p>查看树结点，完整二叉树：</p>
+<p><img src="/images/image_CSAPP%E7%82%B8%E5%BC%B9%E5%AE%9E%E9%AA%8C/%E5%9B%BE%E7%89%8755.png"></p>
+<p>要得到fun7的返回值为5，需要右左右。（（（2<em>0+1）</em>2）*2）+1=5</p>
+<p>所以是47。</p>
+<p>接下来，去设置断点去检测这个答案是否正确，我们kill当前程序的调试。再在explode_bomb处设置断点break explode_bomb，然后run开始运行，按照提示输入47。</p>
+<p>隐藏关解除。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Aiaa</a>
+                </span>
+            </div>
+<!--             <div class="reprint__type"> -->
+<!--                 <span class="reprint-meta" style="font-weight: bold;"> -->
+<!--                     <i class="fas fa-link"> -->
+<!--                         文章链接: -->
+<!--                     </i> -->
+<!--                 </span> -->
+<!--                 <span class="reprint-info"> -->
+<!--                     <a href="http://ailiaa.github.io/2022/10/26/csapp-bomblab/">http://ailiaa.github.io/2022/10/26/csapp-bomblab/</a> -->
+<!--                 </span> -->
+<!--             </div> -->
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Aiaa</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/CSAPP/">
+                                    <span class="chip bg-color">CSAPP</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/10/27/java-ji-chu-2-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Java基础2(补档)">
+                        
+                        <span class="card-title">Java基础2(补档)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/10/25/java-ji-chu-1-bu-dang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Java基础1(补档)">
+                        
+                        <span class="card-title">Java基础1(补档)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 艾AA<br />'
+            + '文章作者: Aiaa<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <span id="year">2022</span>
+            <a href="/about" target="_blank">Aiaa</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">183.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2022";
+                    var startMonth = "09";
+                    var startDate = "10";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/AiLiaa" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1067550651@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1067550651" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1067550651" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+
+</body>
+
+</html>

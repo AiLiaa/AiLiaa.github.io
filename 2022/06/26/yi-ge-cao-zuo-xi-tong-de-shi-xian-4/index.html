@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="一个操作系统的实现（4）, 艾AA">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>一个操作系统的实现（4） | 艾AA</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+    <script>
+    <!--浏览器搞笑标题-->
+         var OriginTitle = document.title;
+         var titleTime;
+         document.addEventListener('visibilitychange', function () {
+             if (document.hidden) {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヽ(●-`Д′-)ノ你要玩捉迷藏嘛';
+                 clearTimeout(titleTime);
+             }
+             else {
+                 $('[rel="icon"]').attr("../source/favicon.png");
+                 document.title = 'ヾ(???3)ノ好哦！' + OriginTitle;
+                 titleTime = setTimeout(function () {
+                     document.title = OriginTitle;
+                 }, 2000);
+             }
+         });
+    </script>
+
+<meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="艾AA" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">艾AA</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">艾AA</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">一个操作系统的实现（4）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">操作系统</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-06-26
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-09-26
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.1k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="走进保护模式"><a href="#走进保护模式" class="headerlink" title="走进保护模式"></a>走进保护模式</h4><h4 id="引导扇区突破512个字节的限制"><a href="#引导扇区突破512个字节的限制" class="headerlink" title="引导扇区突破512个字节的限制"></a>引导扇区突破512个字节的限制</h4><p>代码逻辑：</p>
+<pre class="line-numbers language-none"><code class="language-none">jmp short LABEL_START ; Start to boot.
+	nop ; 这个 nop 不可少
+	; 下面是 FAT12 磁盘的头
+	BS_OEMName DB 'ForrestY' ; OEM String, 必须 8 个字节
+	BPB_BytsPerSec DW 512 ; 每扇区字节数
+	BPB_SecPerClus DB 1 ; 每簇多少扇区
+	BPB_RsvdSecCnt DW 1 ; Boot 记录占用多少扇区
+	BPB_NumFATs DB 2 ; 共有多少 FAT 表
+	BPB_RootEntCnt DW 224 ; 根目录文件数最大值
+	BPB_TotSec16 DW 2880 ; 逻辑扇区总数
+	BPB_Media DB 0xF0 ; 媒体描述符
+	BPB_FATSz16 DW 9 ; 每FAT扇区数
+	BPB_SecPerTrk DW 18 ; 每磁道扇区数
+	BPB_NumHeads DW 2 ; 磁头数(面数)
+	BPB_HiddSec DD 0 ; 隐藏扇区数
+	BPB_TotSec32 DD 0 ; wTotalSectorCount为0时这个值记录扇区数
+	BS_DrvNum DB 0 ; 中断 13 的驱动器号
+	BS_Reserved1 DB 0 ; 未使用
+	BS_BootSig DB 29h ; 扩展引导标记 (29h)
+	BS_VolID DD 0 ; 卷序列号
+	BS_VolLab DB 'OrangeS0.02'; 卷标, 必须 11 个字节
+	BS_FileSysType DB 'FAT12 &nbsp;&nbsp;' ; 文件系统类型, 必须 8个字节<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">LABEL_START:
+	mov ax, cs
+	mov ds, ax
+	mov es, ax
+	Call DispStr ; 调用显示字符串例程
+	jmp $ ; 无限循环
+DispStr:
+	mov ax, BootMessage
+	mov bp, ax ; ES:BP = 串地址
+	mov cx, 16 ; CX = 串长度
+	mov ax, 01301h ; AH = 13, &nbsp;AL = 01h
+	mov bx, 000ch ; 页号为0(BH = 0) 黑底红字(BL = 0Ch,高亮)
+	mov dl, 0
+	int 10h ; int 10h
+	ret
+BootMessage: db "Hello, OS world!"
+times 510-($-$$) db 0 ; 填充剩下的空间，使生成的二进制代码恰好为512字节
+dw 0xaa55 ; 结束标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>指令调试：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nasm boot.asm <span class="token parameter variable">-o</span> boot.bin
+<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>boot.bin <span class="token assign-left variable">if</span><span class="token operator">=</span>a.img <span class="token assign-left variable">bs</span><span class="token operator">=</span><span class="token number">512</span> <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">conv</span><span class="token operator">=</span>notrunc
+bochs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/images/image_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E7%8E%B0/%E5%9B%BE%E7%89%8715.png"></p>
+<p>引导扇区突破512个字节的限制分析：</p>
+<p>一个操作系统从开机到开始运行，大致经历“引导→加载内核入内存→跳入保护模式→开始执行内核”这样一个过程。也就是说，在内核开始执行之前不但要加载内核，而且还有准备保护模式等一系列工作，如果全都交给引导扇区来做，512字节很可能是不够用的，所以，不妨把这个过程交给另外的模块来完成，我们把这个模块叫做Loader。引导扇区负责把Loader加载入内存并且把控制权交给它，其他工作放心地交给Loader来做，因为它没有512字节的限制,将会灵活得多。</p>
+<p>在这里，为了操作方便，可以把软盘做成FAT12格式，这样对 Loader以及今后的Kernel(内核)的操作将会非常简单易行。</p>
+<p>FAT12格式：</p>
+<p>FAT12是DOS时代就开始使用的文件系统(File System)，直到现在仍然在软盘上使用。几乎所有的文件系统都会把磁盘划分为若干层次以方便组织和管理，这些层次包括:</p>
+<ul>
+<li>扇区(Sector):磁盘上的最小数据单元。</li>
+<li>簇(Cluster):一个或多个扇区。</li>
+<li>分区(Partition):通常指整个文件系统。</li>
+</ul>
+<h4 id="将工作分给loader，加载loader进入内存并运行"><a href="#将工作分给loader，加载loader进入内存并运行" class="headerlink" title="将工作分给loader，加载loader进入内存并运行"></a>将工作分给loader，加载loader进入内存并运行</h4><p>最简单的Loader</p>
+<pre class="line-numbers language-none"><code class="language-none">org 0100h
+mov ax, 0B800h
+mov gs, ax
+mov ah, 0Fh ; 0000: 黑底 &nbsp;&nbsp;&nbsp;1111: 白字
+mov al, 'L'
+mov [gs:((80 * 0 + 39) * 2)], ax ; 屏幕第 0 行, 第 39 列。
+jmp $ ; 到此停住<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码可以被编译成.COM文件直接在DOS下执行，效果是在屏幕第一行中央出现字符“L”，然后进入死循环。</p>
+<p>编译：</p>
+<pre class="line-numbers language-none"><code class="language-none">nasm loader.asm -o loader.bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>需要注意的是，虽然编译出的二进制代码加载到内存的任意位置都可以正确执行，但我们要扩展它，为了将来的执行不会出现问题，要保证把它放入某个段内偏移0x100的位置。</p>
+<p>代码及分析：</p>
+<pre class="line-numbers language-none"><code class="language-none">	;调用中断int 13h，实现软驱复位
+	xor ah, ah
+	xor dl, dl
+	int 13h
+	;下面在A盘的根目录中寻找LOADER.BIN
+	;wSectorNo表示要读取的扇区号，SectorNoOfRootDirectory
+	;表示根目录区的开始扇区号=19
+	mov word[wSectorNo], SectorNoOfRootDirectory
+LABEL_SEARCH_IN_ROOT_DIR_BEGIN:
+	;wRootDirSizeForLoop=RootDirSectors，表示根目录占用的扇区数，即表示要读取的扇区数；也就是
+	;最外部循环中的控制变量(相当于i)。
+	;判断根目录区所有扇区是不是已经读取完毕，如果读完表示没有找到LOADER.BIN，
+	;跳入到LABEL_NO_LOADERBIN，否则，减1。
+	cmp word[wRootDirSizeForLoop], 0
+	jz LABEL_NO_LOADERBIN
+	dec word[wRootDirSizeForLoop]
+	;为ReadSector函数准备参数，从第ax个Sector开始读，将cl个Sector读入es:bx中
+	mov ax, BaseOfLoader
+	mov es, ax ;es&lt;-BaseOfLoader
+	mov bx, OffsetOfLoader ;bx&lt;-OffsetOfLoader,于是es:bx=BaseOfLoader:OffsetOfLoader
+	mov ax, [wSectorNo] ;ax&lt;-Root Directory中的某Sector号，表示要读取的扇区号
+	mov cl, 1 ;cl表示要读取扇区个数=1
+	call ReadSector
+	;调用ReadSector函数之后，es:bx将存储该扇区数据。
+	mov si, LoaderFileName ;ds:si-&gt;"LOADER &nbsp;BIN"
+	mov di, OffsetOfLoader ;es:di-&gt;BaseOfLoader:OffsetOfLoader=es:bx
+	;即es:di指向存储的该扇区数据
+	cld
+	;一个扇区是512个字节，一个根目录项占32个字节，故512/32=16，因此需要比较16个根目录项的文件名，
+	;故赋值dx=16，由dx来控制循环次数
+	mov dx, 10h
+LABEL_SEARCH_FOR_LOADERBIN:
+	;判断dx是否为0，0意味着这个扇区内的所有根目录项进行比较完毕，然后跳入到下一个扇区，继续进行比较，
+	;dx=0,则跳入LABEL_GOTO_NEXT_SECTOR_IN_ROOT_DIR；否则，dx--
+	cmp dx, 0
+	jz LABEL_GOTO_NEXT_SECTOR_IN_ROOT_DIR
+	dec dx
+	;一个根目录项的文件名占用11个字节，故必须对其每个字节与"LOADER &nbsp;BIN"一一对比
+	;故赋值cx=11，由cx来控制循环次数
+	mov cx, 11
+LABEL_CMP_FILENAME:
+	cmp cx, 0
+	jz LABEL_FILENAME_FOUND ;如果cx=0,意味着11个字符都相等，表示找到，跳转到LABEL_FILENAME_FOUND
+	dec cx ;否则，cx--
+	lodsb ;ds:si-&gt;al,ds:si指向的是字符串"LOADER &nbsp;BIN"
+	cmp al, byte[es:di] ;进行一个字符的比较，如果相等，则比较下一个字符，
+	jz LABEL_GO_ON ;跳入到LABEL_GO_ON
+	jmp LABEL_DIFFERENT ;只要发现有一个不相等的字符就表明本Directory Entry不是我们要
+	;找的LOADER.BIN，跳转到LABEL_DIFFERENT，进如下一个Directory Entry比较。
+	LABEL_GO_ON:
+	inc di ;将di++，进行一个字符的比较。
+	jmp LABEL_CMP_FILENAME ;跳转到LABEL_CMP_FILENAME，继续进行文件名比较。
+	LABEL_DIFFERENT:
+	;di&amp;=E0是为了让它指向本条目开头，di初始化为某个条目开头，
+	;在比较过程中，会将它不断增1，当失败之后，必须进行重新初始化
+	;因为一个条目占用32个字节，故and di,0FFE0h &nbsp;&nbsp;add di, 20h
+	;之后，di就指向了下一个条目
+	and di, 0FFE0h
+	add di, 20h
+	;重新初始化si,使其指向"LOADER &nbsp;BIN"的开始位置
+	mov si, LoaderFileName
+	jmp LABEL_SEARCH_FOR_LOADERBIN ;跳转到LABEL_SEARCH_FOR_LOADERBIN
+	LABEL_GOTO_NEXT_SECTOR_IN_ROOT_DIR:
+	add word[wSectorNo], 1 ;将要读取的扇区号+1，进行下一个扇区的比较
+	jmp LABEL_SEARCH_IN_ROOT_DIR_BEGIN ;跳转到LABEL_SEARCH_IN_ROOT_DIR_BEGIN，开始一个扇区的比较
+	;如果最后没有找到"LOADER &nbsp;&nbsp;BIN"，则显示“NO LOADER”字符串来表示。
+LABEL_NO_LOADERBIN:
+	mov dh, 2 ;"NO LOADER"
+	call DispStr ;显示字符串
+	%ifdef _BOOT_DEBUG_
+	mov dh, 2 ;"NO LOADER"
+	call DispStr ;显示字符串
+	mov ax, 4C00h
+	int 21h ;没有找到LOADER.BIN，返回到DOS
+	%else
+	jmp $ ;没有找到LOADER.BIN，死循环在这里
+	%endif
+	;如果找到"LOADER &nbsp;&nbsp;BIN"，则跳转到LABEL_FILENAME_FOUNT，然后进行第二步骤，从
+	;Directory Entry中读取文件在数据区的开始簇号。
+LABEL_FILENAME_FOUND:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>代码流程图：</p>
+<p><img src="/images/image_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E7%8E%B0/%E5%9B%BE%E7%89%8716.png"></p>
+<p>现在已经有了Loader.bin的起始扇区号，我们需要用这个扇区号来做两件事情：一件是把起始扇区装入内存，另一件则是通过它找到FAT中的项，从而找到Loader占用的其余所有扇区。</p>
+<p>然后我们就根据扇区号去FAT表中找到相应的项。要写一个函数GetFATEntry，函数的输入就是扇区号(ax)，输出则是其对应的FAT项的值(ax)。</p>
+<p>我们知道了扇区号x，然后我们去FAT1中寻找x所对应的FATEntry，我们已经知道一个FAT项占1.5个字节。所以我们用x * 3/2=y………z，y为商（偏移量)（字节），相对于FAT1的初始位置的偏移量；Z为余数（0或者1），是判断FATEntry是奇数还是偶数，0表示偶数，1表示奇数。然后我们让y/512=m………n，m为商，n为余数，此时m为FATEntry所在的相对扇区，n为在此扇区内的偏移量（字节）。因为FAT1表前面还有1个引导扇区，所以FATEntry所在的实际扇区号为m+1。然后读取m+1和m+2两个扇区，然后在偏移n个字节处，取出FATEntry，相当于读取两个字节。此时再利用z，如果z为0的话，此FAT项为前一个字节和后一个字节的后4位，如果z为1的话，此FATEntry取前一个字节的前4位和后一个字节。</p>
+<p>实现GetFATEntry函数</p>
+<pre class="line-numbers language-none"><code class="language-none">;-----------------------------------------------------
+;函数名：GetFATEntry
+;-----------------------------------------------------
+;作用： 找到序号为ax的Sector在FAT中的条目，结果放在ax中，需要注意的是，中间需要读FAT的扇区es:bx处，
+; 所以函数一开始保存了es和bx
+GetFATEntry:
+	push es
+	push bx
+	push ax
+	;在BaseOfLoader后面留出4K空间用于存放FAT
+	mov ax, BaseOfLoader
+	sub ax,0100h
+	mov es, ax ;此时es-&gt; (BaseOfLoader - 100h)
+	pop ax ;ax存储的是要读取的扇区号
+	mov byte[bOdd], 0
+	;ax是要读取的扇区号，如何获得该扇区号在FAT1中的FATEntry
+	;因为每个FATEntry占有1个半字节，所以计算ax*3/2，找到该FATEntry所在FAT1中的偏移量
+	mov bx, 3
+	mul bx
+	mov bx, 2
+	div bx
+	;ax*3/2=ax...dx,商为ax表示该FATEntry在FAT1中的偏移量，dx的值为(0或者1)，
+	;0表示该FATEntry为偶数，1表示该FATEntry为奇数，
+	cmp dx, 0
+	jz LABEL_EVEN
+	;我们使用byte[bOdd]来保存dx的值，也就是该FATEntry是奇数项还是偶数项。
+	mov byte[bOdd], 1
+LABEL_EVEN:
+	xor dx, dx
+	;此时ax中保存着FATEntry在FAT1中的偏移量，下面来计算FATEntry
+	;在哪个个扇区中(FAT1占用9个扇区)。
+	;ax/BPB_BytsPerSec=ax/512=ax...dx，商ax存储着该FATEntry所在FAT1表的第几个扇区，
+	;余数dx保存着该FATEntry在该扇区内的偏移量。
+	mov bx, [BPB_BytsPerSec]
+	div bx
+	push dx ;将dx存储在堆栈中.
+	mov bx, 0 ;es:bx=(BaseOfLoader-100):00=(BaseOfLoader-100h)*10h
+	;我们知道ax是FATEntry所在FAT1中的相对扇区，而FATEntry所在的实际扇区，需要加上
+	;FAT1表的开始扇区号，即加1，之后ax就是FATEntry所在的实际扇区
+	add ax, SectorNoOfFAT1
+	mov cl, 2
+	;读取FATEntry所在的扇区，一次读2个，避免在边界发生错误，
+	;因为一个FATEntry可能跨越两个扇区
+	call ReadSector
+	;从堆栈中弹出dx，FATEntry所在扇区的偏移量，将其与bx相加，此时es:bx指向的是该FATEntry所占用
+	;的两个字节空间
+	pop dx
+	add bx, dx
+	;读取该FATEntry
+	mov ax, [es:bx]
+	;下面是对bOdd进行判断，如果其为0，则表示FATEntry为偶数，此时需要取byte1和byte2的后4位，
+	;由于在80x86下，从内存中读取数据之后，byte2在前，byte1在后。
+	;所以当FATEntry为偶数时，需要将ax&amp;0FFF，将byte2的前4位置0.
+	;反之，如果bOdd为1，则表示FATEntry为奇数，此时需要取得byte1中的前4位和byte2.
+	;所以，需要将ax右移4位，将byte1的后四位移除。
+	cmp byte[bOdd], 1
+	jnz LABEL_EVEN_2
+	shr ax, 4
+LABEL_EVEN_2:
+	and ax, 0FFFh
+	;此时ax存储的是FATEntry的值
+	LABEL_GET_FAT_ENTRY_OK:
+	pop bx
+	pop es
+	ret<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面开始加载Loader.bin进入内存。</p>
+<p>首先从根目录区中的Loader.bin的条目，获取文件的起始扇区号，然后加上BPB_RsrvSecCnt+BPB_FATSz16<em>2-2+RootDirSectors=1+（9</em>2）+14-2=31,，其中DeltaSectorNo=BPB_RsrvSecCnt+BPB_FATSz16 * 2-2=17。得到的结果才是文件的实际的起始扇区。获得起始扇区后，我们就可以调用ReadSector来读取扇区了。然后从FAT1表中获取FATEntry的值，判断是否为0FFFh，如果是，结束加载；如果不为0FFFh，意味着该文件没有读取完成，需要读取下一个扇区，此时的FATEntry的值，就是下一个扇区号，再将其转换为实际扇区号，再进行读取。</p>
+<pre class="line-numbers language-none"><code class="language-none">LABEL_FILENAME_FOUND: ;找到了LOADER.BIN后便来到这里继续
+	mov ax, RootDirSectors ;根目录区所占用扇区数=14
+	and di, 0FFE0h ;di-&gt;当前Directory Entry的开始位置
+	add di, 01Ah ;di-&gt;此条目对应的开始簇号，DIR_FstClus
+	mov cx, word[es:di] ;将开始簇号存储在寄存器cx中
+	push cx ;将cx入栈
+	;实现cx+RootDirSectors+DeltaSectorNo之后，此时cx保存着文件的实际开始扇区号，
+	;即数据区内的扇区
+	add cx, ax
+	add cx, DeltaSectorNo
+	mov ax, BaseOfLoader
+	mov es, ax
+	mov bx, OffsetOfLoader ;es:bx=BaseOfLoader:OffsetOfLoader
+	mov ax, cx ;ax表示要读取的扇区号
+LABEL_GOON_LOADING_FILE:
+	push ax
+	push bx
+	mov ah, 0Eh
+	mov al, '.'
+	mov bl, 0Fh
+	int 10h
+	pop bx
+	pop ax
+	;每读一个扇区就在”Booting &nbsp;&nbsp;“后面打一个点，形成这样的效果:Booting......
+	;继续为ReadSector函数的参数做准备，cl=1，表示要读取一个扇区
+	mov cl, 1
+	call ReadSector
+	pop ax ;读完一个扇区之后，然后重新读取此Sector在FAT中的序号
+	call GetFATEntry
+	cmp ax, 0FFFh
+	jz LABEL_FILE_LOADED
+	;如果读取的FAT值为FFF，表示该扇区为该文件的最后一个扇区，
+	;因此结束加载，也就是加载成功
+	;如果读取的FAT表中的值不是FFF，则表示还有扇区，故保存下一个扇区序号
+	push ax
+	mov dx, RootDirSectors
+	add ax, dx
+	add ax, DeltaSectorNo
+	add bx, [BPB_BytsPerSec]
+	;为call ReadSector的参数做准备，es:bx表示要缓存的地址，
+	;ax表示要读取的扇区号=DirEntry中的开始Sector号+根目录占用Sector数目+DeltaSectorNo
+	;进入下一次循环。
+	jmp LABEL_GOON_LOADING_FILE
+LABEL_FILE_LOADED:
+	mov dh, 1 ;"Ready."
+	call DispStr ;显示字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行结果：</p>
+<p><img src="/images/image_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E7%8E%B0/%E5%9B%BE%E7%89%8717.png"></p>
+<p><img src="/images/image_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E7%8E%B0/%E5%9B%BE%E7%89%8718.png"></p>
+<h4 id="将控制权交给loader"><a href="#将控制权交给loader" class="headerlink" title="将控制权交给loader"></a>将控制权交给loader</h4><p>关键代码及分析</p>
+<pre class="line-numbers language-none"><code class="language-none">`SectorNoOfFAT1 equ 1 ; FAT1 的第一个扇区号 = BPB_RsvdSecCnt
+...
+;---------------------------------------------------------------------------
+; 函数名: GetFATEntry
+;---------------------------------------------------------------------------
+;作用:
+;找到序号为ax的 Sector 在 FAT 中的条目, 结果放在 ax 中
+;需要注意的是,中间需要读FAT的扇区到es:bx 处,所以函数一开始保存了es和bx
+GetFATEntry:
+	push es
+	push bx
+	push ax
+	mov ax, BaseOfLoader; `.
+	sub ax, 0100h ; &nbsp;| 在 BaseOfLoader 后面留出 4K 空间用于存放 FAT
+	mov es, ax ; /
+	pop ax
+	mov byte [bOdd], 0
+	mov bx, 3
+	mul bx ; dx:ax = ax * 3
+	mov bx, 2
+	div bx ; dx:ax / 2 &nbsp;==&gt; &nbsp;ax &lt;- 商, dx &lt;- 余数
+	cmp dx, 0
+	jz LABEL_EVEN
+	mov byte [bOdd], 1
+LABEL_EVEN:;偶数
+	; 现在 ax 中是 FATEntry 在 FAT 中的偏移量,下面来
+	; 计算 FATEntry 在哪个扇区中(FAT占用不止一个扇区)
+	xor dx, dx
+	mov bx, [BPB_BytsPerSec]
+	div bx ; dx:ax / BPB_BytsPerSec
+	&nbsp;&nbsp;&nbsp;; &nbsp;ax &lt;- 商 (FATEntry 所在的扇区相对于 FAT 的扇区号)
+	&nbsp;&nbsp;&nbsp;; &nbsp;dx &lt;- 余数 (FATEntry 在扇区内的偏移)。
+	push dx
+	mov bx, 0 ; bx &lt;- 0 于是, es:bx = (BaseOfLoader - 100):00
+	add ax, SectorNoOfFAT1 ; 此句之后的 ax 就是 FATEntry 所在的扇区号
+	mov cl, 2
+	call ReadSector ; 读取 FATEntry 所在的扇区, 一次读两个, 避免在边界
+	&nbsp;&nbsp;&nbsp;; 发生错误, 因为一个 FATEntry 可能跨越两个扇区
+	pop dx
+	add bx, dx
+	mov ax, [es:bx]
+	cmp byte [bOdd], 1
+	jnz LABEL_EVEN_2
+	shr ax, 4
+LABEL_EVEN_2:
+	and ax, 0FFFh
+	LABEL_GET_FAT_ENRY_OK:
+	pop bx
+	pop es
+	ret`<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>加载Loader</p>
+<pre class="line-numbers language-none"><code class="language-none">LABEL_FILENAME_FOUND: ; 找到 LOADER.BIN 后便来到这里继续
+	mov ax, RootDirSectors
+	and di, 0FFE0h ; di -&gt; 当前条目的开始
+	add di, 01Ah ; di -&gt; 首 Sector
+	mov cx, word [es:di]
+	push cx ; 保存此 Sector 在 FAT 中的序号
+	add cx, ax
+	add cx, DeltaSectorNo ; cl &lt;- LOADER.BIN的起始扇区号(0-based)
+	mov ax, BaseOfLoader
+	mov es, ax ; es &lt;- BaseOfLoader
+	mov bx, OffsetOfLoader ; bx &lt;- OffsetOfLoader
+	mov ax, cx ; ax &lt;- Sector 号
+LABEL_GOON_LOADING_FILE:
+	push ax ; `.
+	push bx ; &nbsp;|
+	mov ah, 0Eh ; &nbsp;| 每读一个扇区就在 "Booting &nbsp;" 后面
+	mov al, '.' ; &nbsp;| 打一个点, 形成这样的效果:
+	mov bl, 0Fh ; &nbsp;| Booting ......
+	int 10h &nbsp;&nbsp;&nbsp;; &nbsp;|
+	pop bx &nbsp;&nbsp;&nbsp;; &nbsp;|
+	pop ax &nbsp;&nbsp;&nbsp;; /
+	mov cl, 1
+	call ReadSector
+	pop ax ; 取出此 Sector 在 FAT 中的序号
+	call GetFATEntry
+	cmp ax, 0FFFh
+	jz LABEL_FILE_LOADED
+	push ax ; 保存 Sector 在 FAT 中的序号
+	mov dx, RootDirSectors
+	add ax, dx
+	add ax, DeltaSectorNo
+	add bx, [BPB_BytsPerSec]
+	jmp LABEL_GOON_LOADING_FILE
+LABEL_FILE_LOADED:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>跳入Loader</p>
+<pre class="line-numbers language-none"><code class="language-none">jmp BaseOfLoader:OffsetOfLoader ; 这一句正式跳转到已加载到内
+; 存中的 LOADER.BIN 的开始处，
+; 开始执行 LOADER.BIN 的代码。
+; Boot Sector 的使命到此结束。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>清屏并显示一个字符串</p>
+<pre class="line-numbers language-none"><code class="language-none">; 清屏
+mov ax, 0600h ; AH = 6, &nbsp;AL = 0h
+mov bx, 0700h ; 黑底白字(BL = 07h)
+mov cx, 0 ; 左上角: (0, 0)
+mov dx, 0184fh ; 右下角: (80, 50)
+int 10h ; int 10h
+mov dh, 0 ; "Booting &nbsp;"
+call DispStr ; 显示字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>跳入Loader之前显示字符串</p>
+<pre class="line-numbers language-none"><code class="language-none">ov dh, 1 ; "Ready."
+call DispStr ; 显示字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>编译调试：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nasm boot.asm <span class="token parameter variable">-o</span> boot.bin
+nasm loader.asm <span class="token parameter variable">-o</span> loader.bin
+<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>boot.bin <span class="token assign-left variable">of</span><span class="token operator">=</span>a.img <span class="token assign-left variable">bs</span><span class="token operator">=</span><span class="token number">512</span> <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">conv</span><span class="token operator">=</span>notrunc
+<span class="token function">sudo</span> <span class="token function">mount</span> <span class="token parameter variable">-o</span> loop a.img /mnt/floppy
+<span class="token function">sudo</span> <span class="token function">cp</span> loader.bin /mnt/floppy <span class="token parameter variable">-v</span>
+<span class="token function">sudo</span> <span class="token function">umount</span> /mnt/floppy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结果：</p>
+<p><img src="/images/image_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E7%8E%B0/%E5%9B%BE%E7%89%8719.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Aiaa</a>
+                </span>
+            </div>
+<!--             <div class="reprint__type"> -->
+<!--                 <span class="reprint-meta" style="font-weight: bold;"> -->
+<!--                     <i class="fas fa-link"> -->
+<!--                         文章链接: -->
+<!--                     </i> -->
+<!--                 </span> -->
+<!--                 <span class="reprint-info"> -->
+<!--                     <a href="http://ailiaa.github.io/2022/06/26/yi-ge-cao-zuo-xi-tong-de-shi-xian-4/">http://ailiaa.github.io/2022/06/26/yi-ge-cao-zuo-xi-tong-de-shi-xian-4/</a> -->
+<!--                 </span> -->
+<!--             </div> -->
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Aiaa</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">操作系统</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/07/02/yi-ge-cao-zuo-xi-tong-de-shi-xian-5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="一个操作系统的实现（5）">
+                        
+                        <span class="card-title">一个操作系统的实现（5）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/24/yi-ge-cao-zuo-xi-tong-de-shi-xian-3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一个操作系统的实现（3）">
+                        
+                        <span class="card-title">一个操作系统的实现（3）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Aiaa
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 艾AA<br />'
+            + '文章作者: Aiaa<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <span id="year">2022</span>
+            <a href="/about" target="_blank">Aiaa</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">183.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2022";
+                    var startMonth = "09";
+                    var startDate = "10";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/AiLiaa" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1067550651@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1067550651" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1067550651" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+
+</body>
+
+</html>
