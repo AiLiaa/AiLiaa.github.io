@@ -344,14 +344,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-09
+                    2023-09-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    4.6k
                 </div>
                 
 
@@ -451,6 +451,21 @@
 <h3 id="删除-更新数据底层原理"><a href="#删除-更新数据底层原理" class="headerlink" title="删除/更新数据底层原理"></a>删除/更新数据底层原理</h3><p>如果是删除操作，commit 的时候会生成一个&nbsp;<code>.del</code>&nbsp;文件，里面将某个 doc 标识为&nbsp;<code>deleted</code>&nbsp;状态，那么搜索的时候根据&nbsp;<code>.del</code>&nbsp;文件就知道这个 doc 是否被删除了。</p>
 <p>如果是更新操作，就是将原来的 doc 标识为&nbsp;<code>deleted</code>&nbsp;状态，然后新写入一条数据。</p>
 <p>buffer 每 refresh 一次，就会产生一个&nbsp;<code>segment file</code>，所以默认情况下是 1 秒钟一个&nbsp;<code>segment file</code>，这样下来&nbsp;<code>segment file</code>&nbsp;会越来越多，此时会定期执行 merge。每次 merge 的时候，会将多个&nbsp;<code>segment file</code>&nbsp;合并成一个，同时这里会将标识为&nbsp;<code>deleted</code>&nbsp;的 doc 给物理删除掉，然后将新的&nbsp;<code>segment file</code>&nbsp;写入磁盘，这里会写一个&nbsp;<code>commit point</code>，标识所有新的&nbsp;<code>segment file</code>，然后打开&nbsp;<code>segment file</code>&nbsp;供搜索使用，同时删除旧的&nbsp;<code>segment file</code>。</p>
+<h3 id="搭建ES集群需要注意的地方"><a href="#搭建ES集群需要注意的地方" class="headerlink" title="搭建ES集群需要注意的地方"></a>搭建ES集群需要注意的地方</h3><ol>
+<li>硬件和网络配置：确保硬件配置满足需求，包括足够的内存、存储空间和处理能力。此外，网络配置应该允许节点之间的通信，并具备足够的带宽和低延迟。</li>
+<li>节点规划和角色分配：根据需求规划集群节点的数量和角色。ES集群通常包括主节点、数据节点和协调节点。主节点负责集群管理，数据节点负责存储和处理数据，协调节点负责请求路由和负载均衡。</li>
+<li>集群名称和节点标识：为集群指定一个唯一的名称，并为每个节点分配一个独特的标识。这样可以确保集群和节点之间的识别和通信。</li>
+<li>数据备份和恢复：配置适当的数据备份策略，包括快照和日志备份。这样可以确保在意外情况下能够快速恢复数据。</li>
+<li>安全设置：保护ES集群的安全性，采取必要的安全措施，如访问控制、身份验证和加密传输。确保只有授权的用户或应用程序可以访问集群。</li>
+<li>监控和日志：配置监控系统以实时监视集群的状态和性能指标。此外，启用日志记录并配置适当的日志级别，以便在需要时进行故障排除和分析。</li>
+<li>高可用性和容错性：为了确保ES集群的高可用性，在集群中设置至少3个主节点，并通过复制和分片将数据分布在多个节点上。这样即使某个节点出现故障，集群仍然可以正常运行。</li>
+</ol>
+<h3 id="ES查询优化"><a href="#ES查询优化" class="headerlink" title="ES查询优化"></a>ES查询优化</h3><ol>
+<li>索引设计：根据实际场景和查询需求设计合适的索引，包括字段类型、分词器、分片数、副本数等参数设置。</li>
+<li>查询语句：查询语句的结构和选项也会影响ES查询性能。避免使用通配符查询、模糊查询或高频率查询，尽可能减少文档匹配和结果排序的负荷。</li>
+<li>聚合查询：使用合适的聚合函数、分组方式和缓存策略来提高查询性能和响应时间。通过修改聚合查询语句或拆分聚合计算可以进一步优化查询性能。</li>
+<li>分片和副本：考虑增加分片数、增加副本数、平衡分片负载和优化路由策略。特别是在高并发或大规模数据场景下，需要采取合适的分片和副本配置来确保查询性能和稳定性。</li>
+</ol>
 <h3 id="Elasticsearch是如何实现Master选举的"><a href="#Elasticsearch是如何实现Master选举的" class="headerlink" title="Elasticsearch是如何实现Master选举的"></a>Elasticsearch是如何实现Master选举的</h3><p>Elasticsearch的选主是ZenDiscovery模块负责的，主要包含Ping（节点之间通过这个RPC来发现彼此）和Unicast（单播模块包含一个主机列表以控制哪些节点需要ping通）这两部分；<br>　<br>对所有可以成为master的节点（node.master: true）根据nodeId字典排序，每次选举每个节点都把自己所知道节点排一次序，然后选出第一个（第0位）节点，暂且认为它是master节点。<br>　<br>如果对某个节点的投票数达到一定的值（n/2+1）并且该节点自己也选举自己，那这个节点就是master。否则重新选举一直到满足上述条件。</p>
 <h3 id="Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办"><a href="#Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办" class="headerlink" title="Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办"></a>Elasticsearch中的节点（比如共20个），其中的10个选了一个master，另外10个选了另一个master，怎么办</h3><p>当集群master候选数量不小于3个时，可以通过设置最少投票通过数量，超过所有候选节点一半以上来解决脑裂问题；  </p>
 <p>当候选数量为两个时，只能修改为唯一的一个master候选，其他作为data节点，避免脑裂问题</p>
@@ -1009,7 +1024,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">156.5k</span>&nbsp;字
+                class="white-color">160.4k</span>&nbsp;字
             
             
             

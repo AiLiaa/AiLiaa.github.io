@@ -344,14 +344,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-15
+                    2023-09-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.8k
+                    7.9k
                 </div>
                 
 
@@ -419,8 +419,8 @@
 <li> <strong>异步</strong> ：调用在发出之后，不用等待返回结果，该调用直接返回。</li>
 </ul>
 <h3 id="阻塞和非阻塞的区别"><a href="#阻塞和非阻塞的区别" class="headerlink" title="阻塞和非阻塞的区别"></a>阻塞和非阻塞的区别</h3><ul>
-<li><strong>阻塞</strong>：是指调用结果返回前，当前线程会被挂起，即阻塞。</li>
-<li><strong>非阻塞</strong>：是指即使调用结果没返回，也不会阻塞当前线程。</li>
+<li><strong>阻塞</strong>：是指调用结果返回前，当前线程会被挂起，即阻塞。（sleep）</li>
+<li><strong>非阻塞</strong>：是指即使调用结果没返回，也不会阻塞当前线程。（轮询）</li>
 </ul>
 <h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h3 id="线程、进程、协程是什么"><a href="#线程、进程、协程是什么" class="headerlink" title="线程、进程、协程是什么"></a>线程、进程、协程是什么</h3><p>进程：进程是系统进行资源分配的基本单位，进程就是运行起来的可执行程序。</p>
 <p>线程：线程是程序执行的最基本的单位，是轻量级的进程，多个线程可以在同一个进程中同时执行，并且共享进程的资源比如内存空间、文件句柄、网络连接等。</p>
@@ -481,20 +481,17 @@
 </ol>
 <p><strong>信号量</strong></p>
 <ol>
-<li>信号量（semaphore）是一个计数器。用于实现进程间的互斥与同步，而不是用于存储进程间通信数据；</li>
-<li>用于进程间同步，对共享数据的访问</li>
+<li>信号量（semaphore）是一个计数器。通过对信号量进行P操作（申请资源）和V操作（释放资源）来协调资源的访问，避免竞态条件的发生。</li>
 <li>基于操作系统的 PV 操作，程序对信号量的操作都是原子操作</li>
 <li>每次对信号量的 PV 操作不仅限于对信号量值加 1 或减 1，而且可以加减任意正整数；</li>
 </ol>
 <p><strong>共享内存</strong></p>
 <ol>
-<li>需要依靠某种同步操作</li>
-<li>多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据的更新</li>
-<li>共享内存是最快的一种 IPC，因为进程是直接对内存进行存取。</li>
+<li>多个进程可以访问同一块物理内存区域，通过读写这块共享内存来实现数据的共享。这种方式高效快速，但需要进行进程间同步和互斥操作，以防止数据竞争。</li>
 </ol>
 <p><strong>套接字(Sockets)</strong> </p>
 <ol>
-<li>主要用于在客户端和服务器之间通过网络进行通信。支持不同主机上的两个进程 IPC</li>
+<li>主要用于在客户端和服务器之间通过网络进行通信。可以在不同主机上的进程之间进行通信</li>
 </ol>
 <p><strong>RPC</strong></p>
 <ol>
@@ -702,11 +699,10 @@
 <li><p><code>ps</code>：用于显示当前运行的进程状态。</p>
 <ul>
 <li><code>ps aux</code>：显示所有用户的所有进程。</li>
-<li><code>ps -ef</code>：以全格式显示进程信息。</li>
-<li><code>ps -e | grep &lt;关键字&gt;</code>：根据关键字过滤显示进程。</li>
+<li><code>ps -p &lt;PID&gt;</code>：显示与指定PID相关的进程信息，包括进程的状态、CPU占用、内存占用、启动时间等。</li>
 </ul>
 </li>
-<li><p><code>top</code>：动态实时显示进程的系统资源占用情况和进程信息。</p>
+<li><p><code>top</code>：动态实时显示进程的系统资源占用情况和进程信息。（CPU、内存、进程）</p>
 </li>
 <li><p><code>htop</code>：类似于<code>top</code>命令，但提供了更加交互式和直观的界面，支持鼠标操作。</p>
 </li>
@@ -717,7 +713,9 @@
 <li><code>killall &lt;进程名&gt;</code>：终止指定名称的所有进程。</li>
 </ul>
 </li>
-<li><p><code>pgrep</code>：根据进程名或其它条件来查找进程的PID。常用选项有：</p>
+<li><p><code>pgrep</code>：根据进程名或其它条件来查找进程的PID。</p>
+</li>
+<li><p><code>netstat -tuln | grep &lt;端口号&gt;</code>：列出正在监听的端口，并通过grep过滤出包含指定端口号的行。-t选项表示TCP协议，-u选项表示UDP协议，-l选项表示仅显示监听状态的端口，-n选项表示以数字形式显示端口号。</p>
 </li>
 </ul>
 
@@ -1092,7 +1090,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">156.5k</span>&nbsp;字
+                class="white-color">160.4k</span>&nbsp;字
             
             
             

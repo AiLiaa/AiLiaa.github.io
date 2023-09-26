@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    3.7k
                 </div>
                 
 
@@ -391,6 +391,8 @@
 <p>通过使用镜像，可以实现应用程序的快速部署、可重复性和便携性。每个镜像都是独立和隔离的，可以在各种环境中使用</p>
 <h3 id="什么是-Docker-容器"><a href="#什么是-Docker-容器" class="headerlink" title="什么是 Docker 容器"></a>什么是 Docker 容器</h3><p>Docker容器是一种轻量级的虚拟化技术，用于将应用程序及其依赖项打包在一个可移植的、自包含的环境中。它可以在不同的计算机上运行，而无需担心环境差异、依赖问题或系统冲突。</p>
 <p>通过使用Docker容器，开发人员可以轻松构建、交付和运行应用程序。容器化的应用程序可以在开发、测试和生产环境中保持一致，避免了”在我的机器上可以运行”的问题。</p>
+<p>Docker利用Linux内核提供的一些特性，如cgroups（控制组）、namespace（命名空间）和chroot（变更根目录）等，来实现容器的隔离和管理。</p>
+<p>通过使用Docker Desktop等工具，也可以在Windows和macOS上运行Docker容器，并通过在虚拟化技术中嵌套Linux，实现在非Linux宿主系统上运行Linux容器的能力。</p>
 <p><strong>特点</strong>：</p>
 <ol>
 <li><strong>轻量级</strong>：相比传统虚拟机，它们消耗更少的系统资源和存储空间。可以快速启动、停止和迁移</li>
@@ -486,6 +488,11 @@
 <li>控制组（Control Groups，简称cgroups）：cgroups允许对容器中的资源进行限制和分配，例如CPU、内存、磁盘IO等。通过cgroups，可以为每个容器设置资源限制，防止一个容器占用过多的资源对其他容器产生影响。</li>
 <li>文件系统隔离：每个容器都有自己的文件系统空间，容器中的文件系统在本质上是宿主机上的一个目录或文件的快照。</li>
 <li>网络隔离：Docker为每个容器提供了独立的网络命名空间和网络栈，使得容器可以有自己的IP地址、网络接口和路由表。</li>
+</ol>
+<h3 id="Docker网络通信方式有哪些"><a href="#Docker网络通信方式有哪些" class="headerlink" title="Docker网络通信方式有哪些"></a>Docker网络通信方式有哪些</h3><ol>
+<li>桥接网络（bridge network）：默认情况下，Docker创建的容器会连接到一个名为docker0的虚拟以太网桥上，这被称为默认的桥接网络。在这种网络模式下，每个容器被分配一个IP地址，并且可以通过容器名称或IP地址相互通信。</li>
+<li>主机网络（host network）：使用主机网络模式时，容器将直接使用宿主机的网络命名空间，与宿主机共享网络栈。这意味着容器将和宿主机具有相同的IP地址和端口空间，可以直接与同一主机上的其他服务进行通信。</li>
+<li>Overlay网络（overlay network）：Overlay网络是用于跨主机容器通信的一种网络模式。它通过在现有的物理网络基础上创建虚拟网络，实现了跨主机容器的互联。容器可以在不同的主机上运行，并且通过Overlay网络进行通信，就像它们在同一网络中一样。</li>
 </ol>
 <h3 id="Docker-Swarm是什么"><a href="#Docker-Swarm是什么" class="headerlink" title="Docker Swarm是什么"></a>Docker Swarm是什么</h3><p>Docker Swarm 是 Docker 容器的集群管理工具，它允许将多个 Docker 主机组成一个分布式的容器集群。</p>
 <p>通过 Docker Swarm，用户可以使用简单的命令或者 Docker Compose 文件来创建、部署和管理容器集群。Swarm Manager 负责集群的管理和调度，自动将服务在集群中分配和扩展。</p>
@@ -878,7 +885,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">156.5k</span>&nbsp;字
+                class="white-color">160.4k</span>&nbsp;字
             
             
             

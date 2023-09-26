@@ -348,14 +348,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-15
+                    2023-09-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    4.6k
                 </div>
                 
 
@@ -430,6 +430,13 @@
 <li><p>  <strong>负载均衡</strong> ： Kafka 通过给特定 Topic 指定多个 Partition, 而各个 Partition 可以分布在不同的 Broker 上, 这样便能提供比较好的并发能力。 对于同一个 Topic 的不同 Partition，Kafka 会尽力将这些 Partition 分布到不同的 Broker 服务器上。当生产者产生消息后也会尽量投递到不同 Broker 的 Partition 里面。当 Consumer 消费的时候，Zookeeper 可以根据当前的 Partition 数量以及 Consumer 数量来实现动态负载均衡。</p>
 </li>
 </ul>
+<h3 id="Kafka如何削峰"><a href="#Kafka如何削峰" class="headerlink" title="Kafka如何削峰"></a>Kafka如何削峰</h3><ol>
+<li>增加分区：增加分区数量可以提高系统的并发处理能力，从而更好地分散负载，减轻压力。</li>
+<li>提高消费者组的消费能力：多个消费者可以同时消费同一个主题的不同分区，从而提高处理速度。</li>
+<li>批量发送和批量接收：在生产者端，可以将多个消息进行批量发送，减少网络开销。在消费者端，可以设置合适的拉取批次大小，以一次拉取多个消息，减少频繁的网络请求。</li>
+<li>弹性扩展：在系统负载过高时，可以采用弹性扩展的方式，动态增加Kafka集群的节点或消费者的实例数量，以应对高负载情况。</li>
+<li>参数设置（限流）<br>生产者端参数和策略：<br>（1）batch.size 和 linger.ms：适当增大 <code>batch.size</code> 参数和 <code>linger.ms</code> 参数的值，将多个消息进行批量发送。这样可以减少请求次数和网络传输开销，提高发送效率。<br>（2）max.block.ms：设置生产者在发送缓冲区满时的阻塞时间。如果设置了较小的值，当发送缓冲区已满时，生产者将被阻塞一段时间，直到有足够空间去发送消息。这种方式可以在消息高峰期时，通过控制发送速率来缓解压力。<br>消费者端参数和策略：<br>（1）max.poll.records：控制每次拉取的最大记录数。通过调整该参数，限制每次消费者获取消息的数量，从而控制消费压力。<br>（2）fetch.min.bytes 和 fetch.max.wait.ms：通过适当调整 <code>fetch.min.bytes</code> 和 <code>fetch.max.wait.ms</code> 参数，控制消费者的拉取频率。较大的 <code>fetch.min.bytes</code> 值可以减少拉取的次数，较大的 <code>fetch.max.wait.ms</code> 值可以延长拉取的等待时间，从而降低消费者的请求次数。</li>
+</ol>
 <h3 id="如何保证Kafka消息队列的高可用"><a href="#如何保证Kafka消息队列的高可用" class="headerlink" title="如何保证Kafka消息队列的高可用"></a>如何保证Kafka消息队列的高可用</h3><ol>
 <li><strong>多分区（Partition）</strong></li>
 </ol>
@@ -907,7 +914,7 @@ future<span class="token punctuation">.</span><span class="token function">addCa
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">156.5k</span>&nbsp;字
+                class="white-color">160.4k</span>&nbsp;字
             
             
             
